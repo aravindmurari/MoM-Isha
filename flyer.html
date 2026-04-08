@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Flyer Generator — Miracle of Mind Volunteer Hub</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Trirong:ital,wght@1,700&display=swap">
+  <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --red: #EC1C2D;
+      --amber: #D4914A;
+      --dark: #08080a;
+      --cream: #FFF7E9;
+      --mid: #6E665B;
+      --light: #A09890;
+      --border: #E8DECE;
+      --bg: #F2EDE4;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--dark);
+      min-height: 100vh;
+    }
+
+    /* ── NAV ─────────────────────────────────────────────────── */
+    nav {
+      background: var(--dark);
+      padding: 0 24px;
+      height: 48px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      border-bottom: 2px solid var(--red);
+    }
+    nav a.back {
+      color: #fff;
+      text-decoration: none;
+      font-size: 13px;
+      opacity: 0.65;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      transition: opacity 0.15s;
+    }
+    nav a.back:hover { opacity: 1; }
+    nav .sep { color: #fff; opacity: 0.25; font-size: 18px; line-height: 1; }
+    nav .page-title { color: #fff; font-size: 14px; font-weight: 600; }
+    nav .badge {
+      background: var(--amber);
+      color: #fff;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      padding: 2px 8px;
+      border-radius: 3px;
+      text-transform: uppercase;
+    }
+
+    /* ── LAYOUT ──────────────────────────────────────────────── */
+    .app {
+      display: grid;
+      grid-template-columns: 320px 1fr;
+      min-height: calc(100vh - 48px);
+    }
+
+    .sidebar {
+      background: #fff;
+      border-right: 1px solid var(--border);
+      padding: 20px;
+      overflow-y: auto;
+      max-height: calc(100vh - 48px);
+      position: sticky;
+      top: 48px;
+    }
+
+    .main {
+      padding: 28px 24px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+    }
+
+    /* ── SECTION LABEL ───────────────────────────────────────── */
+    .slabel {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--red);
+      margin-bottom: 10px;
+    }
+
+    .sb-section { margin-bottom: 22px; }
+
+    hr.div { border: none; border-top: 1px solid var(--border); margin: 20px 0; }
+
+    /* ── TEMPLATE GRID ───────────────────────────────────────── */
+    .tmpl-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 5px;
+    }
+
+    .tmpl-thumb {
+      position: relative;
+      cursor: pointer;
+      border-radius: 4px;
+      overflow: hidden;
+      border: 2px solid transparent;
+      transition: border-color 0.15s, transform 0.1s;
+      aspect-ratio: 4/5;
+      background: #eee;
+    }
+    .tmpl-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .tmpl-thumb .n {
+      position: absolute;
+      bottom: 3px;
+      right: 4px;
+      font-size: 10px;
+      font-weight: 700;
+      color: #fff;
+      text-shadow: 0 1px 4px rgba(0,0,0,0.9);
+      line-height: 1;
+    }
+    .tmpl-thumb:hover { border-color: var(--amber); transform: scale(1.03); }
+    .tmpl-thumb.sel { border-color: var(--red); }
+    .tmpl-thumb.sel::after {
+      content: '✓';
+      position: absolute;
+      top: 3px; left: 3px;
+      width: 15px; height: 15px;
+      background: var(--red);
+      border-radius: 50%;
+      color: #fff;
+      font-size: 9px;
+      font-weight: 900;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      line-height: 15px;
+      text-align: center;
+    }
+
+    /* ── FORM ────────────────────────────────────────────────── */
+    .fg { margin-bottom: 12px; }
+    .fg label {
+      display: block;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--mid);
+      margin-bottom: 4px;
+    }
+    .fg input {
+      width: 100%;
+      padding: 7px 9px;
+      border: 1px solid var(--border);
+      border-radius: 5px;
+      font-family: 'Inter', sans-serif;
+      font-size: 13px;
+      color: var(--dark);
+      background: #FAFAF7;
+      outline: none;
+      transition: border-color 0.15s, background 0.15s;
+    }
+    .fg input:focus { border-color: var(--red); background: #fff; }
+    .fg .hint { font-size: 10px; color: var(--light); margin-top: 3px; line-height: 1.4; }
+
+    /* ── DOWNLOAD BUTTON ─────────────────────────────────────── */
+    .btn-dl {
+      width: 100%;
+      padding: 11px 16px;
+      background: var(--red);
+      color: #fff;
+      border: none;
+      border-radius: 7px;
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.15s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+    .btn-dl:hover { background: #c41020; }
+    .btn-dl:active { background: #a50e1b; }
+
+    .tip-note {
+      font-size: 11px;
+      color: var(--light);
+      line-height: 1.5;
+      margin-top: 10px;
+    }
+    .tip-note a { color: var(--red); }
+
+    /* ── PREVIEW ─────────────────────────────────────────────── */
+    .preview-label {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--mid);
+    }
+
+    #flyerCanvas {
+      display: block;
+      border-radius: 8px;
+      box-shadow: 0 12px 50px rgba(0,0,0,0.22);
+      max-width: min(560px, calc(100vw - 380px));
+      width: auto;
+      height: auto;
+    }
+
+    .preview-sub {
+      font-size: 12px;
+      color: var(--light);
+      text-align: center;
+      max-width: 460px;
+      line-height: 1.5;
+    }
+
+    /* ── RESPONSIVE ──────────────────────────────────────────── */
+    @media (max-width: 800px) {
+      .app { grid-template-columns: 1fr; }
+      .sidebar { position: static; max-height: none; }
+      .main { padding: 20px 16px; }
+      #flyerCanvas { max-width: min(560px, calc(100vw - 32px)); }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a class="back" href="index.html">← Volunteer Hub</a>
+  <span class="sep">|</span>
+  <span class="page-title">Flyer Generator</span>
+  <span class="badge">Volunteer Tool</span>
+</nav>
+
+<div class="app">
+
+  <!-- ── SIDEBAR ──────────────────────────────────────────── -->
+  <aside class="sidebar">
+
+    <div class="sb-section">
+      <div class="slabel">Choose Template</div>
+      <div class="tmpl-grid" id="tmplGrid"></div>
+    </div>
+
+    <hr class="div">
+
+    <div class="sb-section">
+      <div class="slabel">Event Details</div>
+
+      <div class="fg">
+        <label>Date</label>
+        <input id="fDate" type="text" placeholder="e.g. Saturday, April 12" value="Saturday, April 12">
+      </div>
+      <div class="fg">
+        <label>Time</label>
+        <input id="fTime" type="text" placeholder="e.g. 2:00 PM – 2:30 PM" value="2:00 PM – 2:30 PM">
+      </div>
+      <div class="fg">
+        <label>Address Line 1</label>
+        <input id="fAddr1" type="text" placeholder="e.g. 123 Main Street" value="123 Main Street">
+      </div>
+      <div class="fg">
+        <label>City / State / Zip</label>
+        <input id="fAddr2" type="text" placeholder="e.g. Toronto, ON M5V 3A8" value="Toronto, ON M5V 3A8">
+      </div>
+      <div class="fg">
+        <label>RSVP / Registration Link</label>
+        <input id="fUrl" type="url" placeholder="https://isha.co/mom" value="https://isha.co/mom">
+        <div class="hint">QR code is auto-generated from this link.</div>
+      </div>
+    </div>
+
+    <button class="btn-dl" onclick="downloadFlyer()">
+      ↓&nbsp; Download Flyer (PNG)
+    </button>
+
+    <p class="tip-note">
+      Best used on <a href="https://aravindmurari.github.io/MoM-Isha/flyer.html" target="_blank">GitHub Pages</a>.
+      Opening as a local file may block image loading in some browsers.
+    </p>
+
+  </aside>
+
+  <!-- ── MAIN PREVIEW ─────────────────────────────────────── -->
+  <main class="main">
+    <div class="preview-label">Live Preview</div>
+    <canvas id="flyerCanvas" width="560" height="700"></canvas>
+    <p class="preview-sub">
+      Updates as you type. Download saves a high-resolution 2× PNG.
+    </p>
+  </main>
+
+</div>
+
+<script>
+// ════════════════════════════════════════════════════════
+//  TEMPLATE CONFIGURATIONS
+//  Coordinates are fractions of canvas (W×H).
+//  "footer-left"  — event details bottom-left in a footer bar
+//  "center-right" — details in a right or center panel
+//  "body"         — details in main body area (no footer bar)
+// ════════════════════════════════════════════════════════
+const W = 560, H = 700;
+
+const FOOTER_DEFAULT = {
+  layout: 'footer-left',
+  textColor: '#FFFFFF',
+  textX: 0.038,     // left edge of text block
+  textY: 0.863,     // top of first text line (y fraction)
+  lineH: 0.030,     // line height (y fraction)
+  fontSize: 13,     // px (at 1× scale)
+  fontWeight: 'bold',
+  textAlign: 'left',
+  shadow: true,
+  qrCX: 0.505,      // QR center X fraction
+  qrCY: 0.905,      // QR center Y fraction
+  qrSize: 78,       // px (at 1× scale)
+  qrBg: true
+};
+
+const CFGS = {
+  // ── footer-bar templates ──────────────────────────────
+  1:  { ...FOOTER_DEFAULT },
+  2:  { ...FOOTER_DEFAULT },
+  3:  { ...FOOTER_DEFAULT },
+  4:  { ...FOOTER_DEFAULT },
+  6:  { ...FOOTER_DEFAULT },
+  7:  { ...FOOTER_DEFAULT },
+  9:  { ...FOOTER_DEFAULT },
+  10: { ...FOOTER_DEFAULT },
+  12: { ...FOOTER_DEFAULT },
+
+  // ── Template 5: Sadhguru portrait + phone mockup ───────
+  // Details in a lower-center panel, no footer bar
+  5: {
+    layout: 'body',
+    textColor: '#1A1A1A',
+    textX: 0.5,
+    textY: 0.725,
+    lineH: 0.040,
+    fontSize: 13,
+    fontWeight: 'bold',
+    textAlign: 'center',
+    shadow: false,
+    qrCX: 0.765,
+    qrCY: 0.875,
+    qrSize: 68,
+    qrBg: true
+  },
+
+  // ── Template 8: split left/right panel ─────────────────
+  // Illustration left, dark right panel with centered details
+  8: {
+    layout: 'center-right',
+    textColor: '#FFFFFF',
+    textX: 0.5,
+    textY: 0.730,
+    lineH: 0.038,
+    fontSize: 13,
+    fontWeight: 'bold',
+    textAlign: 'center',
+    shadow: false,
+    qrCX: 0.595,
+    qrCY: 0.885,
+    qrSize: 68,
+    qrBg: false
+  },
+
+  // ── Template 11: silhouette on red/white, logo left ─────
+  // Details in center-right area
+  11: {
+    layout: 'center-right',
+    textColor: '#1A1A1A',
+    textX: 0.540,
+    textY: 0.598,
+    lineH: 0.038,
+    fontSize: 13,
+    fontWeight: 'bold',
+    textAlign: 'center',
+    shadow: false,
+    qrCX: 0.574,
+    qrCY: 0.780,
+    qrSize: 68,
+    qrBg: false
+  }
+};
+
+// ════════════════════════════════════════════════════════
+//  STATE
+// ════════════════════════════════════════════════════════
+let selectedId = 1;
+const previewCanvas = document.getElementById('flyerCanvas');
+const previewCtx = previewCanvas.getContext('2d');
+const imgCache = {};
+let renderPending = false;
+
+// ════════════════════════════════════════════════════════
+//  BUILD TEMPLATE PICKER
+// ════════════════════════════════════════════════════════
+const grid = document.getElementById('tmplGrid');
+for (let i = 1; i <= 12; i++) {
+  const d = document.createElement('div');
+  d.className = 'tmpl-thumb' + (i === 1 ? ' sel' : '');
+  d.dataset.id = i;
+  d.innerHTML = `<img src="files/templates/${i}.png" alt="Template ${i}" loading="lazy"><span class="n">${i}</span>`;
+  d.onclick = () => {
+    selectedId = i;
+    document.querySelectorAll('.tmpl-thumb').forEach(el =>
+      el.classList.toggle('sel', +el.dataset.id === i));
+    scheduleRender();
+  };
+  grid.appendChild(d);
+}
+
+// ════════════════════════════════════════════════════════
+//  HELPERS
+// ════════════════════════════════════════════════════════
+function loadImage(src) {
+  return new Promise((resolve, reject) => {
+    if (imgCache[src]) { resolve(imgCache[src]); return; }
+    const img = new Image();
+    img.crossOrigin = 'anonymous';
+    img.onload  = () => { imgCache[src] = img; resolve(img); };
+    img.onerror = reject;
+    img.src = src;
+  });
+}
+
+function makeQR(url, size) {
+  return new Promise((resolve, reject) => {
+    const qc = document.createElement('canvas');
+    qc.width = size; qc.height = size;
+    QRCode.toCanvas(qc, url || 'https://isha.co/mom', {
+      width: size,
+      margin: 1,
+      color: { dark: '#000000', light: '#FFFFFF' }
+    }, err => err ? reject(err) : resolve(qc));
+  });
+}
+
+function getFields() {
+  return {
+    date:  document.getElementById('fDate').value.trim(),
+    time:  document.getElementById('fTime').value.trim(),
+    addr1: document.getElementById('fAddr1').value.trim(),
+    addr2: document.getElementById('fAddr2').value.trim(),
+    url:   document.getElementById('fUrl').value.trim() || 'https://isha.co/mom'
+  };
+}
+
+// ════════════════════════════════════════════════════════
+//  CORE RENDERER
+//  Draws onto any ctx at any scale.
+//  scale=1 → preview (560×700), scale=2 → hi-res download
+// ════════════════════════════════════════════════════════
+async function renderOnCtx(ctx, scale) {
+  const sw = W * scale, sh = H * scale;
+  const cfg = CFGS[selectedId] || FOOTER_DEFAULT;
+  const fields = getFields();
+
+  // Clear
+  ctx.clearRect(0, 0, sw, sh);
+  ctx.fillStyle = '#1a1a1a';
+  ctx.fillRect(0, 0, sw, sh);
+
+  // Load + draw template image
+  let img;
+  try {
+    img = await loadImage(`files/templates/${selectedId}.png`);
+  } catch (_) {
+    ctx.fillStyle = '#333';
+    ctx.fillRect(0, 0, sw, sh);
+    ctx.fillStyle = '#999';
+    ctx.font = `${14 * scale}px Inter, sans-serif`;
+    ctx.textAlign = 'center';
+    ctx.fillText('Image could not load.', sw / 2, sh / 2 - 10 * scale);
+    ctx.fillText('Use GitHub Pages for full functionality.', sw / 2, sh / 2 + 12 * scale);
+    return;
+  }
+  ctx.drawImage(img, 0, 0, sw, sh);
+
+  // ── Draw event detail lines ─────────────────────────
+  const fs = cfg.fontSize * scale;
+  ctx.font = `${cfg.fontWeight} ${fs}px Inter, sans-serif`;
+  ctx.fillStyle = cfg.textColor;
+  ctx.textAlign = cfg.textAlign || 'left';
+
+  if (cfg.shadow) {
+    ctx.shadowColor = 'rgba(0,0,0,0.6)';
+    ctx.shadowBlur = 4 * scale;
+    ctx.shadowOffsetX = 0;
+    ctx.shadowOffsetY = 1 * scale;
+  }
+
+  const startX = cfg.textX * sw;
+  let y = cfg.textY * sh;
+  const lh = cfg.lineH * sh;
+
+  const lines = [fields.date, fields.addr1, fields.addr2, fields.time].filter(Boolean);
+  for (const line of lines) {
+    ctx.fillText(line, startX, y);
+    y += lh;
+  }
+
+  ctx.shadowBlur = 0;
+  ctx.shadowOffsetX = 0;
+  ctx.shadowOffsetY = 0;
+
+  // ── Draw QR code ────────────────────────────────────
+  if (fields.url) {
+    try {
+      const qrSz = cfg.qrSize * scale;
+      const qrCanvas = await makeQR(fields.url, qrSz);
+      const qx = cfg.qrCX * sw - qrSz / 2;
+      const qy = cfg.qrCY * sh - qrSz / 2;
+
+      if (cfg.qrBg) {
+        const pad = 3 * scale;
+        ctx.fillStyle = '#FFFFFF';
+        ctx.fillRect(qx - pad, qy - pad, qrSz + pad * 2, qrSz + pad * 2);
+      }
+
+      ctx.drawImage(qrCanvas, qx, qy, qrSz, qrSz);
+    } catch (e) {
+      console.warn('QR failed:', e);
+    }
+  }
+}
+
+// ════════════════════════════════════════════════════════
+//  SCHEDULE PREVIEW (debounced)
+// ════════════════════════════════════════════════════════
+function scheduleRender() {
+  if (renderPending) return;
+  renderPending = true;
+  requestAnimationFrame(async () => {
+    await renderOnCtx(previewCtx, 1);
+    renderPending = false;
+  });
+}
+
+// ════════════════════════════════════════════════════════
+//  DOWNLOAD (2× hi-res)
+// ════════════════════════════════════════════════════════
+async function downloadFlyer() {
+  const btn = document.querySelector('.btn-dl');
+  btn.disabled = true;
+  btn.textContent = 'Generating…';
+
+  try {
+    const hc = document.createElement('canvas');
+    hc.width  = W * 2;
+    hc.height = H * 2;
+    const hCtx = hc.getContext('2d');
+    await renderOnCtx(hCtx, 2);
+
+    const a = document.createElement('a');
+    a.download = `MoM_Flyer_${selectedId}.png`;
+    a.href = hc.toDataURL('image/png');
+    a.click();
+  } catch (e) {
+    alert('Download failed. Make sure you are using the GitHub Pages version of this site.');
+    console.error(e);
+  } finally {
+    btn.disabled = false;
+    btn.innerHTML = '↓&nbsp; Download Flyer (PNG)';
+  }
+}
+
+// ════════════════════════════════════════════════════════
+//  LIVE INPUTS
+// ════════════════════════════════════════════════════════
+['fDate','fTime','fAddr1','fAddr2','fUrl'].forEach(id =>
+  document.getElementById(id).addEventListener('input', scheduleRender));
+
+// ── Init ──────────────────────────────────────────────
+scheduleRender();
+</script>
+
+</body>
+</html>
