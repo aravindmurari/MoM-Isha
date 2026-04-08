@@ -431,20 +431,12 @@
 
   <div class="cards-grid">
 
-    <!-- PROMO TEMPLATES -->
+    <!-- SOCIAL MEDIA CAPTIONS -->
     <div class="resource-card">
-      <div class="card-icon">🖼️</div>
-      <div class="card-title">Promo Templates</div>
-      <div class="card-desc">Canva templates for social media and event promotion. Open in Canva, copy to your account, and customize.</div>
-      <div class="canva-links">
-        <div class="canva-item">
-          <div class="canva-item-left">
-            <div class="canva-dot"></div>
-            <span class="canva-name">Promo Pack A</span>
-          </div>
-          <a class="canva-open" href="https://www.canva.com/design/DAHFoFMy6rU/69erhSbYaqkV6kY-ttDUkQ/edit?utm_content=DAHFoFMy6rU&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton" target="_blank" rel="noopener">Open ↗</a>
-        </div>
-      </div>
+      <div class="card-icon">📱</div>
+      <div class="card-title">Social Media Captions</div>
+      <div class="card-desc">Ready-to-post captions for Instagram, Facebook, LinkedIn, and X. Copy, add your event details, and post.</div>
+      <span class="card-link" style="cursor:default; opacity:0.5;">Coming soon</span>
     </div>
 
     <!-- FLYER TEMPLATES -->
@@ -458,7 +450,7 @@
             <div class="canva-dot"></div>
             <span class="canva-name">E-Flyer Template</span>
           </div>
-          <a class="canva-open" href="https://www.canva.com/design/DAG8FCb7Cm4/xpKV75c1xniaxeSK47WDXA/edit?utm_content=DAG8FCb7Cm4&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton" target="_blank" rel="noopener">Open ↗</a>
+          <a class="canva-open" href="https://canva.link/11plslfb62i3qxj" target="_blank" rel="noopener">Open ↗</a>
         </div>
       </div>
     </div>
@@ -737,13 +729,33 @@ Isha Volunteers</div>
   }
 
   function copyTemplate(id, btn) {
-    const text = document.getElementById(id).innerText;
-    navigator.clipboard.writeText(text).then(() => {
+    const el = document.getElementById(id);
+
+    // Plain text — preserves line breaks for WhatsApp / plain text fields
+    const plain = el.innerText;
+
+    // Rich HTML — preserves bold Subject: line and line breaks for email clients (Gmail, Outlook)
+    const htmlContent = el.innerHTML.replace(/\n/g, '<br>');
+    const html = `<div style="font-family:Arial,sans-serif;font-size:14px;line-height:1.7;">${htmlContent}</div>`;
+
+    const showFeedback = () => {
       const orig = btn.innerHTML;
       btn.innerHTML = '✓ Copied!';
       btn.classList.add('copied');
       setTimeout(() => { btn.innerHTML = orig; btn.classList.remove('copied'); }, 2000);
-    });
+    };
+
+    // Try rich copy first (works in Chrome/Edge); fall back to plain text (Safari/Firefox)
+    if (window.ClipboardItem) {
+      navigator.clipboard.write([
+        new ClipboardItem({
+          'text/plain': new Blob([plain], { type: 'text/plain' }),
+          'text/html':  new Blob([html],  { type: 'text/html'  }),
+        })
+      ]).then(showFeedback).catch(() => navigator.clipboard.writeText(plain).then(showFeedback));
+    } else {
+      navigator.clipboard.writeText(plain).then(showFeedback);
+    }
   }
 </script>
 </body>
