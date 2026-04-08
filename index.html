@@ -432,11 +432,146 @@
   <div class="cards-grid">
 
     <!-- SOCIAL MEDIA CAPTIONS -->
-    <div class="resource-card">
-      <div class="card-icon">📱</div>
-      <div class="card-title">Social Media Captions</div>
-      <div class="card-desc">Ready-to-post captions for Instagram, Facebook, LinkedIn, and X. Copy, add your event details, and post.</div>
-      <span class="card-link" style="cursor:default; opacity:0.5;">Coming soon</span>
+    <div class="expand-card" id="card-social">
+      <button class="expand-trigger" onclick="toggleExpand('card-social')">
+        <div class="expand-icon-wrap">📱</div>
+        <div class="expand-text">
+          <div class="card-title">Social Media Captions</div>
+          <div class="card-desc" style="margin-top:5px;">Ready-to-post captions for Instagram, Facebook, LinkedIn, and X. Copy, add your event details, and post.</div>
+        </div>
+        <span class="expand-chevron">▼</span>
+      </button>
+      <div class="expand-body">
+        <div class="sub-tabs">
+          <button class="sub-tab active" onclick="switchTab('social','ig',this)">Instagram</button>
+          <button class="sub-tab" onclick="switchTab('social','fb',this)">Facebook</button>
+          <button class="sub-tab" onclick="switchTab('social','li',this)">LinkedIn</button>
+          <button class="sub-tab" onclick="switchTab('social','x',this)">X</button>
+        </div>
+
+        <!-- INSTAGRAM -->
+        <div class="template-panel active" id="social-ig">
+
+          <div class="template-label">Caption 1 — Quote post</div>
+          <div class="template-box" id="txt-ig-1">"If your mind becomes a conscious process, it becomes the greatest miracle in existence." — Sadhguru
+
+A free 7-minute meditation. Designed by Sadhguru. Backed by science. Available right now.
+👉 Download Miracle of Mind — link in bio.
+
+#MiracleOfMind #Sadhguru #Meditation #MentalWellbeing #IshaFoundation</div>
+          <button class="copy-btn" onclick="copyTemplate('txt-ig-1', this)" style="margin-bottom:16px;">⧉ Copy</button>
+
+          <div class="template-label">Caption 2 — Session invite</div>
+          <div class="template-box" id="txt-ig-2">We're hosting a free 30-minute meditation session in your city — and you're invited. 🙏
+
+No experience needed. Just show up.
+
+📍 [Location] · 🗓️ [Date] · ⏰ [Time]
+Register: [link]
+
+#MoMSession #FreeEvent #MiracleOfMind #IshaVolunteers</div>
+          <button class="copy-btn" onclick="copyTemplate('txt-ig-2', this)" style="margin-bottom:16px;">⧉ Copy</button>
+
+          <div class="template-label">Caption 3 — Lifestyle / benefit</div>
+          <div class="template-box" id="txt-ig-3">7 minutes a day.
+More clarity. Better sleep. Less stress.
+
+That's what thousands of people are experiencing with the Miracle of Mind app by Sadhguru — and it's completely free.
+
+Try it today 👇 [link]
+
+#MiracleOfMind #7Minutes #MindfulLiving #Sadhguru</div>
+          <button class="copy-btn" onclick="copyTemplate('txt-ig-3', this)" style="margin-bottom:16px;">⧉ Copy</button>
+
+          <div class="template-label">Caption 4 — Social proof</div>
+          <div class="template-box" id="txt-ig-4">1 million downloads in 15 hours. 🌍
+
+People everywhere are discovering what 7 minutes of meditation can do. Join them — the Miracle of Mind app is free, guided by Sadhguru, and takes less time than your morning coffee.
+
+📲 Download: [link]
+
+#MiracleOfMind #Sadhguru #Meditation</div>
+          <button class="copy-btn" onclick="copyTemplate('txt-ig-4', this)">⧉ Copy</button>
+
+        </div>
+
+        <!-- FACEBOOK -->
+        <div class="template-panel" id="social-fb">
+
+          <div class="template-label">Caption 1 — Community invite</div>
+          <div class="template-box" id="txt-fb-1">Hi friends! I'm volunteering with Isha Foundation to bring something special to our community — a free Miracle of Mind meditation session.
+
+In just 30 minutes, you'll learn a simple 7-minute practice designed by Sadhguru that you can use every single day to reduce stress, improve focus, and feel more at ease.
+
+📍 [Location] · 🗓️ [Date & Time]
+
+No prior experience needed — just bring yourself. Feel free to share this with anyone who could use a little more calm in their life. 🙏
+
+Register here: [link]</div>
+          <button class="copy-btn" onclick="copyTemplate('txt-fb-1', this)" style="margin-bottom:16px;">⧉ Copy</button>
+
+          <div class="template-label">Caption 2 — Personal story</div>
+          <div class="template-box" id="txt-fb-2">A few months ago, I started doing a 7-minute meditation every morning. I was skeptical at first — 7 minutes didn't seem like nearly enough.
+
+But something shifted. I started responding instead of reacting. Sleep got better. The mental chatter quieted down.
+
+That practice is the Miracle of Mind — a free app by Sadhguru, available to anyone. I'm now volunteering to share it as widely as possible.
+
+If you're curious, download it here: [link] 🌱</div>
+          <button class="copy-btn" onclick="copyTemplate('txt-fb-2', this)">⧉ Copy</button>
+
+        </div>
+
+        <!-- LINKEDIN -->
+        <div class="template-panel" id="social-li">
+
+          <div class="template-label">Caption 1 — Workplace wellness</div>
+          <div class="template-box" id="txt-li-1">Burnout. Anxiety. Lack of focus. These aren't personal failures — they're signals.
+
+Isha Foundation is offering free Miracle of Mind Experience Sessions for organizations — a 30-minute session introducing employees to a science-backed 7-minute daily meditation designed by Sadhguru.
+
+20+ studies from world-class institutions validate its effectiveness. Over 1 million people downloaded the app within 15 hours of launch.
+
+If you're in HR, L&D, or lead a team and want to bring this to your organization, reach out or visit: [link]
+
+#WorkplaceWellness #MentalHealth #MiracleOfMind #IshaFoundation</div>
+          <button class="copy-btn" onclick="copyTemplate('txt-li-1', this)" style="margin-bottom:16px;">⧉ Copy</button>
+
+          <div class="template-label">Caption 2 — Thought leadership</div>
+          <div class="template-box" id="txt-li-2">We spend years building skills, strategies, and systems.
+But the mind running all of it? Often left unattended.
+
+The Miracle of Mind app by Sadhguru offers a simple 7-minute daily practice — free, guided, and validated by science — to help you take charge of your mental wellbeing.
+
+I've found it genuinely useful. Sharing it here in case it helps someone else too.
+📲 [link]
+
+#MiracleOfMind #Sadhguru #Leadership #Wellbeing</div>
+          <button class="copy-btn" onclick="copyTemplate('txt-li-2', this)">⧉ Copy</button>
+
+        </div>
+
+        <!-- X -->
+        <div class="template-panel" id="social-x">
+
+          <div class="template-label">Post 1 — Punchy stat</div>
+          <div class="template-box" id="txt-x-1">7 minutes of meditation.
+50% reduction in stress.
+Free app by Sadhguru.
+
+That's Miracle of Mind. → [link]</div>
+          <button class="copy-btn" onclick="copyTemplate('txt-x-1', this)" style="margin-bottom:16px;">⧉ Copy</button>
+
+          <div class="template-label">Post 2 — Quote</div>
+          <div class="template-box" id="txt-x-2">"If your mind becomes a conscious process, it becomes the greatest miracle in existence."
+— Sadhguru
+
+Free 7-min daily meditation: [link] #MiracleOfMind</div>
+          <button class="copy-btn" onclick="copyTemplate('txt-x-2', this)">⧉ Copy</button>
+
+        </div>
+
+      </div>
     </div>
 
     <!-- FLYER TEMPLATES -->
