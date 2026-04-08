@@ -292,6 +292,11 @@
       white-space: pre-wrap; word-break: break-word;
       max-height: 300px; overflow-y: auto;
       scrollbar-width: thin; scrollbar-color: var(--border2) transparent;
+      outline: none; cursor: text;
+    }
+    .template-box:focus {
+      border-color: rgba(212,145,74,0.4);
+      box-shadow: 0 0 0 3px rgba(212,145,74,0.08);
     }
     .template-box strong { color: var(--mom-cream); font-weight: 600; }
     .copy-btn {
@@ -334,6 +339,35 @@
       background: none; border: none; cursor: pointer; font-family: inherit; padding: 0;
     }
     .module-link:hover { gap: 10px; }
+
+    /* ── MODULE LIST ── */
+    .module-list { display: flex; flex-direction: column; gap: 10px; }
+    .module-row {
+      display: flex; align-items: center; justify-content: space-between; gap: 16px;
+      background: var(--mom-card); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 20px 24px;
+      transition: border-color 0.2s, transform 0.18s;
+    }
+    .module-row:hover { border-color: rgba(155,132,196,0.35); transform: translateX(4px); }
+    .module-row-left { display: flex; align-items: center; gap: 18px; flex: 1; }
+    .module-duration {
+      font-size: 0.72rem; font-weight: 700; color: #fff;
+      background: var(--mom-red); border-radius: 50px;
+      padding: 4px 10px; white-space: nowrap; flex-shrink: 0;
+    }
+    .module-row-title { font-size: 1rem; font-weight: 600; color: var(--mom-cream2); margin-bottom: 5px; }
+    .module-row-components { display: flex; flex-wrap: wrap; gap: 6px; }
+    .module-row-components span {
+      font-size: 0.75rem; color: var(--mom-muted2);
+      background: var(--mom-black3); border: 1px solid var(--border);
+      border-radius: 50px; padding: 2px 10px;
+    }
+    .module-row-tag {
+      font-size: 0.67rem; font-weight: 600; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--mom-black);
+      background: var(--c-module); border-radius: 50px;
+      padding: 3px 12px; flex-shrink: 0;
+    }
 
     /* ── FOOTER ── */
     footer {
@@ -542,7 +576,7 @@
           <div class="two-col">
             <div>
               <div class="template-label">Caption 1 — Quote post</div>
-              <div class="template-box" id="txt-ig-1">"If your mind becomes a conscious process, it becomes the greatest miracle in existence." — Sadhguru
+              <div class="template-box" contenteditable="true" spellcheck="false" id="txt-ig-1">"If your mind becomes a conscious process, it becomes the greatest miracle in existence." — Sadhguru
 
 A free 7-minute meditation. Designed by Sadhguru. Backed by science. Available right now.
 👉 Download Miracle of Mind — link in bio.
@@ -552,7 +586,7 @@ A free 7-minute meditation. Designed by Sadhguru. Backed by science. Available r
             </div>
             <div>
               <div class="template-label">Caption 2 — Session invite</div>
-              <div class="template-box" id="txt-ig-2">We're hosting a free 30-minute meditation session in your city — and you're invited. 🙏
+              <div class="template-box" contenteditable="true" spellcheck="false" id="txt-ig-2">We're hosting a free 30-minute meditation session in your city — and you're invited. 🙏
 
 No experience needed. Just show up.
 
@@ -564,7 +598,7 @@ Register: [link]
             </div>
             <div>
               <div class="template-label">Caption 3 — Lifestyle / benefit</div>
-              <div class="template-box" id="txt-ig-3">7 minutes a day.
+              <div class="template-box" contenteditable="true" spellcheck="false" id="txt-ig-3">7 minutes a day.
 More clarity. Better sleep. Less stress.
 
 That's what thousands of people are experiencing with the Miracle of Mind app by Sadhguru — and it's completely free.
@@ -576,7 +610,7 @@ Try it today 👇 [link]
             </div>
             <div>
               <div class="template-label">Caption 4 — Social proof</div>
-              <div class="template-box" id="txt-ig-4">1 million downloads in 15 hours. 🌍
+              <div class="template-box" contenteditable="true" spellcheck="false" id="txt-ig-4">1 million downloads in 15 hours. 🌍
 
 People everywhere are discovering what 7 minutes of meditation can do. Join them — the Miracle of Mind app is free, guided by Sadhguru, and takes less time than your morning coffee.
 
@@ -593,7 +627,7 @@ People everywhere are discovering what 7 minutes of meditation can do. Join them
           <div class="two-col">
             <div>
               <div class="template-label">Caption 1 — Community invite</div>
-              <div class="template-box" id="txt-fb-1">Hi friends! I'm volunteering with Isha Foundation to bring something special to our community — a free Miracle of Mind meditation session.
+              <div class="template-box" contenteditable="true" spellcheck="false" id="txt-fb-1">Hi friends! I'm volunteering with Isha Foundation to bring something special to our community — a free Miracle of Mind meditation session.
 
 In just 30 minutes, you'll learn a simple 7-minute practice designed by Sadhguru that you can use every single day to reduce stress, improve focus, and feel more at ease.
 
@@ -606,7 +640,7 @@ Register here: [link]</div>
             </div>
             <div>
               <div class="template-label">Caption 2 — Personal story</div>
-              <div class="template-box" id="txt-fb-2">A few months ago, I started doing a 7-minute meditation every morning. I was skeptical at first — 7 minutes didn't seem like nearly enough.
+              <div class="template-box" contenteditable="true" spellcheck="false" id="txt-fb-2">A few months ago, I started doing a 7-minute meditation every morning. I was skeptical at first — 7 minutes didn't seem like nearly enough.
 
 But something shifted. I started responding instead of reacting. Sleep got better. The mental chatter quieted down.
 
@@ -623,7 +657,7 @@ If you're curious, download it here: [link] 🌱</div>
           <div class="two-col">
             <div>
               <div class="template-label">Caption 1 — Workplace wellness</div>
-              <div class="template-box" id="txt-li-1">Burnout. Anxiety. Lack of focus. These aren't personal failures — they're signals.
+              <div class="template-box" contenteditable="true" spellcheck="false" id="txt-li-1">Burnout. Anxiety. Lack of focus. These aren't personal failures — they're signals.
 
 Isha Foundation is offering free Miracle of Mind Experience Sessions for organizations — a 30-minute session introducing employees to a science-backed 7-minute daily meditation designed by Sadhguru.
 
@@ -636,7 +670,7 @@ If you're in HR, L&D, or lead a team and want to bring this to your organization
             </div>
             <div>
               <div class="template-label">Caption 2 — Thought leadership</div>
-              <div class="template-box" id="txt-li-2">We spend years building skills, strategies, and systems.
+              <div class="template-box" contenteditable="true" spellcheck="false" id="txt-li-2">We spend years building skills, strategies, and systems.
 But the mind running all of it? Often left unattended.
 
 The Miracle of Mind app by Sadhguru offers a simple 7-minute daily practice — free, guided, and validated by science — to help you take charge of your mental wellbeing.
@@ -655,7 +689,7 @@ I've found it genuinely useful. Sharing it here in case it helps someone else to
           <div class="two-col">
             <div>
               <div class="template-label">Post 1 — Punchy stat</div>
-              <div class="template-box" id="txt-x-1">7 minutes of meditation.
+              <div class="template-box" contenteditable="true" spellcheck="false" id="txt-x-1">7 minutes of meditation.
 50% reduction in stress.
 Free app by Sadhguru.
 
@@ -664,7 +698,7 @@ That's Miracle of Mind. → [link]</div>
             </div>
             <div>
               <div class="template-label">Post 2 — Quote</div>
-              <div class="template-box" id="txt-x-2">"If your mind becomes a conscious process, it becomes the greatest miracle in existence."
+              <div class="template-box" contenteditable="true" spellcheck="false" id="txt-x-2">"If your mind becomes a conscious process, it becomes the greatest miracle in existence."
 — Sadhguru
 
 Free 7-min daily meditation: [link] #MiracleOfMind</div>
@@ -700,7 +734,7 @@ Free 7-min daily meditation: [link] #MiracleOfMind</div>
 
         <div class="template-panel active" id="email-corporate">
           <div class="template-label">Personalize highlighted fields, then send</div>
-          <div class="template-box" id="txt-email-corporate"><strong>Subject:</strong> Free Offering - Miracle of Mind Meditation EXPERIENCE Session for Your Organization
+          <div class="template-box" contenteditable="true" spellcheck="false" id="txt-email-corporate"><strong>Subject:</strong> Free Offering - Miracle of Mind Meditation EXPERIENCE Session for Your Organization
 
 Greetings!
 
@@ -735,7 +769,7 @@ Isha Volunteers</div>
 
         <div class="template-panel" id="email-smallgroup">
           <div class="template-label">Personalize highlighted fields, then send</div>
-          <div class="template-box" id="txt-email-smallgroup"><strong>Subject:</strong> You're invited! Miracle of Mind Meditation EXPERIENCE Session
+          <div class="template-box" contenteditable="true" spellcheck="false" id="txt-email-smallgroup"><strong>Subject:</strong> You're invited! Miracle of Mind Meditation EXPERIENCE Session
 
 Hi [Name/Friends/Neighbors],
 
@@ -763,7 +797,7 @@ Warm Regards,
 
         <div class="template-panel" id="email-postsession">
           <div class="template-label">Send within 24 hours after your session</div>
-          <div class="template-box" id="txt-email-postsession"><strong>Subject:</strong> Thank you for joining — your Miracle of Mind practice
+          <div class="template-box" contenteditable="true" spellcheck="false" id="txt-email-postsession"><strong>Subject:</strong> Thank you for joining — your Miracle of Mind practice
 
 Dear Participant,
 
@@ -800,7 +834,7 @@ Isha Volunteers</div>
 
         <div class="template-panel active" id="wa-msg1">
           <div class="template-label">Fill in session name, date & time</div>
-          <div class="template-box" id="txt-wa-msg1">Namaskaram,
+          <div class="template-box" contenteditable="true" spellcheck="false" id="txt-wa-msg1">Namaskaram,
 
 You might already know that I practice Isha Yoga and have really benefited from it. To share these tools of wellbeing with more people, I, along with hundreds of other volunteers, are conducting free meditation sessions.
 
@@ -815,7 +849,7 @@ I'll share more details soon! Looking forward to seeing you there!</div>
 
         <div class="template-panel" id="wa-msg2">
           <div class="template-label">Fill in date, time, venue, and registration link</div>
-          <div class="template-box" id="txt-wa-msg2">"If your mind becomes a conscious process, it becomes the greatest miracle in existence." - Sadhguru
+          <div class="template-box" contenteditable="true" spellcheck="false" id="txt-wa-msg2">"If your mind becomes a conscious process, it becomes the greatest miracle in existence." - Sadhguru
 
 Namaskaram,
 
@@ -878,7 +912,7 @@ Isha Volunteers</div>
           <div class="two-col">
             <div>
               <div class="template-label">Opening — how to bring it up naturally</div>
-              <div class="template-box" id="txt-tp-open">"Have you heard about the Miracle of Mind app? It's a free meditation by Sadhguru — takes 7 minutes a day."
+              <div class="template-box" contenteditable="true" spellcheck="false" id="txt-tp-open">"Have you heard about the Miracle of Mind app? It's a free meditation by Sadhguru — takes 7 minutes a day."
 
 "I've been doing this 7-minute meditation every morning and it's genuinely made a difference. Have you tried anything like that?"
 
@@ -886,14 +920,14 @@ Isha Volunteers</div>
               <button class="copy-btn" onclick="copyTemplate('txt-tp-open', this)" style="margin-top:8px;margin-bottom:20px;">⧉ Copy</button>
 
               <div class="template-label">The one-line pitch</div>
-              <div class="template-box" id="txt-tp-pitch">"It's a free app by Sadhguru — a guided 7-minute meditation you do once a day, backed by 20+ scientific studies."
+              <div class="template-box" contenteditable="true" spellcheck="false" id="txt-tp-pitch">"It's a free app by Sadhguru — a guided 7-minute meditation you do once a day, backed by 20+ scientific studies."
 
 "Think of it as a gym for your mind — 7 minutes a day, completely free, works for anyone."</div>
               <button class="copy-btn" onclick="copyTemplate('txt-tp-pitch', this)" style="margin-top:8px;">⧉ Copy</button>
             </div>
             <div>
               <div class="template-label">Key benefits — pick 2–3 based on the person</div>
-              <div class="template-box" id="txt-tp-benefits">• Reduces stress and anxiety
+              <div class="template-box" contenteditable="true" spellcheck="false" id="txt-tp-benefits">• Reduces stress and anxiety
 • Better sleep and more energy
 • Sharper focus and clarity at work
 • Helps you respond to situations rather than react
@@ -901,7 +935,7 @@ Isha Volunteers</div>
               <button class="copy-btn" onclick="copyTemplate('txt-tp-benefits', this)" style="margin-top:8px;margin-bottom:20px;">⧉ Copy</button>
 
               <div class="template-label">Social proof — facts to cite</div>
-              <div class="template-box" id="txt-tp-proof">"The app hit 1 million downloads in just 15 hours of launch."
+              <div class="template-box" contenteditable="true" spellcheck="false" id="txt-tp-proof">"The app hit 1 million downloads in just 15 hours of launch."
 
 "Over 20 studies from world-class institutions validate the practices."
 
@@ -909,7 +943,7 @@ Isha Volunteers</div>
               <button class="copy-btn" onclick="copyTemplate('txt-tp-proof', this)" style="margin-top:8px;margin-bottom:20px;">⧉ Copy</button>
 
               <div class="template-label">The ask — how to close</div>
-              <div class="template-box" id="txt-tp-close">"Would you be open to trying it for just 7 days? That's all it takes to feel a difference."
+              <div class="template-box" contenteditable="true" spellcheck="false" id="txt-tp-close">"Would you be open to trying it for just 7 days? That's all it takes to feel a difference."
 
 "Can I send you the link? It takes 2 minutes to download."
 
@@ -924,24 +958,24 @@ Isha Volunteers</div>
           <div class="two-col">
             <div>
               <div class="template-label">"I don't have time."</div>
-              <div class="template-box" id="txt-obj-1">"It's 7 minutes — less than a coffee break. Most people fit it in right after waking up."</div>
+              <div class="template-box" contenteditable="true" spellcheck="false" id="txt-obj-1">"It's 7 minutes — less than a coffee break. Most people fit it in right after waking up."</div>
               <button class="copy-btn" onclick="copyTemplate('txt-obj-1', this)" style="margin-top:8px;margin-bottom:20px;">⧉ Copy</button>
 
               <div class="template-label">"I've tried meditation before and it didn't work for me."</div>
-              <div class="template-box" id="txt-obj-2">"This is specifically designed for people who struggle with traditional meditation — it's guided, short, and structured. Very different from just sitting and trying to clear your mind."</div>
+              <div class="template-box" contenteditable="true" spellcheck="false" id="txt-obj-2">"This is specifically designed for people who struggle with traditional meditation — it's guided, short, and structured. Very different from just sitting and trying to clear your mind."</div>
               <button class="copy-btn" onclick="copyTemplate('txt-obj-2', this)" style="margin-top:8px;margin-bottom:20px;">⧉ Copy</button>
 
               <div class="template-label">"Is this religious?"</div>
-              <div class="template-box" id="txt-obj-3">"Not at all — it's a wellbeing tool, like yoga. People from all backgrounds and beliefs use it. The science stands on its own."</div>
+              <div class="template-box" contenteditable="true" spellcheck="false" id="txt-obj-3">"Not at all — it's a wellbeing tool, like yoga. People from all backgrounds and beliefs use it. The science stands on its own."</div>
               <button class="copy-btn" onclick="copyTemplate('txt-obj-3', this)" style="margin-top:8px;">⧉ Copy</button>
             </div>
             <div>
               <div class="template-label">"Is it really free? What's the catch?"</div>
-              <div class="template-box" id="txt-obj-4">"Completely free. No subscription, no credit card. It's Isha Foundation's offering to the world."</div>
+              <div class="template-box" contenteditable="true" spellcheck="false" id="txt-obj-4">"Completely free. No subscription, no credit card. It's Isha Foundation's offering to the world."</div>
               <button class="copy-btn" onclick="copyTemplate('txt-obj-4', this)" style="margin-top:8px;margin-bottom:20px;">⧉ Copy</button>
 
               <div class="template-label">"I'm already doing okay mentally."</div>
-              <div class="template-box" id="txt-obj-5">"Totally fair — most people who use it aren't in crisis. They find it sharpens focus and adds a sense of ease to days that are already going well."</div>
+              <div class="template-box" contenteditable="true" spellcheck="false" id="txt-obj-5">"Totally fair — most people who use it aren't in crisis. They find it sharpens focus and adds a sense of ease to days that are already going well."</div>
               <button class="copy-btn" onclick="copyTemplate('txt-obj-5', this)" style="margin-top:8px;">⧉ Copy</button>
             </div>
           </div>
@@ -950,7 +984,7 @@ Isha Volunteers</div>
         <!-- 2-MIN SCRIPT -->
         <div class="template-panel" id="talking-script">
           <div class="template-label">A natural 2-minute conversation flow</div>
-          <div class="template-box" id="txt-script" style="max-height:none;">— OPEN (gauge interest) —
+          <div class="template-box" contenteditable="true" spellcheck="false" id="txt-script" style="max-height:none;">— OPEN (gauge interest) —
 
 "Hey [Name], have you heard about the Miracle of Mind app? It's a free meditation by Sadhguru — takes 7 minutes a day."
 
@@ -1031,40 +1065,76 @@ If they say no  → "It's a guided meditation, completely free, takes 7 minutes.
   <div class="section-header">
     <div class="section-kicker"><span class="kicker-dot"></span>Modules</div>
     <h2 class="section-title">Program modules to facilitate</h2>
-    <p class="section-desc">Structured programs for different audiences — workplaces, communities, and healthcare settings.</p>
+    <p class="section-desc">Miracle of Mind is part of these session formats. Pick the one that fits your context.</p>
   </div>
 
-  <div class="cards-grid-3">
-    <div class="module-card">
-      <span class="module-tag">Flagship</span>
-      <div class="module-title">MoM Experience Session</div>
-      <div class="module-desc">The core 30-minute introduction — guides participants through the 7-minute practice and introduces the app.</div>
-      <span class="module-link" style="cursor:default; opacity:0.5;">Coming soon</span>
+  <div class="module-list">
+
+    <div class="module-row">
+      <div class="module-row-left">
+        <span class="module-duration">30 min</span>
+        <div>
+          <div class="module-row-title">MoM Experience Session</div>
+          <div class="module-row-components">
+            <span>Youth</span><span>Workplace</span><span>Schools</span><span>Community</span>
+          </div>
+        </div>
+      </div>
+      <span class="module-row-tag">Flagship</span>
     </div>
-    <div class="module-card">
-      <span class="module-tag">Wellness</span>
-      <div class="module-title">Yoga for Mental Well-being</div>
-      <div class="module-desc">Connects Sadhguru's yoga practices to mental health — ideal for community groups, schools, and wellness events.</div>
-      <span class="module-link" style="cursor:default; opacity:0.5;">Coming soon</span>
+
+    <div class="module-row">
+      <div class="module-row-left">
+        <span class="module-duration">45 min</span>
+        <div>
+          <div class="module-row-title">Yoga for Mental Well-being</div>
+          <div class="module-row-components">
+            <span>Nadi Shuddhi</span><span>Miracle of Mind</span>
+          </div>
+        </div>
+      </div>
+      <span class="module-row-tag">Wellness</span>
     </div>
-    <div class="module-card">
-      <span class="module-tag">Corporate</span>
-      <div class="module-title">Yoga for Workplace</div>
-      <div class="module-desc">Tailored for professional settings — stress management, focus, and energy practices for employees and teams.</div>
-      <span class="module-link" style="cursor:default; opacity:0.5;">Coming soon</span>
+
+    <div class="module-row">
+      <div class="module-row-left">
+        <span class="module-duration">45 min</span>
+        <div>
+          <div class="module-row-title">Yoga for Workplace</div>
+          <div class="module-row-components">
+            <span>Live IE Intro</span><span>Neck Practice</span><span>Miracle of Mind</span>
+          </div>
+        </div>
+      </div>
+      <span class="module-row-tag">Corporate</span>
     </div>
-    <div class="module-card">
-      <span class="module-tag">Health</span>
-      <div class="module-title">Yoga for Health</div>
-      <div class="module-desc">Science-backed yoga and meditation practices focused on physical and mental health outcomes for general public outreach.</div>
-      <span class="module-link" style="cursor:default; opacity:0.5;">Coming soon</span>
+
+    <div class="module-row">
+      <div class="module-row-left">
+        <span class="module-duration">1 hr</span>
+        <div>
+          <div class="module-row-title">Yoga for Health</div>
+          <div class="module-row-components">
+            <span>Yoga Namaskar</span><span>Nadi Shuddhi</span><span>Miracle of Mind</span>
+          </div>
+        </div>
+      </div>
+      <span class="module-row-tag">Health</span>
     </div>
-    <div class="module-card">
-      <span class="module-tag">Healthcare</span>
-      <div class="module-title">MoM CME Session</div>
-      <div class="module-desc">Continuing Medical Education session for healthcare professionals — covering the science and clinical relevance of MoM.</div>
-      <span class="module-link" style="cursor:default; opacity:0.5;">Coming soon</span>
+
+    <div class="module-row">
+      <div class="module-row-left">
+        <span class="module-duration">1 hr</span>
+        <div>
+          <div class="module-row-title">MoM CME Session</div>
+          <div class="module-row-components">
+            <span>SCCP Research Presentation</span><span>Miracle of Mind Meditation</span>
+          </div>
+        </div>
+      </div>
+      <span class="module-row-tag">Healthcare</span>
     </div>
+
   </div>
 </section>
 
