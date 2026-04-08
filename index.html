@@ -354,6 +354,26 @@
     }
     .footer-links a:hover { color: var(--mom-cream); }
 
+    /* ── ACCORDION STACK (full-width expandables) ── */
+    .accordion-stack { display: flex; flex-direction: column; gap: 12px; }
+    .accordion-stack .expand-card { width: 100%; }
+    .accordion-stack .expand-body { padding: 0 28px 28px; }
+    .accordion-stack .template-box { max-height: 480px; font-size: 0.88rem; }
+
+    /* ── ASSET STRIP (flyer / canva links) ── */
+    .assets-strip { margin-bottom: 20px; }
+    .asset-row {
+      display: flex; align-items: center; justify-content: space-between;
+      background: var(--mom-card); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 18px 24px; gap: 16px;
+    }
+    .asset-row-left { display: flex; align-items: center; gap: 14px; }
+    .asset-row-icon { font-size: 1.5rem; line-height: 1; }
+
+    /* ── 2-COLUMN GRIDS inside panels ── */
+    .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; align-items: start; }
+    .two-col .template-box { max-height: 260px; }
+
     /* ── RESPONSIVE ── */
     @media (max-width: 768px) {
       nav { padding: 0 18px; }
@@ -362,6 +382,9 @@
       .section { padding: 52px 18px; }
       .section-divider { margin: 0 18px; }
       footer { padding: 28px 18px; flex-direction: column; align-items: flex-start; }
+      .two-col { grid-template-columns: 1fr; }
+      .accordion-stack .expand-body { padding: 0 16px 20px; }
+      .asset-row { flex-direction: column; align-items: flex-start; gap: 12px; }
     }
   </style>
 </head>
@@ -429,7 +452,22 @@
     <p class="section-desc">Customize and share across social media, email, and messaging platforms.</p>
   </div>
 
-  <div class="cards-grid">
+  <!-- Flyer asset strip -->
+  <div class="assets-strip">
+    <div class="asset-row">
+      <div class="asset-row-left">
+        <span class="asset-row-icon">📄</span>
+        <div>
+          <div class="card-title">Flyer Templates</div>
+          <div class="card-desc">Printable and digital e-flyers for community boards, events, and in-person outreach. Open in Canva, customize with your event details, and download.</div>
+        </div>
+      </div>
+      <a class="canva-open" href="https://canva.link/11plslfb62i3qxj" target="_blank" rel="noopener" style="flex-shrink:0;">Open in Canva ↗</a>
+    </div>
+  </div>
+
+  <!-- Full-width expandable accordions -->
+  <div class="accordion-stack">
 
     <!-- SOCIAL MEDIA CAPTIONS -->
     <div class="expand-card" id="card-social">
@@ -456,18 +494,20 @@
 
         <!-- INSTAGRAM -->
         <div class="template-panel active" id="social-ig">
-
-          <div class="template-label">Caption 1 — Quote post</div>
-          <div class="template-box" id="txt-ig-1">"If your mind becomes a conscious process, it becomes the greatest miracle in existence." — Sadhguru
+          <div class="two-col">
+            <div>
+              <div class="template-label">Caption 1 — Quote post</div>
+              <div class="template-box" id="txt-ig-1">"If your mind becomes a conscious process, it becomes the greatest miracle in existence." — Sadhguru
 
 A free 7-minute meditation. Designed by Sadhguru. Backed by science. Available right now.
 👉 Download Miracle of Mind — link in bio.
 
 #MiracleOfMind #Sadhguru #Meditation #MentalWellbeing #IshaFoundation</div>
-          <button class="copy-btn" onclick="copyTemplate('txt-ig-1', this)" style="margin-bottom:16px;">⧉ Copy</button>
-
-          <div class="template-label">Caption 2 — Session invite</div>
-          <div class="template-box" id="txt-ig-2">We're hosting a free 30-minute meditation session in your city — and you're invited. 🙏
+              <button class="copy-btn" onclick="copyTemplate('txt-ig-1', this)" style="margin-top:8px;">⧉ Copy</button>
+            </div>
+            <div>
+              <div class="template-label">Caption 2 — Session invite</div>
+              <div class="template-box" id="txt-ig-2">We're hosting a free 30-minute meditation session in your city — and you're invited. 🙏
 
 No experience needed. Just show up.
 
@@ -475,10 +515,11 @@ No experience needed. Just show up.
 Register: [link]
 
 #MoMSession #FreeEvent #MiracleOfMind #IshaVolunteers</div>
-          <button class="copy-btn" onclick="copyTemplate('txt-ig-2', this)" style="margin-bottom:16px;">⧉ Copy</button>
-
-          <div class="template-label">Caption 3 — Lifestyle / benefit</div>
-          <div class="template-box" id="txt-ig-3">7 minutes a day.
+              <button class="copy-btn" onclick="copyTemplate('txt-ig-2', this)" style="margin-top:8px;">⧉ Copy</button>
+            </div>
+            <div>
+              <div class="template-label">Caption 3 — Lifestyle / benefit</div>
+              <div class="template-box" id="txt-ig-3">7 minutes a day.
 More clarity. Better sleep. Less stress.
 
 That's what thousands of people are experiencing with the Miracle of Mind app by Sadhguru — and it's completely free.
@@ -486,25 +527,28 @@ That's what thousands of people are experiencing with the Miracle of Mind app by
 Try it today 👇 [link]
 
 #MiracleOfMind #7Minutes #MindfulLiving #Sadhguru</div>
-          <button class="copy-btn" onclick="copyTemplate('txt-ig-3', this)" style="margin-bottom:16px;">⧉ Copy</button>
-
-          <div class="template-label">Caption 4 — Social proof</div>
-          <div class="template-box" id="txt-ig-4">1 million downloads in 15 hours. 🌍
+              <button class="copy-btn" onclick="copyTemplate('txt-ig-3', this)" style="margin-top:8px;">⧉ Copy</button>
+            </div>
+            <div>
+              <div class="template-label">Caption 4 — Social proof</div>
+              <div class="template-box" id="txt-ig-4">1 million downloads in 15 hours. 🌍
 
 People everywhere are discovering what 7 minutes of meditation can do. Join them — the Miracle of Mind app is free, guided by Sadhguru, and takes less time than your morning coffee.
 
 📲 Download: [link]
 
 #MiracleOfMind #Sadhguru #Meditation</div>
-          <button class="copy-btn" onclick="copyTemplate('txt-ig-4', this)">⧉ Copy</button>
-
+              <button class="copy-btn" onclick="copyTemplate('txt-ig-4', this)" style="margin-top:8px;">⧉ Copy</button>
+            </div>
+          </div>
         </div>
 
         <!-- FACEBOOK -->
         <div class="template-panel" id="social-fb">
-
-          <div class="template-label">Caption 1 — Community invite</div>
-          <div class="template-box" id="txt-fb-1">Hi friends! I'm volunteering with Isha Foundation to bring something special to our community — a free Miracle of Mind meditation session.
+          <div class="two-col">
+            <div>
+              <div class="template-label">Caption 1 — Community invite</div>
+              <div class="template-box" id="txt-fb-1">Hi friends! I'm volunteering with Isha Foundation to bring something special to our community — a free Miracle of Mind meditation session.
 
 In just 30 minutes, you'll learn a simple 7-minute practice designed by Sadhguru that you can use every single day to reduce stress, improve focus, and feel more at ease.
 
@@ -513,25 +557,28 @@ In just 30 minutes, you'll learn a simple 7-minute practice designed by Sadhguru
 No prior experience needed — just bring yourself. Feel free to share this with anyone who could use a little more calm in their life. 🙏
 
 Register here: [link]</div>
-          <button class="copy-btn" onclick="copyTemplate('txt-fb-1', this)" style="margin-bottom:16px;">⧉ Copy</button>
-
-          <div class="template-label">Caption 2 — Personal story</div>
-          <div class="template-box" id="txt-fb-2">A few months ago, I started doing a 7-minute meditation every morning. I was skeptical at first — 7 minutes didn't seem like nearly enough.
+              <button class="copy-btn" onclick="copyTemplate('txt-fb-1', this)" style="margin-top:8px;">⧉ Copy</button>
+            </div>
+            <div>
+              <div class="template-label">Caption 2 — Personal story</div>
+              <div class="template-box" id="txt-fb-2">A few months ago, I started doing a 7-minute meditation every morning. I was skeptical at first — 7 minutes didn't seem like nearly enough.
 
 But something shifted. I started responding instead of reacting. Sleep got better. The mental chatter quieted down.
 
 That practice is the Miracle of Mind — a free app by Sadhguru, available to anyone. I'm now volunteering to share it as widely as possible.
 
 If you're curious, download it here: [link] 🌱</div>
-          <button class="copy-btn" onclick="copyTemplate('txt-fb-2', this)">⧉ Copy</button>
-
+              <button class="copy-btn" onclick="copyTemplate('txt-fb-2', this)" style="margin-top:8px;">⧉ Copy</button>
+            </div>
+          </div>
         </div>
 
         <!-- LINKEDIN -->
         <div class="template-panel" id="social-li">
-
-          <div class="template-label">Caption 1 — Workplace wellness</div>
-          <div class="template-box" id="txt-li-1">Burnout. Anxiety. Lack of focus. These aren't personal failures — they're signals.
+          <div class="two-col">
+            <div>
+              <div class="template-label">Caption 1 — Workplace wellness</div>
+              <div class="template-box" id="txt-li-1">Burnout. Anxiety. Lack of focus. These aren't personal failures — they're signals.
 
 Isha Foundation is offering free Miracle of Mind Experience Sessions for organizations — a 30-minute session introducing employees to a science-backed 7-minute daily meditation designed by Sadhguru.
 
@@ -540,10 +587,11 @@ Isha Foundation is offering free Miracle of Mind Experience Sessions for organiz
 If you're in HR, L&D, or lead a team and want to bring this to your organization, reach out or visit: [link]
 
 #WorkplaceWellness #MentalHealth #MiracleOfMind #IshaFoundation</div>
-          <button class="copy-btn" onclick="copyTemplate('txt-li-1', this)" style="margin-bottom:16px;">⧉ Copy</button>
-
-          <div class="template-label">Caption 2 — Thought leadership</div>
-          <div class="template-box" id="txt-li-2">We spend years building skills, strategies, and systems.
+              <button class="copy-btn" onclick="copyTemplate('txt-li-1', this)" style="margin-top:8px;">⧉ Copy</button>
+            </div>
+            <div>
+              <div class="template-label">Caption 2 — Thought leadership</div>
+              <div class="template-box" id="txt-li-2">We spend years building skills, strategies, and systems.
 But the mind running all of it? Often left unattended.
 
 The Miracle of Mind app by Sadhguru offers a simple 7-minute daily practice — free, guided, and validated by science — to help you take charge of your mental wellbeing.
@@ -552,46 +600,34 @@ I've found it genuinely useful. Sharing it here in case it helps someone else to
 📲 [link]
 
 #MiracleOfMind #Sadhguru #Leadership #Wellbeing</div>
-          <button class="copy-btn" onclick="copyTemplate('txt-li-2', this)">⧉ Copy</button>
-
+              <button class="copy-btn" onclick="copyTemplate('txt-li-2', this)" style="margin-top:8px;">⧉ Copy</button>
+            </div>
+          </div>
         </div>
 
         <!-- X -->
         <div class="template-panel" id="social-x">
-
-          <div class="template-label">Post 1 — Punchy stat</div>
-          <div class="template-box" id="txt-x-1">7 minutes of meditation.
+          <div class="two-col">
+            <div>
+              <div class="template-label">Post 1 — Punchy stat</div>
+              <div class="template-box" id="txt-x-1">7 minutes of meditation.
 50% reduction in stress.
 Free app by Sadhguru.
 
 That's Miracle of Mind. → [link]</div>
-          <button class="copy-btn" onclick="copyTemplate('txt-x-1', this)" style="margin-bottom:16px;">⧉ Copy</button>
-
-          <div class="template-label">Post 2 — Quote</div>
-          <div class="template-box" id="txt-x-2">"If your mind becomes a conscious process, it becomes the greatest miracle in existence."
+              <button class="copy-btn" onclick="copyTemplate('txt-x-1', this)" style="margin-top:8px;">⧉ Copy</button>
+            </div>
+            <div>
+              <div class="template-label">Post 2 — Quote</div>
+              <div class="template-box" id="txt-x-2">"If your mind becomes a conscious process, it becomes the greatest miracle in existence."
 — Sadhguru
 
 Free 7-min daily meditation: [link] #MiracleOfMind</div>
-          <button class="copy-btn" onclick="copyTemplate('txt-x-2', this)">⧉ Copy</button>
-
-        </div>
-
-      </div>
-    </div>
-
-    <!-- FLYER TEMPLATES -->
-    <div class="resource-card">
-      <div class="card-icon">📄</div>
-      <div class="card-title">Flyer Templates</div>
-      <div class="card-desc">Printable and digital e-flyers for community boards, events, and in-person outreach.</div>
-      <div class="canva-links">
-        <div class="canva-item">
-          <div class="canva-item-left">
-            <div class="canva-dot"></div>
-            <span class="canva-name">E-Flyer Template</span>
+              <button class="copy-btn" onclick="copyTemplate('txt-x-2', this)" style="margin-top:8px;">⧉ Copy</button>
+            </div>
           </div>
-          <a class="canva-open" href="https://canva.link/11plslfb62i3qxj" target="_blank" rel="noopener">Open ↗</a>
         </div>
+
       </div>
     </div>
 
@@ -761,7 +797,7 @@ Isha Volunteers</div>
       </div>
     </div>
 
-  </div>
+  </div><!-- /accordion-stack -->
 </section>
 
 <div class="section-divider"></div>
@@ -774,26 +810,145 @@ Isha Volunteers</div>
     <p class="section-desc">From preparation to delivery — guides, media, and checklists to facilitate with confidence.</p>
   </div>
 
-  <div class="cards-grid">
-    <div class="resource-card">
-      <div class="card-icon">🗣️</div>
-      <div class="card-title">Talking Points</div>
-      <div class="card-desc">Key messages, FAQs, and conversation starters to confidently introduce MoM and answer questions on the spot.</div>
-      <span class="card-link" style="cursor:default; opacity:0.5;">Coming soon</span>
+  <!-- Full-width Talking Points accordion -->
+  <div class="accordion-stack" style="--accent:var(--c-session);">
+    <div class="expand-card" id="card-talking" style="--accent:var(--c-session);">
+      <button class="expand-trigger" onclick="toggleExpand('card-talking')">
+        <div class="expand-icon-wrap">🗣️</div>
+        <div class="expand-text">
+          <div class="card-title">Talking Points</div>
+          <div class="card-desc" style="margin-top:5px;">Key messages, objection handling, and a 2-minute conversation script.</div>
+        </div>
+        <span class="expand-chevron">▼</span>
+      </button>
+      <div class="expand-body">
+        <div class="sub-tabs">
+          <button class="sub-tab active" onclick="switchTab('talking','points',this)">Key Points</button>
+          <button class="sub-tab" onclick="switchTab('talking','objections',this)">Objections</button>
+          <button class="sub-tab" onclick="switchTab('talking','script',this)">2-Min Script</button>
+        </div>
+
+        <!-- KEY POINTS -->
+        <div class="template-panel active" id="talking-points">
+          <div class="two-col">
+            <div>
+              <div class="template-label">Opening — how to bring it up naturally</div>
+              <div class="template-box" id="txt-tp-open">"Have you heard about the Miracle of Mind app? It's a free meditation by Sadhguru — takes 7 minutes a day."
+
+"I've been doing this 7-minute meditation every morning and it's genuinely made a difference. Have you tried anything like that?"
+
+"We're hosting a free 30-minute session nearby — no prior experience needed. Would you be open to trying something like that?"</div>
+              <button class="copy-btn" onclick="copyTemplate('txt-tp-open', this)" style="margin-top:8px;margin-bottom:20px;">⧉ Copy</button>
+
+              <div class="template-label">The one-line pitch</div>
+              <div class="template-box" id="txt-tp-pitch">"It's a free app by Sadhguru — a guided 7-minute meditation you do once a day, backed by 20+ scientific studies."
+
+"Think of it as a gym for your mind — 7 minutes a day, completely free, works for anyone."</div>
+              <button class="copy-btn" onclick="copyTemplate('txt-tp-pitch', this)" style="margin-top:8px;">⧉ Copy</button>
+            </div>
+            <div>
+              <div class="template-label">Key benefits — pick 2–3 based on the person</div>
+              <div class="template-box" id="txt-tp-benefits">• Reduces stress and anxiety
+• Better sleep and more energy
+• Sharper focus and clarity at work
+• Helps you respond to situations rather than react
+• No experience, no equipment, no cost</div>
+              <button class="copy-btn" onclick="copyTemplate('txt-tp-benefits', this)" style="margin-top:8px;margin-bottom:20px;">⧉ Copy</button>
+
+              <div class="template-label">Social proof — facts to cite</div>
+              <div class="template-box" id="txt-tp-proof">"The app hit 1 million downloads in just 15 hours of launch."
+
+"Over 20 studies from world-class institutions validate the practices."
+
+"7 minutes of this meditation measurably increases alpha waves in the brain — that's physical relaxation, not just a feeling."</div>
+              <button class="copy-btn" onclick="copyTemplate('txt-tp-proof', this)" style="margin-top:8px;margin-bottom:20px;">⧉ Copy</button>
+
+              <div class="template-label">The ask — how to close</div>
+              <div class="template-box" id="txt-tp-close">"Would you be open to trying it for just 7 days? That's all it takes to feel a difference."
+
+"Can I send you the link? It takes 2 minutes to download."
+
+"We have a free session coming up — would you want to come and try it in person before committing to anything?"</div>
+              <button class="copy-btn" onclick="copyTemplate('txt-tp-close', this)" style="margin-top:8px;">⧉ Copy</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- OBJECTIONS -->
+        <div class="template-panel" id="talking-objections">
+          <div class="two-col">
+            <div>
+              <div class="template-label">"I don't have time."</div>
+              <div class="template-box" id="txt-obj-1">"It's 7 minutes — less than a coffee break. Most people fit it in right after waking up."</div>
+              <button class="copy-btn" onclick="copyTemplate('txt-obj-1', this)" style="margin-top:8px;margin-bottom:20px;">⧉ Copy</button>
+
+              <div class="template-label">"I've tried meditation before and it didn't work for me."</div>
+              <div class="template-box" id="txt-obj-2">"This is specifically designed for people who struggle with traditional meditation — it's guided, short, and structured. Very different from just sitting and trying to clear your mind."</div>
+              <button class="copy-btn" onclick="copyTemplate('txt-obj-2', this)" style="margin-top:8px;margin-bottom:20px;">⧉ Copy</button>
+
+              <div class="template-label">"Is this religious?"</div>
+              <div class="template-box" id="txt-obj-3">"Not at all — it's a wellbeing tool, like yoga. People from all backgrounds and beliefs use it. The science stands on its own."</div>
+              <button class="copy-btn" onclick="copyTemplate('txt-obj-3', this)" style="margin-top:8px;">⧉ Copy</button>
+            </div>
+            <div>
+              <div class="template-label">"Is it really free? What's the catch?"</div>
+              <div class="template-box" id="txt-obj-4">"Completely free. No subscription, no credit card. It's Isha Foundation's offering to the world."</div>
+              <button class="copy-btn" onclick="copyTemplate('txt-obj-4', this)" style="margin-top:8px;margin-bottom:20px;">⧉ Copy</button>
+
+              <div class="template-label">"I'm already doing okay mentally."</div>
+              <div class="template-box" id="txt-obj-5">"Totally fair — most people who use it aren't in crisis. They find it sharpens focus and adds a sense of ease to days that are already going well."</div>
+              <button class="copy-btn" onclick="copyTemplate('txt-obj-5', this)" style="margin-top:8px;">⧉ Copy</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2-MIN SCRIPT -->
+        <div class="template-panel" id="talking-script">
+          <div class="template-label">A natural 2-minute conversation flow</div>
+          <div class="template-box" id="txt-script" style="max-height:none;">— OPEN (gauge interest) —
+
+"Hey [Name], have you heard about the Miracle of Mind app? It's a free meditation by Sadhguru — takes 7 minutes a day."
+
+If they say yes → "Oh great! Have you tried it yet?"
+If they say no  → "It's a guided meditation, completely free, takes 7 minutes. Over a million people downloaded it in the first 15 hours."
+
+— MAKE IT PERSONAL —
+
+"I know you've been [stressed at work / not sleeping well / dealing with a lot lately] — this is exactly the kind of thing that helps with that. And it's not just feel-good stuff — there are 20+ scientific studies behind it."
+
+— ADD YOUR OWN EXPERIENCE —
+
+"I've been doing it myself and honestly, I notice a difference on days I skip it. It's one of those things that sounds too simple to work, but it does."
+
+— THE ASK —
+
+"Would you be open to downloading it and trying it for 7 days? Or if you'd rather experience it in person first, we're hosting a free 30-minute session on [date]."
+
+— CLOSE —
+
+"Here's the link — it's completely free, no account needed to start. Let me know what you think!"</div>
+          <button class="copy-btn" onclick="copyTemplate('txt-script', this)" style="margin-top:8px;">⧉ Copy</button>
+        </div>
+
+      </div>
     </div>
-    <div class="resource-card">
+  </div><!-- /accordion-stack -->
+
+  <!-- Coming-soon cards -->
+  <div class="cards-grid" style="margin-top:16px;">
+    <div class="resource-card" style="--accent:var(--c-session);">
       <div class="card-icon">🧱</div>
       <div class="card-title">Unfollow Wall Guide</div>
       <div class="card-desc">Step-by-step guide for facilitating the Unfollow Wall experience — setup, flow, and participant engagement tips.</div>
       <span class="card-link" style="cursor:default; opacity:0.5;">Coming soon</span>
     </div>
-    <div class="resource-card">
+    <div class="resource-card" style="--accent:var(--c-session);">
       <div class="card-icon">🎬</div>
       <div class="card-title">Session Media</div>
       <div class="card-desc">Curated videos, audio clips, and presentation slides to use during your MoM sessions and events.</div>
       <span class="card-link" style="cursor:default; opacity:0.5;">Coming soon</span>
     </div>
-    <div class="resource-card">
+    <div class="resource-card" style="--accent:var(--c-session);">
       <div class="card-icon">✅</div>
       <div class="card-title">Session Checklist</div>
       <div class="card-desc">Pre-session, during-session, and post-session checklists so nothing falls through the cracks on the day.</div>
