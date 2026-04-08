@@ -374,6 +374,51 @@
     .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; align-items: start; }
     .two-col .template-box { max-height: 260px; }
 
+    /* ── CHECKLIST ── */
+    .checklist-header { margin-bottom: 16px; }
+    .checklist-progress-label {
+      font-size: 0.78rem; font-weight: 600; color: var(--c-session);
+      letter-spacing: 0.06em; text-transform: uppercase; display: block; margin-bottom: 8px;
+    }
+    .checklist-bar-track {
+      height: 4px; background: var(--border2);
+      border-radius: 4px; overflow: hidden;
+    }
+    .checklist-bar-fill {
+      height: 100%; background: var(--c-session);
+      border-radius: 4px; transition: width 0.3s ease;
+    }
+    .checklist {
+      list-style: none; display: flex; flex-direction: column; gap: 2px;
+      margin-bottom: 16px;
+    }
+    .checklist li {
+      display: flex; align-items: center; gap: 14px;
+      padding: 13px 16px; border-radius: var(--radius-sm);
+      cursor: pointer; border-bottom: 1px solid var(--border);
+      transition: background 0.15s;
+      user-select: none;
+    }
+    .checklist li:last-child { border-bottom: none; }
+    .checklist li:hover { background: rgba(124,184,168,0.05); }
+    .checklist li.checked { opacity: 0.55; }
+    .check-box {
+      width: 20px; height: 20px; flex-shrink: 0;
+      border: 1.5px solid var(--mom-muted);
+      border-radius: 5px; display: flex; align-items: center; justify-content: center;
+      transition: background 0.15s, border-color 0.15s;
+    }
+    .checklist li.checked .check-box {
+      background: var(--c-session); border-color: var(--c-session);
+    }
+    .checklist li.checked .check-box::after {
+      content: '✓'; font-size: 11px; font-weight: 700; color: #fff;
+    }
+    .check-text { font-size: 0.92rem; color: var(--mom-cream); line-height: 1.4; }
+    .checklist li.checked .check-text {
+      text-decoration: line-through; color: var(--mom-muted);
+    }
+
     /* ── RESPONSIVE ── */
     @media (max-width: 768px) {
       nav { padding: 0 18px; }
@@ -948,11 +993,33 @@ If they say no  → "It's a guided meditation, completely free, takes 7 minutes.
       <div class="card-desc">Curated videos, audio clips, and presentation slides to use during your MoM sessions and events.</div>
       <span class="card-link" style="cursor:default; opacity:0.5;">Coming soon</span>
     </div>
-    <div class="resource-card" style="--accent:var(--c-session);">
-      <div class="card-icon">✅</div>
-      <div class="card-title">Session Checklist</div>
-      <div class="card-desc">Pre-session, during-session, and post-session checklists so nothing falls through the cracks on the day.</div>
-      <span class="card-link" style="cursor:default; opacity:0.5;">Coming soon</span>
+    <div class="expand-card" id="card-checklist" style="--accent:var(--c-session);">
+      <button class="expand-trigger" onclick="toggleExpand('card-checklist')">
+        <div class="expand-icon-wrap">✅</div>
+        <div class="expand-text">
+          <div class="card-title">Session Checklist</div>
+          <div class="card-desc" style="margin-top:5px;">Everything to prepare before, during, and after your session.</div>
+        </div>
+        <span class="expand-chevron">▼</span>
+      </button>
+      <div class="expand-body">
+        <div class="checklist-header">
+          <span class="checklist-progress-label" id="checklist-label">0 of 7 complete</span>
+          <div class="checklist-bar-track">
+            <div class="checklist-bar-fill" id="checklist-bar" style="width:0%"></div>
+          </div>
+        </div>
+        <ul class="checklist" id="checklist">
+          <li onclick="toggleCheck(this)"><span class="check-box"></span><span class="check-text">Confirm venue or platform link with host</span></li>
+          <li onclick="toggleCheck(this)"><span class="check-box"></span><span class="check-text">Send WhatsApp / email invite at least 48 hrs before</span></li>
+          <li onclick="toggleCheck(this)"><span class="check-box"></span><span class="check-text">Download session media and test audio</span></li>
+          <li onclick="toggleCheck(this)"><span class="check-box"></span><span class="check-text">Print or display flyer at the venue</span></li>
+          <li onclick="toggleCheck(this)"><span class="check-box"></span><span class="check-text">Review talking points before the session</span></li>
+          <li onclick="toggleCheck(this)"><span class="check-box"></span><span class="check-text">Set up Unfollow Wall materials (if applicable)</span></li>
+          <li onclick="toggleCheck(this)"><span class="check-box"></span><span class="check-text">Collect attendance and feedback after the session</span></li>
+        </ul>
+        <button class="copy-btn" onclick="resetChecklist()" style="background:var(--mom-black3);color:var(--mom-muted2);border:1px solid var(--border2);margin-top:4px;">↺ Reset</button>
+      </div>
     </div>
   </div>
 </section>
@@ -1016,6 +1083,21 @@ If they say no  → "It's a guided meditation, completely free, takes 7 minutes.
 </footer>
 
 <script>
+  function toggleCheck(li) {
+    li.classList.toggle('checked');
+    const total   = document.querySelectorAll('#checklist li').length;
+    const done    = document.querySelectorAll('#checklist li.checked').length;
+    document.getElementById('checklist-label').textContent = `${done} of ${total} complete`;
+    document.getElementById('checklist-bar').style.width   = `${(done / total) * 100}%`;
+  }
+
+  function resetChecklist() {
+    document.querySelectorAll('#checklist li').forEach(li => li.classList.remove('checked'));
+    const total = document.querySelectorAll('#checklist li').length;
+    document.getElementById('checklist-label').textContent = `0 of ${total} complete`;
+    document.getElementById('checklist-bar').style.width   = '0%';
+  }
+
   function toggleExpand(id) {
     document.getElementById(id).classList.toggle('open');
   }
