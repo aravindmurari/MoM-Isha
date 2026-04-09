@@ -6,7 +6,7 @@
   <title>Flyer Generator — Miracle of Mind Volunteer Hub</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@700;800;900&family=Trirong:ital,wght@1,700&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Trirong:ital,wght@0,400;1,400&display=swap">
 
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -324,54 +324,59 @@
 const W = 560, H = 700;
 
 // ════════════════════════════════════════════════════════
-//  TEXT OVERLAY CONFIGS
-//  One entry per template. All coordinates at scale=1
-//  (preview canvas 560×700). Multiplied by scale at draw time.
+//  TEXT OVERLAY CONFIGS  (canvas 560 × 700)
 //
-//  IMPORTANT: These assume templates exported from Canva
-//  WITHOUT the placeholder date/time/address text.
-//  The RSVP QR code and "FREE & OPEN TO ALL" stay in the image.
+//  Font: Trirong 400 (regular) — matches Canva template font.
+//  Canva size 20.7 on 1080×1350 template → 10.7px at preview
+//  scale (560/1080), → 21.4px at 2× download (1120×1400 ≈ orig).
 //
-//  layout: 'footer-left' — white text, bottom-left footer bar
-//          'footer-center' — white text, centered in footer
-//          'body-dark'  — dark text, in body area
+//  Coordinates measured from original template PNGs via pixel
+//  scan. textY is the TOP of the first line (textBaseline='top').
+//  lineH is the vertical step between lines.
 //
-//  All positions are APPROXIMATE until blank templates are
-//  uploaded. Tune textX / textY / lineH once images land.
+//  Positions survive when blank templates replace these PNGs
+//  (text field area cleared; footer bar / body unchanged).
+//
+//  color  — text fill color (white on dark, dark on light bg)
+//  align  — 'left' or 'center'
+//  x      — textX (left edge for 'left', center for 'center')
+//  y      — top of first text line
+//  lh     — line height (px)
 // ════════════════════════════════════════════════════════
-
-// Shared defaults for the common red-footer layout
-const FOOTER_L = {
-  textColor: '#FFFFFF',
-  textAlign: 'left',
-  textX:  15,      // px from left
-  textY:  622,     // px — top of first line (footer starts ~608)
-  lineH:  20,      // px between lines
-  fontSize: 12,    // px
-  fontStyle: '700 {sz}px "Montserrat", sans-serif',
-};
+const FS = 10.7;  // base font size at 560×700 preview scale
 
 const CFGS = {
-  1:  { ...FOOTER_L },
-  2:  { ...FOOTER_L },
-  3:  { ...FOOTER_L },
-  4:  { ...FOOTER_L },
-  6:  { ...FOOTER_L },
-  7:  { ...FOOTER_L },
-  9:  { ...FOOTER_L },
-  10: { ...FOOTER_L },
-  12: { ...FOOTER_L },
-  // Templates 5, 8, 11 have different layouts — update once
-  // blank versions are available and positions confirmed.
-  5:  { textColor: '#1A1A1A', textAlign: 'center',
-        textX: 280, textY: 508, lineH: 22, fontSize: 12,
-        fontStyle: '700 {sz}px "Montserrat", sans-serif' },
-  8:  { textColor: '#FFFFFF', textAlign: 'center',
-        textX: 420, textY: 508, lineH: 22, fontSize: 12,
-        fontStyle: '700 {sz}px "Montserrat", sans-serif' },
-  11: { textColor: '#1A1A1A', textAlign: 'center',
-        textX: 420, textY: 418, lineH: 22, fontSize: 12,
-        fontStyle: '700 {sz}px "Montserrat", sans-serif' },
+  // ── Standard red footer bar — event details left-aligned ──
+  // Pixel scan: x_orig≈61→canvas 32, y_orig 1213–1326→canvas 629–688
+  // span 59px / 4 lines → lineH 16
+  1:  { color:'#FFFFFF', align:'left',   x:32,  y:629, lh:16, fs:FS },
+  2:  { color:'#FFFFFF', align:'left',   x:32,  y:629, lh:16, fs:FS },
+  3:  { color:'#FFFFFF', align:'left',   x:32,  y:629, lh:16, fs:FS },
+  4:  { color:'#FFFFFF', align:'left',   x:32,  y:629, lh:16, fs:FS },
+  7:  { color:'#FFFFFF', align:'left',   x:32,  y:629, lh:16, fs:FS },
+  10: { color:'#FFFFFF', align:'left',   x:32,  y:629, lh:16, fs:FS },
+  12: { color:'#FFFFFF', align:'left',   x:32,  y:629, lh:16, fs:FS },
+
+  // T6: footer starts slightly higher (y_orig 1183→canvas 613)
+  6:  { color:'#FFFFFF', align:'left',   x:32,  y:613, lh:16, fs:FS },
+
+  // T9: same footer, x_orig=33→canvas 17
+  9:  { color:'#FFFFFF', align:'left',   x:17,  y:629, lh:16, fs:FS },
+
+  // ── Different layouts — positions from visual crop analysis ──
+  // Fine-tune these once blank templates are uploaded.
+
+  // T5: Sadhguru portrait + phone. Details on RIGHT, dark image bg.
+  // White text, center-aligned, canvas approx x=402, y=533
+  5:  { color:'#FFFFFF', align:'center', x:402, y:533, lh:28, fs:FS },
+
+  // T8: Split left/right panel. Details centered in black right panel.
+  // White text, canvas approx x=415, y=526
+  8:  { color:'#FFFFFF', align:'center', x:415, y:526, lh:26, fs:FS },
+
+  // T11: Silhouette on red/white. Details on right, LIGHT background.
+  // Dark text, canvas approx x=420, y=500
+  11: { color:'#1A1A1A', align:'center', x:420, y:500, lh:31, fs:FS },
 };
 
 // ════════════════════════════════════════════════════════
@@ -452,17 +457,19 @@ async function renderOnCtx(ctx, scale) {
   ctx.drawImage(img, 0, 0, sw, sh);
 
   // Overlay event detail lines
-  const sz = cfg.fontSize * scale;
-  ctx.font = cfg.fontStyle.replace('{sz}', sz);
-  ctx.fillStyle = cfg.textColor;
-  ctx.textAlign = cfg.textAlign;
+  const sz = cfg.fs * scale;
+  ctx.font = `400 ${sz}px "Trirong", serif`;
+  ctx.fillStyle = cfg.color;
+  ctx.textAlign = cfg.align;
+  ctx.textBaseline = 'top';  // y = top of character, matches pixel measurements
 
   const lines = [fields.date, fields.addr1, fields.addr2, fields.time].filter(Boolean);
-  let y = cfg.textY * scale;
+  let y = cfg.y * scale;
   for (const ln of lines) {
-    ctx.fillText(ln, cfg.textX * scale, y);
-    y += cfg.lineH * scale;
+    ctx.fillText(ln, cfg.x * scale, y);
+    y += cfg.lh * scale;
   }
+  ctx.textBaseline = 'alphabetic';  // reset
 }
 
 // ════════════════════════════════════════════════════════
