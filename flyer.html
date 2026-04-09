@@ -7,7 +7,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@700;800;900&family=Trirong:ital,wght@1,700&display=swap">
-  <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
+
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -287,11 +287,6 @@
         <label>City / State / Zip</label>
         <input id="fAddr2" type="text" placeholder="e.g. Toronto, ON M5V 3A8" value="Toronto, ON M5V 3A8">
       </div>
-      <div class="fg">
-        <label>RSVP / Registration Link</label>
-        <input id="fUrl" type="url" placeholder="https://isha.co/mom" value="https://isha.co/mom">
-        <div class="hint">QR code is auto-generated from this link.</div>
-      </div>
     </div>
 
     <button class="btn-dl" onclick="downloadFlyer()">
@@ -318,101 +313,71 @@
 
 <script>
 // ════════════════════════════════════════════════════════
-//  CONSTANTS
-//  Canvas preview is always 560 × 700 (4:5, matches all
-//  templates which are 1080 × 1350 — same ratio).
-//  Download is 2× = 1120 × 1400.
+//  NOTE: Templates should be exported from Canva WITHOUT
+//  the placeholder date/time/address text fields.
+//  The RSVP QR code and "FREE & OPEN TO ALL" stay baked in.
+//  This generator only overlays event details text.
+//
+//  Canvas: 560 × 700 (4:5 — matches template 1080 × 1350)
+//  Download: 2× = 1120 × 1400
 // ════════════════════════════════════════════════════════
 const W = 560, H = 700;
 
 // ════════════════════════════════════════════════════════
-//  FOOTER-REPAINT CONFIGS
-//  Used for templates whose footer bar we fully repaint.
-//  All coordinates are at scale=1 (preview size).
-//  They are multiplied by `scale` at draw time.
+//  TEXT OVERLAY CONFIGS
+//  One entry per template. All coordinates at scale=1
+//  (preview canvas 560×700). Multiplied by scale at draw time.
 //
-//  Measured from template 7 (1080×1350 → 560×700):
-//    footer starts at y=1172 in original → 608 in canvas
-//    footer color sampled: rgb(239,30,30) = #EF1E1E
-//    QR location (from pixel scan): original x=319–461
-//      → canvas x=165–239, center=202, size=74
-//    Sections: [details 0–161] | [QR 161–280] | [FREE 280–560]
+//  IMPORTANT: These assume templates exported from Canva
+//  WITHOUT the placeholder date/time/address text.
+//  The RSVP QR code and "FREE & OPEN TO ALL" stay in the image.
+//
+//  layout: 'footer-left' — white text, bottom-left footer bar
+//          'footer-center' — white text, centered in footer
+//          'body-dark'  — dark text, in body area
+//
+//  All positions are APPROXIMATE until blank templates are
+//  uploaded. Tune textX / textY / lineH once images land.
 // ════════════════════════════════════════════════════════
-const FOOTER_REPAINT = {
-  // ── Template 7: Sadhguru portrait, red footer ─────────
-  7: {
-    footerY:    608,        // canvas y where footer bar starts
-    footerH:    92,         // canvas footer height (700-608)
-    color:      '#EF1E1E',  // sampled footer red
 
-    // Event details (left section)
-    detailsX:   15,         // left-align x
-    detailsY:   620,        // y of first line
-    detailsLH:  20,         // line height px
-    detailsFont:'700 12px "Montserrat",sans-serif',
-
-    // Dividers (thin vertical lines)
-    div1X:      161,
-    div2X:      280,
-
-    // QR (center section, right of RSVP label)
-    // From pixel scan: original x 319-461 → canvas 165-239
-    qrX:        167,        // canvas left edge of QR
-    qrSize:     72,         // canvas px
-    // RSVP label sits to the right of QR, before div2
-    rsvpX:      248,        // left edge of "RSVP / HERE:" text
-    rsvpY1:     647,        // y of "RSVP"
-    rsvpY2:     661,        // y of "HERE:"
-    rsvpFont:   '800 11px "Montserrat",sans-serif',
-
-    // "FREE & OPEN TO ALL" (right section)
-    freeX:      420,        // center x: (280+560)/2
-    freeY:      657,        // vertically centered in footer
-    freeFont:   '900 13px "Montserrat",sans-serif',
-    freeLetterSpacing: 1,   // px
-  }
+// Shared defaults for the common red-footer layout
+const FOOTER_L = {
+  textColor: '#FFFFFF',
+  textAlign: 'left',
+  textX:  15,      // px from left
+  textY:  622,     // px — top of first line (footer starts ~608)
+  lineH:  20,      // px between lines
+  fontSize: 12,    // px
+  fontStyle: '700 {sz}px "Montserrat", sans-serif',
 };
 
-// ════════════════════════════════════════════════════════
-//  GENERIC OVERLAY CONFIGS (for templates without repaint)
-//  Fractions of canvas size.
-// ════════════════════════════════════════════════════════
-const OVERLAY_DEFAULT = {
-  textColor: '#FFFFFF', textX: 0.038, textY: 0.863,
-  lineH: 0.030, fontSize: 13, fontWeight: 'bold', textAlign: 'left',
-  shadow: true, qrCX: 0.505, qrCY: 0.905, qrSize: 78, qrBg: true
-};
-
-const OVERLAY_CFGS = {
-  1:  { ...OVERLAY_DEFAULT },
-  2:  { ...OVERLAY_DEFAULT },
-  3:  { ...OVERLAY_DEFAULT },
-  4:  { ...OVERLAY_DEFAULT },
-  6:  { ...OVERLAY_DEFAULT },
-  9:  { ...OVERLAY_DEFAULT },
-  10: { ...OVERLAY_DEFAULT },
-  12: { ...OVERLAY_DEFAULT },
-  5: {
-    textColor: '#1A1A1A', textX: 0.5, textY: 0.725, lineH: 0.040,
-    fontSize: 13, fontWeight: 'bold', textAlign: 'center', shadow: false,
-    qrCX: 0.765, qrCY: 0.875, qrSize: 68, qrBg: true
-  },
-  8: {
-    textColor: '#FFFFFF', textX: 0.5, textY: 0.730, lineH: 0.038,
-    fontSize: 13, fontWeight: 'bold', textAlign: 'center', shadow: false,
-    qrCX: 0.595, qrCY: 0.885, qrSize: 68, qrBg: false
-  },
-  11: {
-    textColor: '#1A1A1A', textX: 0.540, textY: 0.598, lineH: 0.038,
-    fontSize: 13, fontWeight: 'bold', textAlign: 'center', shadow: false,
-    qrCX: 0.574, qrCY: 0.780, qrSize: 68, qrBg: false
-  }
+const CFGS = {
+  1:  { ...FOOTER_L },
+  2:  { ...FOOTER_L },
+  3:  { ...FOOTER_L },
+  4:  { ...FOOTER_L },
+  6:  { ...FOOTER_L },
+  7:  { ...FOOTER_L },
+  9:  { ...FOOTER_L },
+  10: { ...FOOTER_L },
+  12: { ...FOOTER_L },
+  // Templates 5, 8, 11 have different layouts — update once
+  // blank versions are available and positions confirmed.
+  5:  { textColor: '#1A1A1A', textAlign: 'center',
+        textX: 280, textY: 508, lineH: 22, fontSize: 12,
+        fontStyle: '700 {sz}px "Montserrat", sans-serif' },
+  8:  { textColor: '#FFFFFF', textAlign: 'center',
+        textX: 420, textY: 508, lineH: 22, fontSize: 12,
+        fontStyle: '700 {sz}px "Montserrat", sans-serif' },
+  11: { textColor: '#1A1A1A', textAlign: 'center',
+        textX: 420, textY: 418, lineH: 22, fontSize: 12,
+        fontStyle: '700 {sz}px "Montserrat", sans-serif' },
 };
 
 // ════════════════════════════════════════════════════════
 //  STATE
 // ════════════════════════════════════════════════════════
-let selectedId = 7;   // start on template 7 (the tested one)
+let selectedId = 1;
 const previewCanvas = document.getElementById('flyerCanvas');
 const previewCtx = previewCanvas.getContext('2d');
 const imgCache = {};
@@ -424,13 +389,9 @@ let renderPending = false;
 const grid = document.getElementById('tmplGrid');
 for (let i = 1; i <= 12; i++) {
   const d = document.createElement('div');
-  d.className = 'tmpl-thumb' + (i === selectedId ? ' sel' : '');
+  d.className = 'tmpl-thumb' + (i === 1 ? ' sel' : '');
   d.dataset.id = i;
-  // Badge: show (B) for repaint-ready templates
-  const badge = FOOTER_REPAINT[i]
-    ? `<span class="n" style="background:rgba(0,150,80,0.7);border-radius:3px;padding:1px 3px;">${i}</span>`
-    : `<span class="n">${i}</span>`;
-  d.innerHTML = `<img src="files/templates/${i}.png" alt="Template ${i}" loading="lazy">${badge}`;
+  d.innerHTML = `<img src="files/templates/${i}.png" alt="Template ${i}" loading="lazy"><span class="n">${i}</span>`;
   d.onclick = () => {
     selectedId = i;
     document.querySelectorAll('.tmpl-thumb').forEach(el =>
@@ -454,151 +415,13 @@ function loadImage(src) {
   });
 }
 
-function makeQR(url, size) {
-  return new Promise((resolve, reject) => {
-    const qc = document.createElement('canvas');
-    qc.width = size; qc.height = size;
-    QRCode.toCanvas(qc, url || 'https://isha.co/mom', {
-      width: size, margin: 1,
-      color: { dark: '#000000', light: '#FFFFFF' }
-    }, err => err ? reject(err) : resolve(qc));
-  });
-}
-
 function getFields() {
   return {
     date:  document.getElementById('fDate').value.trim(),
     time:  document.getElementById('fTime').value.trim(),
     addr1: document.getElementById('fAddr1').value.trim(),
     addr2: document.getElementById('fAddr2').value.trim(),
-    url:   document.getElementById('fUrl').value.trim() || 'https://isha.co/mom'
   };
-}
-
-// ════════════════════════════════════════════════════════
-//  FOOTER REPAINT  (Option B)
-//  Covers the entire footer bar with a solid fill, then
-//  redraws all three sections from scratch.
-// ════════════════════════════════════════════════════════
-async function drawRepaintedFooter(ctx, s, cfg, fields) {
-  // s = scale (1 for preview, 2 for download)
-
-  const fy    = cfg.footerY * s;
-  const fh    = cfg.footerH * s;
-  const fw    = W * s;
-
-  // ── 1. Flood-fill footer bar ─────────────────────────
-  ctx.fillStyle = cfg.color;
-  ctx.fillRect(0, fy, fw, fh);
-
-  // ── 2. Thin vertical dividers ───────────────────────
-  ctx.strokeStyle = 'rgba(255,255,255,0.35)';
-  ctx.lineWidth = s;
-  const divTop = fy + 10 * s, divBot = fy + fh - 10 * s;
-  for (const dx of [cfg.div1X, cfg.div2X]) {
-    ctx.beginPath();
-    ctx.moveTo(dx * s, divTop);
-    ctx.lineTo(dx * s, divBot);
-    ctx.stroke();
-  }
-
-  // ── 3. Event details (left section) ─────────────────
-  ctx.fillStyle = '#FFFFFF';
-  ctx.textAlign = 'left';
-  ctx.font = cfg.detailsFont.replace(/(\d+)px/, m => `${parseInt(m) * s}px`);
-
-  const lines = [fields.date, fields.addr1, fields.addr2, fields.time].filter(Boolean);
-  // Vertically center the text block within the footer
-  const blockH  = lines.length * cfg.detailsLH * s;
-  let   lineY   = fy + (fh - blockH) / 2 + cfg.detailsLH * s * 0.78;
-  for (const ln of lines) {
-    ctx.fillText(ln, cfg.detailsX * s, lineY);
-    lineY += cfg.detailsLH * s;
-  }
-
-  // ── 4. QR code ───────────────────────────────────────
-  const qrSz = cfg.qrSize * s;
-  const qrTop = fy + (fh - qrSz) / 2;
-  try {
-    const qrCanvas = await makeQR(fields.url, qrSz);
-    ctx.drawImage(qrCanvas, cfg.qrX * s, qrTop, qrSz, qrSz);
-  } catch (e) {
-    // If QR fails, draw a placeholder square
-    ctx.fillStyle = '#fff';
-    ctx.fillRect(cfg.qrX * s, qrTop, qrSz, qrSz);
-    ctx.fillStyle = cfg.color;
-    ctx.font = `${8 * s}px sans-serif`;
-    ctx.textAlign = 'center';
-    ctx.fillText('QR', (cfg.qrX + cfg.qrSize / 2) * s, fy + fh / 2 + 3 * s);
-  }
-
-  // ── 5. "RSVP / HERE:" label ──────────────────────────
-  ctx.fillStyle = '#FFFFFF';
-  ctx.textAlign = 'left';
-  ctx.font = cfg.rsvpFont.replace(/(\d+)px/, m => `${parseInt(m) * s}px`);
-  ctx.fillText('RSVP',  cfg.rsvpX * s, cfg.rsvpY1 * s);
-  ctx.fillText('HERE:', cfg.rsvpX * s, cfg.rsvpY2 * s);
-
-  // ── 6. "FREE & OPEN TO ALL" ──────────────────────────
-  ctx.fillStyle = '#FFFFFF';
-  ctx.textAlign = 'center';
-  ctx.font = cfg.freeFont.replace(/(\d+)px/, m => `${parseInt(m) * s}px`);
-  // Manual letter-spacing via character-by-character draw
-  const freeText = 'FREE & OPEN TO ALL';
-  const ls = (cfg.freeLetterSpacing || 0) * s;
-  if (ls > 0) {
-    // measure total width with spacing
-    const cw = freeText.split('').map(c => ctx.measureText(c).width);
-    const total = cw.reduce((a,b) => a+b, 0) + ls * (freeText.length - 1);
-    let cx = cfg.freeX * s - total / 2;
-    for (let i = 0; i < freeText.length; i++) {
-      ctx.textAlign = 'left';
-      ctx.fillText(freeText[i], cx, cfg.freeY * s);
-      cx += cw[i] + ls;
-    }
-  } else {
-    ctx.textAlign = 'center';
-    ctx.fillText(freeText, cfg.freeX * s, cfg.freeY * s);
-  }
-}
-
-// ════════════════════════════════════════════════════════
-//  GENERIC OVERLAY  (for templates without repaint config)
-// ════════════════════════════════════════════════════════
-async function drawGenericOverlay(ctx, s, cfg, fields) {
-  const sw = W * s, sh = H * s;
-  ctx.fillStyle = cfg.textColor;
-  ctx.textAlign = cfg.textAlign || 'left';
-  ctx.font = `${cfg.fontWeight} ${cfg.fontSize * s}px Inter,sans-serif`;
-
-  if (cfg.shadow) {
-    ctx.shadowColor = 'rgba(0,0,0,0.6)';
-    ctx.shadowBlur = 4 * s;
-    ctx.shadowOffsetY = s;
-  }
-
-  const lines = [fields.date, fields.addr1, fields.addr2, fields.time].filter(Boolean);
-  let y = cfg.textY * sh;
-  for (const ln of lines) {
-    ctx.fillText(ln, cfg.textX * sw, y);
-    y += cfg.lineH * sh;
-  }
-  ctx.shadowBlur = ctx.shadowOffsetY = 0;
-
-  if (fields.url) {
-    try {
-      const qrSz = cfg.qrSize * s;
-      const qc = await makeQR(fields.url, qrSz);
-      const qx = cfg.qrCX * sw - qrSz / 2;
-      const qy = cfg.qrCY * sh - qrSz / 2;
-      if (cfg.qrBg) {
-        const p = 3 * s;
-        ctx.fillStyle = '#FFF';
-        ctx.fillRect(qx - p, qy - p, qrSz + p*2, qrSz + p*2);
-      }
-      ctx.drawImage(qc, qx, qy, qrSz, qrSz);
-    } catch(e) { console.warn('QR failed', e); }
-  }
 }
 
 // ════════════════════════════════════════════════════════
@@ -607,44 +430,49 @@ async function drawGenericOverlay(ctx, s, cfg, fields) {
 async function renderOnCtx(ctx, scale) {
   const sw = W * scale, sh = H * scale;
   const fields = getFields();
+  const cfg = CFGS[selectedId] || CFGS[1];
 
   ctx.clearRect(0, 0, sw, sh);
   ctx.fillStyle = '#1a1a1a';
   ctx.fillRect(0, 0, sw, sh);
 
-  // Load + draw the template image
+  // Draw template image
   let img;
   try {
     img = await loadImage(`files/templates/${selectedId}.png`);
   } catch (_) {
     ctx.fillStyle = '#333'; ctx.fillRect(0, 0, sw, sh);
     ctx.fillStyle = '#999';
-    ctx.font = `${14 * scale}px Inter,sans-serif`;
+    ctx.font = `${14 * scale}px Inter, sans-serif`;
     ctx.textAlign = 'center';
-    ctx.fillText('Image could not load.', sw/2, sh/2 - 10*scale);
-    ctx.fillText('Use GitHub Pages for full functionality.', sw/2, sh/2 + 12*scale);
+    ctx.fillText('Image could not load.', sw / 2, sh / 2 - 10 * scale);
+    ctx.fillText('Use GitHub Pages for full functionality.', sw / 2, sh / 2 + 12 * scale);
     return;
   }
   ctx.drawImage(img, 0, 0, sw, sh);
 
-  // Route to repaint path or generic overlay
-  const repaintCfg = FOOTER_REPAINT[selectedId];
-  if (repaintCfg) {
-    await drawRepaintedFooter(ctx, scale, repaintCfg, fields);
-  } else {
-    const overlayCfg = OVERLAY_CFGS[selectedId] || OVERLAY_DEFAULT;
-    await drawGenericOverlay(ctx, scale, overlayCfg, fields);
+  // Overlay event detail lines
+  const sz = cfg.fontSize * scale;
+  ctx.font = cfg.fontStyle.replace('{sz}', sz);
+  ctx.fillStyle = cfg.textColor;
+  ctx.textAlign = cfg.textAlign;
+
+  const lines = [fields.date, fields.addr1, fields.addr2, fields.time].filter(Boolean);
+  let y = cfg.textY * scale;
+  for (const ln of lines) {
+    ctx.fillText(ln, cfg.textX * scale, y);
+    y += cfg.lineH * scale;
   }
 }
 
 // ════════════════════════════════════════════════════════
-//  SCHEDULE PREVIEW (debounced via rAF)
+//  SCHEDULE PREVIEW (debounced)
 // ════════════════════════════════════════════════════════
 function scheduleRender() {
   if (renderPending) return;
   renderPending = true;
   requestAnimationFrame(async () => {
-    await document.fonts.ready;   // ensure Montserrat is loaded
+    await document.fonts.ready;
     await renderOnCtx(previewCtx, 1);
     renderPending = false;
   });
@@ -666,7 +494,7 @@ async function downloadFlyer() {
     a.download = `MoM_Flyer_${selectedId}.png`;
     a.href = hc.toDataURL('image/png');
     a.click();
-  } catch(e) {
+  } catch (e) {
     alert('Download failed. Make sure you are using the GitHub Pages version of this site.');
     console.error(e);
   } finally {
@@ -678,10 +506,9 @@ async function downloadFlyer() {
 // ════════════════════════════════════════════════════════
 //  LIVE INPUTS
 // ════════════════════════════════════════════════════════
-['fDate','fTime','fAddr1','fAddr2','fUrl'].forEach(id =>
+['fDate','fTime','fAddr1','fAddr2'].forEach(id =>
   document.getElementById(id).addEventListener('input', scheduleRender));
 
-// ── Init (wait for fonts before first render) ─────────
 document.fonts.ready.then(() => scheduleRender());
 </script>
 
