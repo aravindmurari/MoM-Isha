@@ -343,40 +343,41 @@ const W = 560, H = 700;
 //  y      — top of first text line
 //  lh     — line height (px)
 // ════════════════════════════════════════════════════════
-const FS = 10.7;  // base font size at 560×700 preview scale
+// FS = Canva font size 20.7 scaled to preview canvas:
+//   20.7 × (560/1080) = 10.72px
+// At 2× download (1120×1400) → 21.4px ≈ original 20.7  ✓
+const FS = 10.7;
 
+// Coordinates derived by diffing original vs blank templates:
+// x/y = canvas pixel of top-left of first character (textBaseline='top').
+// lh  = line height in canvas px = (span - FS) / 3  (3 gaps between 4 lines).
 const CFGS = {
-  // ── Standard red footer bar — event details left-aligned ──
-  // Pixel scan: x_orig≈61→canvas 32, y_orig 1213–1326→canvas 629–688
-  // span 59px / 4 lines → lineH 16
-  1:  { color:'#FFFFFF', align:'left',   x:32,  y:629, lh:16, fs:FS },
-  2:  { color:'#FFFFFF', align:'left',   x:32,  y:629, lh:16, fs:FS },
-  3:  { color:'#FFFFFF', align:'left',   x:32,  y:629, lh:16, fs:FS },
-  4:  { color:'#FFFFFF', align:'left',   x:32,  y:629, lh:16, fs:FS },
-  7:  { color:'#FFFFFF', align:'left',   x:32,  y:629, lh:16, fs:FS },
-  10: { color:'#FFFFFF', align:'left',   x:32,  y:629, lh:16, fs:FS },
-  12: { color:'#FFFFFF', align:'left',   x:32,  y:629, lh:16, fs:FS },
+  // ── Footer-bar templates (red bar, left-aligned white text) ──
+  // diff: x_orig 25–291 → canvas 13–151 | y varies slightly per template
+  2:  { color:'#FFFFFF', align:'left',   x:13, y:628, lh:16 },
+  4:  { color:'#FFFFFF', align:'left',   x:13, y:628, lh:16 },
+  7:  { color:'#FFFFFF', align:'left',   x:13, y:628, lh:16 },
+  9:  { color:'#FFFFFF', align:'left',   x:13, y:628, lh:16 },
+  10: { color:'#FFFFFF', align:'left',   x:13, y:628, lh:16 },
+  12: { color:'#FFFFFF', align:'left',   x:13, y:628, lh:16 },
+  3:  { color:'#FFFFFF', align:'left',   x:13, y:625, lh:16 },  // 3px higher
+  6:  { color:'#FFFFFF', align:'left',   x:13, y:613, lh:16 },  // footer higher
 
-  // T6: footer starts slightly higher (y_orig 1183→canvas 613)
-  6:  { color:'#FFFFFF', align:'left',   x:32,  y:613, lh:16, fs:FS },
+  // T1: 4-photo grid — text in body center, not footer bar
+  // diff: canvas y=544–629 (85px), cx=279, white text on dark photos
+  1:  { color:'#FFFFFF', align:'center', x:279, y:544, lh:25 },
 
-  // T9: same footer, x_orig=33→canvas 17
-  9:  { color:'#FFFFFF', align:'left',   x:17,  y:629, lh:16, fs:FS },
+  // T5: Sadhguru portrait + phone — text upper-right area
+  // diff: canvas y=531–608 (77px), cx=427, white text on dark bg
+  5:  { color:'#FFFFFF', align:'center', x:427, y:531, lh:22 },
 
-  // ── Different layouts — positions from visual crop analysis ──
-  // Fine-tune these once blank templates are uploaded.
+  // T8: Split panel — text in upper-right black panel
+  // diff: canvas y=477–566 (89px), cx=415, white text on black
+  8:  { color:'#FFFFFF', align:'center', x:415, y:477, lh:26 },
 
-  // T5: Sadhguru portrait + phone. Details on RIGHT, dark image bg.
-  // White text, center-aligned, canvas approx x=402, y=533
-  5:  { color:'#FFFFFF', align:'center', x:402, y:533, lh:28, fs:FS },
-
-  // T8: Split left/right panel. Details centered in black right panel.
-  // White text, canvas approx x=415, y=526
-  8:  { color:'#FFFFFF', align:'center', x:415, y:526, lh:26, fs:FS },
-
-  // T11: Silhouette on red/white. Details on right, LIGHT background.
-  // Dark text, canvas approx x=420, y=500
-  11: { color:'#1A1A1A', align:'center', x:420, y:500, lh:31, fs:FS },
+  // T11: Silhouette — text mid-right, light background → dark text
+  // diff: canvas y=352–444 (92px), cx=409
+  11: { color:'#1A1A1A', align:'center', x:409, y:352, lh:27 },
 };
 
 // ════════════════════════════════════════════════════════
@@ -457,7 +458,7 @@ async function renderOnCtx(ctx, scale) {
   ctx.drawImage(img, 0, 0, sw, sh);
 
   // Overlay event detail lines
-  const sz = cfg.fs * scale;
+  const sz = FS * scale;
   ctx.font = `400 ${sz}px "Trirong", serif`;
   ctx.fillStyle = cfg.color;
   ctx.textAlign = cfg.align;
