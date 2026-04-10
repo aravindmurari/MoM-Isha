@@ -369,6 +369,95 @@
       padding: 3px 12px; flex-shrink: 0;
     }
 
+    /* ── BOOMBUDDY LOCK GATE ── */
+    .bb-gate {
+      background: var(--mom-black3);
+      border: 1px solid var(--border2);
+      border-radius: var(--radius);
+      padding: 48px 32px;
+      text-align: center;
+      max-width: 420px;
+      margin: 0 auto;
+    }
+    .bb-gate-icon { font-size: 2rem; margin-bottom: 12px; }
+    .bb-gate-title {
+      font-family: 'Trirong', Georgia, serif;
+      font-size: 1.25rem;
+      color: var(--mom-cream);
+      margin-bottom: 8px;
+    }
+    .bb-gate-desc {
+      font-size: 0.85rem;
+      color: var(--mom-muted2);
+      margin-bottom: 24px;
+      line-height: 1.6;
+    }
+    .bb-gate-input-row {
+      display: flex; gap: 8px; justify-content: center;
+    }
+    .bb-gate-input {
+      background: var(--mom-black2);
+      border: 1px solid var(--border2);
+      border-radius: var(--radius-sm);
+      color: var(--mom-cream);
+      font-family: 'Inter', sans-serif;
+      font-size: 0.9rem;
+      padding: 10px 14px;
+      flex: 1;
+      max-width: 220px;
+      outline: none;
+    }
+    .bb-gate-input:focus { border-color: var(--c-session); }
+    .bb-gate-btn {
+      background: var(--c-session);
+      border: none;
+      border-radius: var(--radius-sm);
+      color: #fff;
+      cursor: pointer;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 600;
+      padding: 10px 18px;
+      transition: opacity .15s;
+      white-space: nowrap;
+    }
+    .bb-gate-btn:hover { opacity: .85; }
+    .bb-gate-error {
+      color: var(--mom-red);
+      font-size: 0.8rem;
+      margin-top: 10px;
+      min-height: 18px;
+    }
+    .bb-badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: rgba(124,184,168,.12);
+      border: 1px solid rgba(124,184,168,.25);
+      border-radius: 99px;
+      color: var(--c-session);
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: .04em;
+      padding: 3px 12px;
+      margin-bottom: 18px;
+    }
+
+    /* Module "requires training" callout */
+    .module-training-note {
+      display: flex; align-items: center; gap: 8px;
+      background: rgba(155,132,196,.08);
+      border: 1px solid rgba(155,132,196,.2);
+      border-radius: var(--radius-sm);
+      color: #9b84c4;
+      font-size: 0.8rem;
+      margin-top: 10px;
+      padding: 8px 12px;
+    }
+    .module-training-note a {
+      color: #b8a8d8;
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+
     /* ── FOOTER ── */
     footer {
       background: var(--mom-black2); border-top: 1px solid var(--border);
@@ -526,8 +615,8 @@
 <!-- ══ TOOL KIT ══ -->
 <section class="section tool-kit" id="toolkit">
   <div class="section-header">
-    <div class="section-kicker"><span class="kicker-dot"></span>Tool Kit</div>
-    <h2 class="section-title">Ready-to-use outreach materials</h2>
+    <div class="section-kicker"><span class="kicker-dot"></span>Promote</div>
+    <h2 class="section-title">How to Promote Miracle of Mind</h2>
     <p class="section-desc">Customize and share across social media, email, and messaging platforms.</p>
   </div>
 
@@ -887,10 +976,27 @@ Isha Volunteers</div>
 <!-- ══ SESSION KIT ══ -->
 <section class="section session-kit" id="sessionkit">
   <div class="section-header">
-    <div class="section-kicker"><span class="kicker-dot"></span>Session Kit</div>
-    <h2 class="section-title">Everything you need to run a session</h2>
+    <div class="section-kicker"><span class="kicker-dot"></span>Conduct</div>
+    <h2 class="section-title">How to Conduct a Session</h2>
     <p class="section-desc">From preparation to delivery — guides, media, and checklists to facilitate with confidence.</p>
   </div>
+
+  <!-- BoomBuddy lock gate -->
+  <div id="sessionkit-lock" style="display:none; padding: 0 0 40px;">
+    <div class="bb-gate">
+      <div class="bb-gate-icon">🔒</div>
+      <div class="bb-gate-title">BoomBuddy Training Required</div>
+      <div class="bb-gate-desc">This section is for BoomBuddy-trained volunteers only. Enter the access code to continue.</div>
+      <div class="bb-gate-input-row">
+        <input class="bb-gate-input" id="sk-pw-input" type="password" placeholder="Access code"
+          onkeydown="if(event.key==='Enter') bbUnlock('sessionkit-lock','sessionkit-content','sk-pw-input','sk-pw-error')" />
+        <button class="bb-gate-btn" onclick="bbUnlock('sessionkit-lock','sessionkit-content','sk-pw-input','sk-pw-error')">Unlock</button>
+      </div>
+      <div class="bb-gate-error" id="sk-pw-error"></div>
+    </div>
+  </div>
+  <div id="sessionkit-content" style="display:none;">
+    <div class="bb-badge">🔓 BoomBuddy Access</div>
 
   <!-- Full-width Talking Points accordion -->
   <div class="accordion-stack" style="--accent:var(--c-session);">
@@ -1059,6 +1165,7 @@ If they say no  → "It's a guided meditation, completely free, takes 7 minutes.
       </div>
     </div>
   </div>
+  </div><!-- /sessionkit-content -->
 </section>
 
 <div class="section-divider"></div>
@@ -1073,17 +1180,35 @@ If they say no  → "It's a guided meditation, completely free, takes 7 minutes.
 
   <div class="module-list">
 
-    <div class="module-row">
-      <div class="module-row-left">
-        <span class="module-duration">30 min</span>
-        <div>
-          <div class="module-row-title">MoM Experience Session</div>
-          <div class="module-row-components">
-            <span>Youth</span><span>Workplace</span><span>Schools</span><span>Community</span>
+    <!-- MoM Experience Session — BoomBuddy gated -->
+    <div id="mom-exp-lock" style="display:none;">
+      <div class="bb-gate" style="max-width:100%; padding: 28px 24px; margin-bottom: 0;">
+        <div style="display:flex; align-items:center; gap:12px; flex-wrap:wrap; justify-content:center;">
+          <span style="font-size:1.1rem;">🔒</span>
+          <span class="bb-gate-title" style="font-size:1rem; margin:0;">BoomBuddy Training Required</span>
+          <span class="bb-gate-desc" style="margin:0; font-size:0.82rem;">Enter your access code to view the MoM Experience Session module.</span>
+          <div class="bb-gate-input-row" style="width:100%; justify-content:center; margin-top:10px;">
+            <input class="bb-gate-input" id="mod-pw-input" type="password" placeholder="Access code"
+              onkeydown="if(event.key==='Enter') bbUnlock('mom-exp-lock','mom-exp-content','mod-pw-input','mod-pw-error')" />
+            <button class="bb-gate-btn" onclick="bbUnlock('mom-exp-lock','mom-exp-content','mod-pw-input','mod-pw-error')">Unlock</button>
           </div>
+          <div class="bb-gate-error" id="mod-pw-error" style="width:100%;text-align:center;"></div>
         </div>
       </div>
-      <span class="module-row-tag">Flagship</span>
+    </div>
+    <div id="mom-exp-content" style="display:none;">
+      <div class="module-row">
+        <div class="module-row-left">
+          <span class="module-duration">30 min</span>
+          <div>
+            <div class="module-row-title">MoM Experience Session</div>
+            <div class="module-row-components">
+              <span>Youth</span><span>Workplace</span><span>Schools</span><span>Community</span>
+            </div>
+          </div>
+        </div>
+        <span class="module-row-tag">Flagship</span>
+      </div>
     </div>
 
     <div class="module-row">
@@ -1094,6 +1219,7 @@ If they say no  → "It's a guided meditation, completely free, takes 7 minutes.
           <div class="module-row-components">
             <span>Nadi Shuddhi</span><span>Miracle of Mind</span>
           </div>
+          <div class="module-training-note">⚠ Requires additional training — <a href="https://isha.sadhguru.org/us/en/yoga-meditation/yoga-teacher-training/yoga-veera" target="_blank" rel="noopener">Register your interest ↗</a></div>
         </div>
       </div>
       <span class="module-row-tag">Wellness</span>
@@ -1107,6 +1233,7 @@ If they say no  → "It's a guided meditation, completely free, takes 7 minutes.
           <div class="module-row-components">
             <span>Live IE Intro</span><span>Neck Practice</span><span>Miracle of Mind</span>
           </div>
+          <div class="module-training-note">⚠ Requires additional training — <a href="https://isha.sadhguru.org/us/en/yoga-meditation/yoga-teacher-training/yoga-veera" target="_blank" rel="noopener">Register your interest ↗</a></div>
         </div>
       </div>
       <span class="module-row-tag">Corporate</span>
@@ -1120,6 +1247,7 @@ If they say no  → "It's a guided meditation, completely free, takes 7 minutes.
           <div class="module-row-components">
             <span>Yoga Namaskar</span><span>Nadi Shuddhi</span><span>Miracle of Mind</span>
           </div>
+          <div class="module-training-note">⚠ Requires additional training — <a href="https://isha.sadhguru.org/us/en/yoga-meditation/yoga-teacher-training/yoga-veera" target="_blank" rel="noopener">Register your interest ↗</a></div>
         </div>
       </div>
       <span class="module-row-tag">Health</span>
@@ -1133,6 +1261,7 @@ If they say no  → "It's a guided meditation, completely free, takes 7 minutes.
           <div class="module-row-components">
             <span>SCCP Research Presentation</span><span>Miracle of Mind Meditation</span>
           </div>
+          <div class="module-training-note">⚠ Requires additional training — <a href="https://isha.sadhguru.org/us/en/yoga-meditation/yoga-teacher-training/yoga-veera" target="_blank" rel="noopener">Register your interest ↗</a></div>
         </div>
       </div>
       <span class="module-row-tag">Healthcare</span>
@@ -1156,6 +1285,61 @@ If they say no  → "It's a guided meditation, completely free, takes 7 minutes.
 </footer>
 
 <script>
+  // ── BoomBuddy access control ────────────────────────────────
+  const BB_KEY  = 'bb_access';
+  const BB_PASS = 'M0MB00MBUDDY';
+
+  function bbIsUnlocked() {
+    return localStorage.getItem(BB_KEY) === '1';
+  }
+
+  function bbShowContent() {
+    // Section 2 gate
+    const lock    = document.getElementById('sessionkit-lock');
+    const content = document.getElementById('sessionkit-content');
+    if (lock)    lock.style.display    = 'none';
+    if (content) content.style.display = 'block';
+
+    // Module gate
+    const mLock    = document.getElementById('mom-exp-lock');
+    const mContent = document.getElementById('mom-exp-content');
+    if (mLock)    mLock.style.display    = 'none';
+    if (mContent) mContent.style.display = 'block';
+  }
+
+  function bbShowLocks() {
+    const lock    = document.getElementById('sessionkit-lock');
+    const content = document.getElementById('sessionkit-content');
+    if (lock)    lock.style.display    = 'block';
+    if (content) content.style.display = 'none';
+
+    const mLock    = document.getElementById('mom-exp-lock');
+    const mContent = document.getElementById('mom-exp-content');
+    if (mLock)    mLock.style.display    = 'block';
+    if (mContent) mContent.style.display = 'none';
+  }
+
+  function bbUnlock(lockId, contentId, inputId, errorId) {
+    const pw  = document.getElementById(inputId).value.trim();
+    const err = document.getElementById(errorId);
+    if (pw === BB_PASS) {
+      localStorage.setItem(BB_KEY, '1');
+      err.textContent = '';
+      bbShowContent();
+    } else {
+      err.textContent = 'Incorrect access code. Please try again.';
+    }
+  }
+
+  // Init on load
+  document.addEventListener('DOMContentLoaded', function () {
+    if (bbIsUnlocked()) {
+      bbShowContent();
+    } else {
+      bbShowLocks();
+    }
+  });
+
   function toggleCheck(li) {
     li.classList.toggle('checked');
     const total   = document.querySelectorAll('#checklist li').length;
