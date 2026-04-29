@@ -103,13 +103,16 @@
     .hero {
       padding: 80px 40px 64px; text-align: center;
       position: relative; overflow: hidden;
+      background: url('files/hero-bg.png') center center / cover no-repeat;
+      background-color: #08080a;
     }
-    /* subtle red glow like MoM site */
+    /* dark overlay + red glow on top of image */
     .hero::before {
       content: ''; position: absolute; inset: 0;
       background:
-        radial-gradient(ellipse 50% 40% at 20% 60%, rgba(236,28,45,0.07) 0%, transparent 60%),
-        radial-gradient(ellipse 50% 40% at 80% 40%, rgba(103,142,204,0.06) 0%, transparent 60%);
+        linear-gradient(rgba(8,8,10,0.45) 0%, rgba(8,8,10,0.70) 100%),
+        radial-gradient(ellipse 60% 50% at 20% 60%, rgba(236,28,45,0.08) 0%, transparent 60%),
+        radial-gradient(ellipse 60% 50% at 80% 40%, rgba(103,142,204,0.06) 0%, transparent 60%);
       pointer-events: none;
     }
     .hero-logo {
@@ -125,12 +128,13 @@
 
     .hero-eyebrow {
       font-size: 0.75rem; font-weight: 500; letter-spacing: 0.18em;
-      text-transform: uppercase; color: var(--vol-amber); margin-bottom: 16px;
+      text-transform: uppercase; color: #ffffff; opacity: 0.9; margin-bottom: 16px;
     }
     .hero h1 {
       font-family: 'Trirong', Georgia, serif;
       font-size: clamp(2.2rem, 5.5vw, 4rem);
-      font-weight: 600; color: var(--mom-cream2); line-height: 1.18;
+      font-weight: 600; color: #ffffff; line-height: 1.18;
+      text-shadow: 0 0 40px rgba(0,0,0,0.5);
     }
     .hero h1 em {
       font-style: italic; color: var(--mom-red);
@@ -138,7 +142,7 @@
     .hero-sub {
       margin: 20px auto 0;
       font-size: clamp(0.93rem, 1.8vw, 1.07rem);
-      color: var(--mom-muted2); max-width: 500px; font-weight: 300;
+      color: rgba(255,255,255,0.92); max-width: 500px; font-weight: 300;
     }
 
     /* stats bar */
@@ -146,9 +150,10 @@
       margin: 48px auto 0;
       display: flex; justify-content: center;
       max-width: 560px;
-      background: var(--mom-black3);
-      border: 1px solid var(--border2);
+      background: rgba(8,8,10,0.6);
+      border: 1px solid rgba(255,255,255,0.12);
       border-radius: var(--radius); overflow: hidden;
+      backdrop-filter: blur(12px);
     }
     .hero-stat {
       flex: 1; padding: 18px 12px; text-align: center;
@@ -159,7 +164,7 @@
       font-family: 'Trirong', Georgia, serif;
       font-size: 1.5rem; color: var(--vol-amber); font-weight: 600; line-height: 1;
     }
-    .hero-stat-label { font-size: 0.7rem; color: var(--mom-muted); margin-top: 5px; }
+    .hero-stat-label { font-size: 0.7rem; color: rgba(255,255,255,0.55); margin-top: 5px; }
 
     /* ── LAYOUT ── */
     .section { padding: 64px 40px; max-width: 1200px; margin: 0 auto; }
@@ -167,16 +172,16 @@
 
     .section-kicker {
       display: inline-flex; align-items: center; gap: 8px;
-      font-size: 0.7rem; font-weight: 600; letter-spacing: 0.2em;
-      text-transform: uppercase; margin-bottom: 10px;
+      font-size: clamp(1.4rem, 2.4vw, 2rem); font-weight: 600; letter-spacing: 0.12em;
+      text-transform: uppercase; margin-bottom: 8px;
     }
-    .kicker-dot { width: 6px; height: 6px; border-radius: 50%; background: currentColor; }
+    .kicker-dot { display: none; }
     .section-title {
       font-family: 'Trirong', Georgia, serif;
-      font-size: clamp(1.6rem, 3vw, 2.3rem);
-      color: var(--mom-cream2); font-weight: 600;
+      font-size: clamp(1.3rem, 2.2vw, 1.7rem);
+      color: var(--mom-muted2); font-weight: 400;
     }
-    .section-desc { margin-top: 8px; font-size: 0.9rem; color: var(--mom-muted2); max-width: 500px; }
+    .section-desc { margin-top: 8px; font-size: 1.1rem; font-style: italic; color: var(--mom-cream2); opacity: 0.7; max-width: 100%; white-space: nowrap; font-family: 'Trirong', Georgia, serif; }
     .section-header { margin-bottom: 32px; }
 
     .tool-kit    .section-kicker { color: var(--c-tool); }
@@ -588,6 +593,25 @@
   <p class="hero-eyebrow">Isha Foundation · Booom Buddy Resource Kit</p>
   <h1>Everything you need<br>to host and promote<br><em>Miracle of Mind</em></h1>
   <p class="hero-sub" style="font-size: clamp(0.78rem, 1.4vw, 0.88rem); font-weight: 300; letter-spacing: 0.04em;">Promo materials and meditation session resources</p>
+
+  <div class="hero-stats">
+    <div class="hero-stat">
+      <div class="hero-stat-num">1M+</div>
+      <div class="hero-stat-label">Downloads in 15 hrs</div>
+    </div>
+    <div class="hero-stat">
+      <div class="hero-stat-num">20+</div>
+      <div class="hero-stat-label">Scientific studies</div>
+    </div>
+    <div class="hero-stat">
+      <div class="hero-stat-num" id="counter-sessions">0</div>
+      <div class="hero-stat-label">Sessions hosted</div>
+    </div>
+    <div class="hero-stat">
+      <div class="hero-stat-num" id="counter-minutes">0</div>
+      <div class="hero-stat-label">Meditation minutes</div>
+    </div>
+  </div>
 </section>
 
 <div class="section-divider"></div>
@@ -596,7 +620,6 @@
 <section class="section tool-kit" id="toolkit">
   <div class="section-header">
     <div class="section-kicker"><span class="kicker-dot"></span>Promote</div>
-    <h2 class="section-title">How to Promote</h2>
     <p class="section-desc">Customize and share digitally</p>
   </div>
 
@@ -951,7 +974,7 @@ Isha Volunteers</div>
     <!-- APP FEATURES GUIDE -->
     <div class="expand-card" id="card-appfeatures">
       <button class="expand-trigger" onclick="toggleExpand('card-appfeatures')">
-        <div class="expand-icon-wrap">📱</div>
+        <div class="expand-icon-wrap">🧩</div>
         <div class="expand-text">
           <div class="card-title">App Features Guide</div>
           <div class="card-desc" style="margin-top:5px;">Watch this video to learn what features are available on the Miracle of Mind app — so you can walk others through it confidently.</div>
@@ -973,9 +996,8 @@ Isha Volunteers</div>
 <!-- ══ SESSION KIT ══ -->
 <section class="section session-kit" id="sessionkit">
   <div class="section-header">
-    <div class="section-kicker"><span class="kicker-dot"></span>Conduct</div>
-    <h2 class="section-title">How to Conduct a Session</h2>
-    <p class="section-desc">From preparation to delivery — guides, media, and checklists to facilitate with confidence.</p>
+    <div class="section-kicker"><span class="kicker-dot"></span>Host a Session</div>
+    <p class="section-desc">Step-by-step guide and checklist to facilitate the meditation session.</p>
   </div>
 
   <!-- BoomBuddy lock gate -->
@@ -1163,19 +1185,16 @@ If they say no  → "It's a guided meditation, completely free, takes 7 minutes.
     </div>
   </div>
   </div><!-- /sessionkit-content -->
-</section>
 
-<div class="section-divider"></div>
+  <!-- ── SESSION FORMATS ── -->
+  <div style="max-width:1200px; margin: 0 auto; padding: 48px 0 0;">
+    <div class="section-header">
+      <div class="section-kicker" style="color:var(--c-module);"><span class="kicker-dot" style="background:var(--c-module);"></span>Session formats</div>
+      <h2 class="section-title">Miracle of Mind is part of these session formats</h2>
+      <p class="section-desc">Pick the one that fits your context.</p>
+    </div>
 
-<!-- ══ MODULES ══ -->
-<section class="section modules" id="modules">
-  <div class="section-header">
-    <div class="section-kicker"><span class="kicker-dot"></span>Modules</div>
-    <h2 class="section-title">Program modules to facilitate</h2>
-    <p class="section-desc">Miracle of Mind is part of these session formats. Pick the one that fits your context.</p>
-  </div>
-
-  <div class="module-list">
+  <div class="module-list" id="modules">
 
     <!-- MoM Experience Session — BoomBuddy gated -->
     <div id="mom-exp-lock" style="display:none;">
@@ -1265,6 +1284,14 @@ If they say no  → "It's a guided meditation, completely free, takes 7 minutes.
     </div>
 
   </div>
+
+    <!-- Training access note -->
+    <div style="margin-top: 24px; padding: 14px 20px; background: rgba(155,132,196,0.08); border: 1px solid rgba(155,132,196,0.2); border-radius: var(--radius-sm); font-size: 0.85rem; color: var(--mom-muted2); text-align: center;">
+      Access code is only available to trained volunteers. &nbsp;
+      <a href="https://isha.sadhguru.org/us/en/yoga-meditation/yoga-teacher-training/yoga-veera" target="_blank" rel="noopener" style="color: #b8a8d8; text-decoration: underline; text-underline-offset: 3px; font-weight: 600;">Click here to get trained ↗</a>
+    </div>
+
+  </div><!-- /session formats -->
 </section>
 
 <!-- FOOTER -->
@@ -1363,6 +1390,33 @@ If they say no  → "It's a guided meditation, completely free, takes 7 minutes.
     btn.classList.add('active');
     document.getElementById(group + '-' + tab).classList.add('active');
   }
+
+  // ── Animated counters ───────────────────────────────────────
+  function animateCounter(el, target, duration, suffix) {
+    const start = performance.now();
+    const update = (now) => {
+      const elapsed = now - start;
+      const progress = Math.min(elapsed / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      const value = Math.floor(eased * target);
+      el.textContent = value.toLocaleString() + suffix;
+      if (progress < 1) requestAnimationFrame(update);
+    };
+    requestAnimationFrame(update);
+  }
+
+  const statsObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        animateCounter(document.getElementById('counter-sessions'), 1000, 1800, '+');
+        animateCounter(document.getElementById('counter-minutes'), 21, 1800, 'M+');
+        statsObserver.disconnect();
+      }
+    });
+  }, { threshold: 0.3 });
+
+  const statsEl = document.querySelector('.hero-stats');
+  if (statsEl) statsObserver.observe(statsEl);
 
   function copyTemplate(id, btn) {
     const el = document.getElementById(id);
