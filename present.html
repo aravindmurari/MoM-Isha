@@ -9,9 +9,11 @@
     html, body { height: 100%; background: #000; overflow: hidden; font-family: system-ui, sans-serif; }
 
     #player-frame {
-      width: 100%;
-      height: 100%;
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      width: 100%; height: 100%;
       border: none;
+      z-index: 1;
       display: none;
     }
     /* Blocks Google Drive's top bar / open-in-Drive link */
@@ -20,17 +22,19 @@
       position: fixed;
       top: 0; left: 0; right: 0;
       height: 44px;
-      z-index: 10;
+      z-index: 5;
     }
 
     #waiting {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      height: 100%;
       gap: 16px;
       color: #333;
+      z-index: 2;
     }
     #waiting svg { opacity: 0.3; }
     #waiting p { font-size: 0.95rem; color: #444; letter-spacing: 0.03em; }
@@ -38,6 +42,7 @@
     #title-overlay {
       position: fixed;
       bottom: 0; left: 0; right: 0;
+      z-index: 6;
       padding: 20px 28px;
       background: linear-gradient(to top, rgba(0,0,0,0.75) 0%, transparent 100%);
       color: #fff;
@@ -68,40 +73,66 @@
     const frame   = document.getElementById('player-frame');
     const waiting = document.getElementById('waiting');
     const overlay = document.getElementById('title-overlay');
+    const driveBlock = document.getElementById('drive-block');
     let hideTimer;
+    let lastSeenValue = null;
+    let currentFileId  = null;
+
+    function showWaiting(msg) {
+      frame.src = '';
+      frame.style.display = 'none';
+      driveBlock.style.display = 'none';
+      waiting.style.display = 'flex';
+      waiting.querySelector('p').textContent = msg || 'Waiting for facilitator to select a video…';
+      overlay.classList.remove('visible');
+      currentFileId = null;
+    }
 
     function loadVideo(fileId, title) {
-      if (!fileId) return;
-      frame.src = 'https://drive.google.com/file/d/' + fileId + '/preview';
+      if (!fileId || fileId === currentFileId) return;
+      currentFileId = fileId;
+      frame.src = 'https://drive.google.com/file/d/' + fileId + '/preview?autoplay=1';
       frame.style.display = 'block';
-      document.getElementById('drive-block').style.display = 'block';
+      driveBlock.style.display = 'block';
       waiting.style.display = 'none';
-
-      // Flash title overlay briefly
       overlay.textContent = title || '';
       overlay.classList.add('visible');
       clearTimeout(hideTimer);
       hideTimer = setTimeout(() => overlay.classList.remove('visible'), 3500);
     }
 
-    // On load: restore last selected video (if any)
-    const stored = localStorage.getItem('smCurrentVideo');
-    if (stored) {
+    function processStoredValue(raw) {
+      if (!raw) return;
       try {
-        const { fileId, title } = JSON.parse(stored);
-        loadVideo(fileId, title);
+        const data = JSON.parse(raw);
+        if (data.command === 'stop') {
+          showWaiting();
+        } else if (data.fileId) {
+          loadVideo(data.fileId, data.title);
+        }
       } catch(e) {}
     }
 
-    // Listen for facilitator selections in the control panel
+    // Poll localStorage every 400ms — reliable across file:// windows
+    function poll() {
+      const current = localStorage.getItem('smCurrentVideo');
+      if (current !== lastSeenValue) {
+        lastSeenValue = current;
+        processStoredValue(current);
+      }
+    }
+
+    // Also keep the storage event as a fast-path for same-origin HTTP contexts
     window.addEventListener('storage', (e) => {
-      if (e.key === 'smCurrentVideo' && e.newValue) {
-        try {
-          const { fileId, title } = JSON.parse(e.newValue);
-          loadVideo(fileId, title);
-        } catch(e) {}
+      if (e.key === 'smCurrentVideo') {
+        lastSeenValue = e.newValue;
+        processStoredValue(e.newValue);
       }
     });
+
+    // Initial check + start polling
+    poll();
+    setInterval(poll, 400);
   </script>
 </body>
 </html>
