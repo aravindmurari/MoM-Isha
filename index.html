@@ -117,14 +117,14 @@
     }
     .hero-logo {
       margin: 0 auto 28px;
-      width: 72px; height: 72px;
+      width: 110px; height: 110px;
       background: var(--mom-black3);
       border: 1px solid var(--border2);
-      border-radius: 18px;
+      border-radius: 24px;
       display: flex; align-items: center; justify-content: center;
       overflow: hidden;
     }
-    .hero-logo img { width: 60px; height: auto; }
+    .hero-logo img { width: 90px; height: auto; }
 
     .hero-eyebrow {
       font-size: 0.75rem; font-weight: 500; letter-spacing: 0.18em;
@@ -139,8 +139,32 @@
     .hero h1 em {
       font-style: italic; color: var(--mom-red);
     }
+    .hero-quote {
+      margin: 0 auto 40px; max-width: 640px;
+      border: none; padding: 0;
+    }
+    .hero-quote p {
+      font-family: 'Trirong', Georgia, serif;
+      font-size: clamp(1.25rem, 3vw, 1.8rem);
+      font-style: italic; font-weight: 400;
+      color: #ffffff !important;
+      line-height: 1.4;
+      margin-bottom: 14px;
+    }
+    .hero-signature {
+      height: 40px; width: auto;
+      filter: invert(22%) sepia(96%) saturate(4000%) hue-rotate(343deg) brightness(95%);
+      display: block; margin: 0 auto;
+    }
+    .hero-tagline {
+      font-family: 'Trirong', Georgia, serif;
+      font-size: clamp(1.6rem, 3.8vw, 2.8rem);
+      font-weight: 600; color: var(--mom-red); line-height: 1.18;
+      text-shadow: 0 0 40px rgba(0,0,0,0.5);
+      margin-bottom: 0;
+    }
     .hero-sub {
-      margin: 20px auto 0;
+      margin: 8px auto 0;
       font-size: clamp(0.93rem, 1.8vw, 1.07rem);
       color: rgba(255,255,255,0.92); max-width: 500px; font-weight: 300;
     }
@@ -644,9 +668,13 @@
   <div class="hero-logo">
     <img src="https://static.sadhguru.org/d/46272/1739879389-group-1597883432.png" alt="Miracle of Mind logo" />
   </div>
-  <p class="hero-eyebrow">Isha Foundation · Booom Buddy Resource Kit</p>
-  <h1>Everything you need<br>to host and promote<br><em>Miracle of Mind</em></h1>
-  <p class="hero-sub" style="font-size: clamp(0.78rem, 1.4vw, 0.88rem); font-weight: 300; letter-spacing: 0.04em;">Promo materials and meditation session resources</p>
+
+  <blockquote class="hero-quote">
+    <p style="color:#ffffff;">"What you know as wellbeing must touch every human being."</p>
+    <img src="sadhguru-signature.avif" alt="Sadhguru" class="hero-signature" />
+  </blockquote>
+  <h1 class="hero-tagline">Host. Share. Touch Lives.</h1>
+  <p class="hero-sub" style="font-size: clamp(1rem, 2.2vw, 1.35rem); font-weight: 300; letter-spacing: 0.04em;">Everything you need to share Miracle of Mind</p>
 
   <div class="hero-stats">
     <div class="hero-stat">
