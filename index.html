@@ -1955,14 +1955,21 @@ Free 7-min daily meditation: [link] #MiracleOfMind</div>
 
             <!-- Offline setup panel (hidden by default) -->
             <div id="smOfflinePanel" style="display:none; padding:14px 16px; background:rgba(0,0,0,0.3); border-bottom:1px solid var(--border);">
-              <div style="font-size:0.73rem; color:var(--mom-muted2); margin-bottom:12px; line-height:1.5;">
-                Download videos from Dropbox once, then pick them here for offline playback.
+              <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;flex-wrap:wrap;gap:6px;">
+                <div style="font-size:0.73rem;color:var(--mom-muted2);line-height:1.5;">Download videos for offline playback · cached for 7 days</div>
+                <div id="smStorageInfo" style="font-size:0.68rem;color:var(--mom-muted);"></div>
               </div>
-              <div id="smOfflineList" style="display:flex; flex-direction:column; gap:8px;"></div>
-              <button onclick="smClearOffline()"
-                style="margin-top:12px; font-size:0.71rem; color:var(--mom-muted); background:none; border:none; cursor:pointer; padding:0; opacity:0.7;">
-                ✕ Clear all offline files
-              </button>
+              <div id="smOfflineList" style="display:flex;flex-direction:column;gap:6px;margin-bottom:12px;"></div>
+              <div style="display:flex;align-items:center;gap:12px;">
+                <button id="smDownloadAllBtn" onclick="smDownloadAll()"
+                  style="font-size:0.72rem;font-weight:600;color:var(--c-session);background:rgba(124,184,168,0.1);border:1px solid rgba(124,184,168,0.3);padding:5px 14px;border-radius:20px;cursor:pointer;white-space:nowrap;">
+                  ⬇ Download All
+                </button>
+                <button onclick="smClearOffline()"
+                  style="font-size:0.71rem;color:var(--mom-muted);background:none;border:none;cursor:pointer;padding:0;opacity:0.7;">
+                  ✕ Clear all
+                </button>
+              </div>
             </div>
 
             <div class="sm-video-ratio">
@@ -2330,43 +2337,45 @@ Free 7-min daily meditation: [link] #MiracleOfMind</div>
     { id: 'sg-isha',     title: 'Sadhguru & Isha Intro' },
   ];
   let smBlobUrl = null;
+  const SM_CACHE_TTL = 7 * 24 * 60 * 60 * 1000; // 7 days
 
-  function smOpenDB() {
+  // ── IndexedDB blob cache ───────────────────────────────────────────────
+  function smOpenCacheDB() {
     return new Promise((resolve, reject) => {
-      const req = indexedDB.open('momOfflineDB', 1);
-      req.onupgradeneeded = e => e.target.result.createObjectStore('fileHandles');
+      const req = indexedDB.open('momVideoCacheDB', 1);
+      req.onupgradeneeded = e => e.target.result.createObjectStore('videoCache');
       req.onsuccess = e => resolve(e.target.result);
       req.onerror = reject;
     });
   }
-  async function smSaveHandle(fileId, handle) {
-    const db = await smOpenDB();
+  async function smCacheStore(id, blob) {
+    const db = await smOpenCacheDB();
     return new Promise((res, rej) => {
-      const tx = db.transaction('fileHandles', 'readwrite');
-      tx.objectStore('fileHandles').put(handle, fileId);
+      const tx = db.transaction('videoCache', 'readwrite');
+      tx.objectStore('videoCache').put({ blob, downloadedAt: Date.now() }, id);
       tx.oncomplete = res; tx.onerror = rej;
     });
   }
-  async function smGetHandle(fileId) {
-    const db = await smOpenDB();
+  async function smGetCachedEntry(id) {
+    const db = await smOpenCacheDB();
     return new Promise(resolve => {
-      const tx = db.transaction('fileHandles', 'readonly');
-      const req = tx.objectStore('fileHandles').get(fileId);
+      const tx = db.transaction('videoCache', 'readonly');
+      const req = tx.objectStore('videoCache').get(id);
       req.onsuccess = () => resolve(req.result || null);
       req.onerror = () => resolve(null);
     });
   }
-  async function smGetLocalUrl(fileId) {
-    const handle = await smGetHandle(fileId);
-    if (!handle) return null;
-    try {
-      let perm = await handle.queryPermission({ mode: 'read' });
-      if (perm === 'prompt') perm = await handle.requestPermission({ mode: 'read' });
-      if (perm !== 'granted') return null;
-      return URL.createObjectURL(await handle.getFile());
-    } catch(e) { return null; }
+  async function smGetCachedBlob(id) {
+    const entry = await smGetCachedEntry(id);
+    if (!entry) return null;
+    if (Date.now() - entry.downloadedAt > SM_CACHE_TTL) return null;
+    return entry.blob;
+  }
+  function smDaysLeft(downloadedAt) {
+    return Math.max(0, Math.ceil((SM_CACHE_TTL - (Date.now() - downloadedAt)) / 86400000));
   }
 
+  // ── Playback ───────────────────────────────────────────────────────────
   async function smPlay(el, key, title, context) {
     const iframe = document.getElementById('smPlayer');
     const video  = document.getElementById('smLocalPlayer');
@@ -2382,11 +2391,11 @@ Free 7-min daily meditation: [link] #MiracleOfMind</div>
       video.style.display = 'none'; video.src = '';
       img.style.display   = 'block'; img.src  = url;
     } else {
-      img.style.display  = 'none'; img.src = '';
-      const localUrl = key ? await smGetLocalUrl(key) : null;
-      if (localUrl) {
-        smBlobUrl = localUrl;
-        video.src = localUrl;
+      img.style.display = 'none'; img.src = '';
+      const cachedBlob = key ? await smGetCachedBlob(key) : null;
+      if (cachedBlob) {
+        smBlobUrl = URL.createObjectURL(cachedBlob);
+        video.src = smBlobUrl;
       } else {
         video.src = url;
       }
@@ -2401,11 +2410,8 @@ Free 7-min daily meditation: [link] #MiracleOfMind</div>
     if (key) localStorage.setItem('smCurrentVideo', JSON.stringify({ fileId: key, title }));
   }
 
+  // ── Offline panel ──────────────────────────────────────────────────────
   function smToggleOffline() {
-    if (!('showOpenFilePicker' in window)) {
-      alert('Offline mode requires Chrome or Edge. Safari does not support this feature.');
-      return;
-    }
     const panel = document.getElementById('smOfflinePanel');
     const opening = panel.style.display === 'none';
     panel.style.display = opening ? 'block' : 'none';
@@ -2414,42 +2420,98 @@ Free 7-min daily meditation: [link] #MiracleOfMind</div>
 
   async function smRenderOfflineList() {
     const list = document.getElementById('smOfflineList');
+    const info = document.getElementById('smStorageInfo');
     list.innerHTML = '';
+
+    if (navigator.storage && navigator.storage.estimate) {
+      const { usage, quota } = await navigator.storage.estimate();
+      info.textContent = `${(usage/1048576).toFixed(0)} MB / ${(quota/1048576).toFixed(0)} MB used`;
+    }
+
     for (const v of SM_VIDEOS) {
-      let ready = false;
-      const handle = await smGetHandle(v.id);
-      if (handle) {
-        try { ready = (await handle.queryPermission({ mode: 'read' })) !== 'denied'; } catch(e) {}
+      const entry = await smGetCachedEntry(v.id);
+      let statusText, statusColor, btnLabel;
+      if (!entry) {
+        statusText = '—'; statusColor = 'var(--mom-muted)'; btnLabel = 'Download';
+      } else if (Date.now() - entry.downloadedAt > SM_CACHE_TTL) {
+        statusText = 'Expired'; statusColor = '#e07070'; btnLabel = 'Re-download';
+      } else {
+        statusText = `✓ ${smDaysLeft(entry.downloadedAt)}d left`; statusColor = '#6fcf97'; btnLabel = 'Re-download';
       }
+
       const row = document.createElement('div');
-      row.style.cssText = 'display:flex;align-items:center;gap:10px;padding:8px 10px;background:rgba(255,255,255,0.03);border-radius:8px;border:1px solid var(--border);';
+      row.id = `smRow_${v.id}`;
+      row.style.cssText = 'display:flex;align-items:center;gap:10px;padding:7px 10px;background:rgba(255,255,255,0.03);border-radius:8px;border:1px solid var(--border);';
       row.innerHTML = `
-        <div style="flex:1;font-size:0.8rem;font-weight:500;color:var(--mom-cream);">${v.title}</div>
-        <div id="smSt_${v.id}" style="font-size:0.72rem;${ready ? 'color:#6fcf97;' : 'color:var(--mom-muted);'}">${ready ? '✓ Ready' : '—'}</div>
-        <button onclick="smPickFile('${v.id}')"
+        <div style="flex:1;min-width:0;">
+          <div style="font-size:0.8rem;font-weight:500;color:var(--mom-cream);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${v.title}</div>
+          <div id="smProg_${v.id}" style="height:3px;background:rgba(124,184,168,0.2);border-radius:2px;margin-top:5px;display:none;">
+            <div id="smBar_${v.id}" style="height:100%;width:0%;background:var(--c-session);border-radius:2px;transition:width 0.15s;"></div>
+          </div>
+        </div>
+        <div id="smSt_${v.id}" style="font-size:0.72rem;color:${statusColor};white-space:nowrap;">${statusText}</div>
+        <button id="smBtn_${v.id}" onclick="smDownloadOne('${v.id}')"
           style="font-size:0.72rem;font-weight:600;color:var(--c-session);background:rgba(124,184,168,0.08);border:1px solid rgba(124,184,168,0.3);padding:4px 10px;border-radius:20px;cursor:pointer;white-space:nowrap;">
-          ${ready ? '↺ Replace' : 'Pick file'}
+          ${btnLabel}
         </button>`;
       list.appendChild(row);
     }
   }
 
-  async function smPickFile(fileId) {
+  async function smDownloadOne(id) {
+    const url = SM_URLS[id];
+    if (!url) return;
+    const btn  = document.getElementById(`smBtn_${id}`);
+    const st   = document.getElementById(`smSt_${id}`);
+    const prog = document.getElementById(`smProg_${id}`);
+    const bar  = document.getElementById(`smBar_${id}`);
+    if (btn) { btn.disabled = true; btn.textContent = 'Downloading…'; }
+    if (prog) prog.style.display = 'block';
     try {
-      const [handle] = await window.showOpenFilePicker({
-        types: [{ description: 'Video', accept: { 'video/*': ['.mp4', '.mov', '.webm', '.mkv'] } }],
-        multiple: false,
-      });
-      await smSaveHandle(fileId, handle);
-      smRenderOfflineList();
-    } catch(e) { /* user cancelled */ }
+      const resp = await fetch(url);
+      if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
+      const total  = parseInt(resp.headers.get('content-length') || '0') || null;
+      const reader = resp.body.getReader();
+      const chunks = [];
+      let received = 0;
+      while (true) {
+        const { done, value } = await reader.read();
+        if (done) break;
+        chunks.push(value);
+        received += value.length;
+        const pct = total ? received / total : null;
+        if (bar) bar.style.width = pct ? `${(pct * 100).toFixed(0)}%` : '40%';
+        if (st)  st.textContent  = pct
+          ? `${(pct * 100).toFixed(0)}%`
+          : `${(received / 1048576).toFixed(1)} MB`;
+      }
+      const mime = url.includes('.png') ? 'image/png' : 'video/mp4';
+      const blob = new Blob(chunks, { type: mime });
+      await smCacheStore(id, blob);
+      if (prog) prog.style.display = 'none';
+      if (bar)  bar.style.width = '0%';
+      if (st)  { st.textContent = `✓ 7d left`; st.style.color = '#6fcf97'; }
+      if (btn) { btn.disabled = false; btn.textContent = 'Re-download'; }
+    } catch(err) {
+      if (prog) prog.style.display = 'none';
+      if (st)  { st.textContent = 'Failed'; st.style.color = '#e07070'; }
+      if (btn) { btn.disabled = false; btn.textContent = 'Retry'; }
+      console.error('smDownloadOne:', id, err);
+    }
+  }
+
+  async function smDownloadAll() {
+    const btn = document.getElementById('smDownloadAllBtn');
+    if (btn) btn.disabled = true;
+    for (const v of SM_VIDEOS) await smDownloadOne(v.id);
+    if (btn) btn.disabled = false;
   }
 
   async function smClearOffline() {
-    const db = await smOpenDB();
+    const db = await smOpenCacheDB();
     await new Promise((res, rej) => {
-      const tx = db.transaction('fileHandles', 'readwrite');
-      tx.objectStore('fileHandles').clear();
+      const tx = db.transaction('videoCache', 'readwrite');
+      tx.objectStore('videoCache').clear();
       tx.oncomplete = res; tx.onerror = rej;
     });
     smRenderOfflineList();
