@@ -2430,8 +2430,9 @@ Free 7-min daily meditation: [link] #MiracleOfMind</div>
     list.innerHTML = '';
 
     if (navigator.storage && navigator.storage.estimate) {
-      const { usage, quota } = await navigator.storage.estimate();
-      info.textContent = `${(usage/1048576).toFixed(0)} MB / ${(quota/1048576).toFixed(0)} MB used`;
+      const { usage } = await navigator.storage.estimate();
+      const mb = (usage / 1048576).toFixed(0);
+      info.textContent = mb > 0 ? `${mb} MB cached` : '';
     }
 
     for (const v of SM_VIDEOS) {
