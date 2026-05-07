@@ -1956,7 +1956,7 @@ Free 7-min daily meditation: [link] #MiracleOfMind</div>
             <!-- Offline setup panel (hidden by default) -->
             <div id="smOfflinePanel" style="display:none; padding:14px 16px; background:rgba(0,0,0,0.3); border-bottom:1px solid var(--border);">
               <div style="font-size:0.73rem; color:var(--mom-muted2); margin-bottom:12px; line-height:1.5;">
-                Download videos from Drive once, then pick them here for offline playback.
+                Download videos from Dropbox once, then pick them here for offline playback.
               </div>
               <div id="smOfflineList" style="display:flex; flex-direction:column; gap:8px;"></div>
               <button onclick="smClearOffline()"
@@ -1966,16 +1966,16 @@ Free 7-min daily meditation: [link] #MiracleOfMind</div>
             </div>
 
             <div class="sm-video-ratio">
-              <iframe id="smPlayer"
-                src="https://drive.google.com/file/d/1Iqu_jEHELPgKtHG48CKpi0UZ-v9jGCeF/preview?autoplay=1"
-                allow="autoplay" allowfullscreen>
-              </iframe>
+              <iframe id="smPlayer" style="display:none;" allow="autoplay" allowfullscreen></iframe>
               <video id="smLocalPlayer"
-                style="position:absolute;top:0;left:0;width:100%;height:100%;display:none;background:#000;"
+                src="https://www.dropbox.com/scl/fo/hp1orcoku47w1517cf6ql/AEQwdm7dsgpF_CUHNYOrZ8g/1_MoMEx_Yogapadhi_15min.mp4?rlkey=2y6tu4osh4nfyog49fb2zhylm&amp;st=fs3a6nld&amp;dl=1"
+                style="position:absolute;top:0;left:0;width:100%;height:100%;display:block;background:#000;"
                 controls>
               </video>
-              <!-- Blocks Google Drive's top bar / open-in-Drive link -->
-              <div id="smDriveBlock" style="position:absolute;top:0;left:0;right:0;height:44px;z-index:10;"></div>
+              <img id="smImagePlayer"
+                style="position:absolute;top:0;left:0;width:100%;height:100%;display:none;object-fit:contain;background:#000;"
+                alt="">
+              <div id="smDriveBlock" style="display:none;"></div>
             </div>
             <div class="sm-now-playing">
               <div class="sm-now-label">Now Playing</div>
@@ -1987,7 +1987,7 @@ Free 7-min daily meditation: [link] #MiracleOfMind</div>
           <!-- Playlist -->
           <div class="sm-playlist">
 
-            <div class="sm-item sm-active" onclick="smPlay(this,'1Iqu_jEHELPgKtHG48CKpi0UZ-v9jGCeF','Yoga Padhi','Pre-session · 15 min')">
+            <div class="sm-item sm-active" onclick="smPlay(this,'yoga-padhi','Yoga Padhi','Pre-session · 15 min')">
               <div class="sm-num" data-n="1">1</div>
               <div>
                 <div class="sm-item-title">Yoga Padhi</div>
@@ -1995,7 +1995,7 @@ Free 7-min daily meditation: [link] #MiracleOfMind</div>
               </div>
             </div>
 
-            <div class="sm-item" onclick="smPlay(this,'1fquCcIOd0NMYlKtWp_FAQIjqK4W_2h1n','Waiting Yoga Padhi','Pre-session · 4 min')">
+            <div class="sm-item" onclick="smPlay(this,'waiting-yp','Waiting Yoga Padhi','Pre-session · 4 min')">
               <div class="sm-num" data-n="2">2</div>
               <div>
                 <div class="sm-item-title">Waiting Yoga Padhi</div>
@@ -2003,24 +2003,8 @@ Free 7-min daily meditation: [link] #MiracleOfMind</div>
               </div>
             </div>
 
-            <div style="padding:6px 16px 2px; font-size:0.62rem; text-transform:uppercase; letter-spacing:0.1em; color:var(--vol-amber); background:rgba(212,145,74,0.06); border-bottom:1px solid var(--border);">Pick one</div>
-
-            <div class="sm-item" onclick="smPlay(this,'13b8zbv7Tnrs6eKMGLgD3cwc2Y-t8MEmZ','Intro without Meditation','Main session · ~8 min')">
+            <div class="sm-item" onclick="smPlay(this,'intro-med','Intro with Meditation','Main session · ~20 min')">
               <div class="sm-num" data-n="3">3</div>
-              <div>
-                <div class="sm-item-title">Intro without Meditation</div>
-                <div class="sm-item-meta">Main session · ~8 min</div>
-              </div>
-            </div>
-
-            <div style="display:flex;align-items:center;gap:8px;padding:4px 16px;background:rgba(255,255,255,0.02);">
-              <div style="flex:1;height:1px;background:var(--border);"></div>
-              <span style="font-size:0.68rem;color:var(--mom-muted);letter-spacing:0.05em;">or</span>
-              <div style="flex:1;height:1px;background:var(--border);"></div>
-            </div>
-
-            <div class="sm-item" onclick="smPlay(this,'1IXQJ98LhkH2hRjzbwGfQG4xmT9PQS1JS','Intro with Meditation','Main session · ~20 min')">
-              <div class="sm-num" data-n="4">4</div>
               <div>
                 <div class="sm-item-title">Intro with Meditation</div>
                 <div class="sm-item-meta">Main session · ~20 min</div>
@@ -2029,23 +2013,31 @@ Free 7-min daily meditation: [link] #MiracleOfMind</div>
 
             <div style="height:6px;background:rgba(212,145,74,0.06);border-top:1px solid var(--border);border-bottom:1px solid var(--border);"></div>
 
-            <div class="sm-item" onclick="smPlay(this,'10nygQ3ylFIZVKLzO-v3q6U_-HpH24wHb','Managing Thoughts','Post-meditation · ~2 min')">
-              <div class="sm-num" data-n="5">5</div>
+            <div class="sm-item" onclick="smPlay(this,'managing','Managing Thoughts','Post-meditation · ~2 min')">
+              <div class="sm-num" data-n="4">4</div>
               <div>
                 <div class="sm-item-title">Managing Thoughts</div>
                 <div class="sm-item-meta">Post-meditation · ~2 min</div>
               </div>
             </div>
 
-            <div class="sm-item" onclick="smPlay(this,'1sT-CQbVmk38he9b2VkVdA8JPphn6PbBo','Participant Experience','Post-meditation · ~1 min')">
-              <div class="sm-num" data-n="6">6</div>
+            <div class="sm-item" onclick="smPlay(this,'participant','Participant Experience','Post-meditation · ~1 min')">
+              <div class="sm-num" data-n="5">5</div>
               <div>
                 <div class="sm-item-title">Participant Experience</div>
                 <div class="sm-item-meta">Post-meditation · ~1 min</div>
               </div>
             </div>
 
-            <div class="sm-item" onclick="smPlay(this,'1JyQVTxxRRp2Duc9FOHkVIvSimXW2uaKT','Sadhguru &amp; Isha Intro','Optional · ~3 min')">
+            <div class="sm-item" onclick="smPlay(this,'qr-code','QR Code','App download')">
+              <div class="sm-num" data-n="6">6</div>
+              <div>
+                <div class="sm-item-title">QR Code</div>
+                <div class="sm-item-meta">App download</div>
+              </div>
+            </div>
+
+            <div class="sm-item" onclick="smPlay(this,'sg-isha','Sadhguru &amp; Isha Intro','Optional · ~3 min')">
               <div class="sm-num" data-n="7">7</div>
               <div>
                 <div class="sm-item-title">Sadhguru &amp; Isha Intro</div>
@@ -2322,14 +2314,22 @@ Free 7-min daily meditation: [link] #MiracleOfMind</div>
   }
 
   // ── Offline mode: File System Access API + IndexedDB ──────────────────
+  const SM_URLS = {
+    'yoga-padhi':  'https://www.dropbox.com/scl/fo/hp1orcoku47w1517cf6ql/AEQwdm7dsgpF_CUHNYOrZ8g/1_MoMEx_Yogapadhi_15min.mp4?rlkey=2y6tu4osh4nfyog49fb2zhylm&st=fs3a6nld&dl=1',
+    'waiting-yp':  'https://www.dropbox.com/scl/fo/hp1orcoku47w1517cf6ql/ALMTnUJZ-CsM2LcKY8p342g/2_MoMEx_waitingYP_4min.mp4?rlkey=2y6tu4osh4nfyog49fb2zhylm&dl=1',
+    'intro-med':   'https://www.dropbox.com/scl/fo/hp1orcoku47w1517cf6ql/AFuPHGtUgJNWAS9EJNE2yuM/4_MoMIntroandMeditation.mp4?rlkey=2y6tu4osh4nfyog49fb2zhylm&dl=1',
+    'managing':    'https://www.dropbox.com/scl/fo/hp1orcoku47w1517cf6ql/AL5rCYRts40j9N_b53qe91k/5_MoM_post_video.mp4?rlkey=2y6tu4osh4nfyog49fb2zhylm&dl=1',
+    'participant': 'https://www.dropbox.com/scl/fo/hp1orcoku47w1517cf6ql/AD55yA_PHjg6Uc7fq5UeVGE/MoM-ParticipantSharing.mp4?rlkey=2y6tu4osh4nfyog49fb2zhylm&dl=1',
+    'qr-code':     'https://www.dropbox.com/scl/fo/hp1orcoku47w1517cf6ql/ANsFVvZWnwQtL4mA3gpcBLc/QRcode.png?rlkey=2y6tu4osh4nfyog49fb2zhylm&dl=1',
+    'sg-isha':     'https://www.dropbox.com/scl/fo/hp1orcoku47w1517cf6ql/ABja5NhlAqfzxv3kg9Ik-8M/6__MoMEx_SGIshaIntro_3mi.mp4?rlkey=2y6tu4osh4nfyog49fb2zhylm&dl=1',
+  };
   const SM_VIDEOS = [
-    { id: '1Iqu_jEHELPgKtHG48CKpi0UZ-v9jGCeF', title: 'Yoga Padhi' },
-    { id: '1fquCcIOd0NMYlKtWp_FAQIjqK4W_2h1n', title: 'Waiting Yoga Padhi' },
-    { id: '13b8zbv7Tnrs6eKMGLgD3cwc2Y-t8MEmZ', title: 'Intro without Meditation' },
-    { id: '1IXQJ98LhkH2hRjzbwGfQG4xmT9PQS1JS', title: 'Intro with Meditation' },
-    { id: '10nygQ3ylFIZVKLzO-v3q6U_-HpH24wHb', title: 'Managing Thoughts' },
-    { id: '1sT-CQbVmk38he9b2VkVdA8JPphn6PbBo', title: 'Participant Experience' },
-    { id: '1JyQVTxxRRp2Duc9FOHkVIvSimXW2uaKT', title: 'Sadhguru & Isha Intro' },
+    { id: 'yoga-padhi',  title: 'Yoga Padhi' },
+    { id: 'waiting-yp',  title: 'Waiting Yoga Padhi' },
+    { id: 'intro-med',   title: 'Intro with Meditation' },
+    { id: 'managing',    title: 'Managing Thoughts' },
+    { id: 'participant', title: 'Participant Experience' },
+    { id: 'sg-isha',     title: 'Sadhguru & Isha Intro' },
   ];
   let smBlobUrl = null;
 
@@ -2369,28 +2369,38 @@ Free 7-min daily meditation: [link] #MiracleOfMind</div>
     } catch(e) { return null; }
   }
 
-  async function smPlay(el, fileId, title, context) {
+  async function smPlay(el, key, title, context) {
     const iframe = document.getElementById('smPlayer');
     const video  = document.getElementById('smLocalPlayer');
+    const img    = document.getElementById('smImagePlayer');
     const block  = document.getElementById('smDriveBlock');
     if (smBlobUrl) { URL.revokeObjectURL(smBlobUrl); smBlobUrl = null; }
 
-    const localUrl = fileId ? await smGetLocalUrl(fileId) : null;
-    if (localUrl) {
-      smBlobUrl = localUrl;
-      iframe.style.display = 'none'; block.style.display = 'none';
-      video.style.display = 'block'; video.src = localUrl;
-      video.play().catch(() => {});
-    } else {
+    const url = SM_URLS[key] || '';
+    iframe.style.display = 'none';
+    block.style.display  = 'none';
+
+    if (key === 'qr-code') {
       video.style.display = 'none'; video.src = '';
-      iframe.style.display = 'block'; block.style.display = 'block';
-      if (fileId) iframe.src = 'https://drive.google.com/file/d/' + fileId + '/preview?autoplay=1';
+      img.style.display   = 'block'; img.src  = url;
+    } else {
+      img.style.display  = 'none'; img.src = '';
+      const localUrl = key ? await smGetLocalUrl(key) : null;
+      if (localUrl) {
+        smBlobUrl = localUrl;
+        video.src = localUrl;
+      } else {
+        video.src = url;
+      }
+      video.style.display = 'block';
+      if (url) video.play().catch(() => {});
     }
-    document.getElementById('smTitle').textContent = title;
+
+    document.getElementById('smTitle').textContent   = title;
     document.getElementById('smContext').textContent = context;
     document.querySelectorAll('.sm-item').forEach(i => i.classList.remove('sm-active'));
     if (el) el.classList.add('sm-active');
-    if (fileId) localStorage.setItem('smCurrentVideo', JSON.stringify({ fileId, title }));
+    if (key) localStorage.setItem('smCurrentVideo', JSON.stringify({ fileId: key, title }));
   }
 
   function smToggleOffline() {
