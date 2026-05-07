@@ -2409,7 +2409,7 @@ Free 7-min daily meditation: [link] #MiracleOfMind</div>
     document.getElementById('smContext').textContent = context;
     document.querySelectorAll('.sm-item').forEach(i => i.classList.remove('sm-active'));
     if (el) el.classList.add('sm-active');
-    if (key) localStorage.setItem('smCurrentVideo', JSON.stringify({ fileId: key, title }));
+    if (key) localStorage.setItem('smCurrentVideo', JSON.stringify({ fileId: key, url, title }));
   }
 
   // ── Offline panel ──────────────────────────────────────────────────────

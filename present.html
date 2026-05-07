@@ -8,7 +8,7 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html, body { height: 100%; background: #000; overflow: hidden; font-family: system-ui, sans-serif; }
 
-    #player-frame {
+    #player-video, #player-image {
       position: fixed;
       top: 0; left: 0; right: 0; bottom: 0;
       width: 100%; height: 100%;
@@ -16,14 +16,7 @@
       z-index: 1;
       display: none;
     }
-    /* Blocks Google Drive's top bar / open-in-Drive link */
-    #drive-block {
-      display: none;
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      height: 44px;
-      z-index: 5;
-    }
+    #player-image { object-fit: contain; background: #000; }
 
     #waiting {
       position: fixed;
@@ -65,36 +58,42 @@
     <p>Waiting for facilitator to select a video…</p>
   </div>
 
-  <iframe id="player-frame" allow="autoplay" allowfullscreen></iframe>
-  <div id="drive-block"></div>
-  <div id="title-overlay"></div>
+  <video id="player-video" controls autoplay></video>
+  <img   id="player-image" alt="" />
+  <div   id="title-overlay"></div>
 
   <script>
-    const frame   = document.getElementById('player-frame');
+    const video   = document.getElementById('player-video');
+    const image   = document.getElementById('player-image');
     const waiting = document.getElementById('waiting');
     const overlay = document.getElementById('title-overlay');
-    const driveBlock = document.getElementById('drive-block');
     let hideTimer;
     let lastSeenValue = null;
-    let currentFileId  = null;
+    let currentUrl = null;
 
     function showWaiting(msg) {
-      frame.src = '';
-      frame.style.display = 'none';
-      driveBlock.style.display = 'none';
+      video.pause(); video.src = ''; video.style.display = 'none';
+      image.src = ''; image.style.display = 'none';
       waiting.style.display = 'flex';
       waiting.querySelector('p').textContent = msg || 'Waiting for facilitator to select a video…';
       overlay.classList.remove('visible');
-      currentFileId = null;
+      currentUrl = null;
     }
 
-    function loadVideo(fileId, title) {
-      if (!fileId || fileId === currentFileId) return;
-      currentFileId = fileId;
-      frame.src = 'https://drive.google.com/file/d/' + fileId + '/preview?autoplay=1';
-      frame.style.display = 'block';
-      driveBlock.style.display = 'block';
+    function loadMedia(url, title, isImage) {
+      if (!url || url === currentUrl) return;
+      currentUrl = url;
       waiting.style.display = 'none';
+
+      if (isImage) {
+        video.pause(); video.src = ''; video.style.display = 'none';
+        image.src = url; image.style.display = 'block';
+      } else {
+        image.src = ''; image.style.display = 'none';
+        video.src = url; video.style.display = 'block';
+        video.play().catch(() => {});
+      }
+
       overlay.textContent = title || '';
       overlay.classList.add('visible');
       clearTimeout(hideTimer);
@@ -107,8 +106,9 @@
         const data = JSON.parse(raw);
         if (data.command === 'stop') {
           showWaiting();
-        } else if (data.fileId) {
-          loadVideo(data.fileId, data.title);
+        } else if (data.url) {
+          const isImage = data.fileId === 'qr-code';
+          loadMedia(data.url, data.title, isImage);
         }
       } catch(e) {}
     }
@@ -122,7 +122,6 @@
       }
     }
 
-    // Also keep the storage event as a fast-path for same-origin HTTP contexts
     window.addEventListener('storage', (e) => {
       if (e.key === 'smCurrentVideo') {
         lastSeenValue = e.newValue;
@@ -130,7 +129,6 @@
       }
     });
 
-    // Initial check + start polling
     poll();
     setInterval(poll, 400);
   </script>
