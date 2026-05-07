@@ -1960,6 +1960,10 @@ Free 7-min daily meditation: [link] #MiracleOfMind</div>
                 <div id="smStorageInfo" style="font-size:0.68rem;color:var(--mom-muted);"></div>
               </div>
               <div id="smOfflineList" style="display:flex;flex-direction:column;gap:6px;margin-bottom:12px;"></div>
+              <div id="smServerHint" style="display:none;font-size:0.7rem;color:#e07070;background:rgba(224,112,112,0.08);border:1px solid rgba(224,112,112,0.25);border-radius:8px;padding:7px 10px;margin-bottom:10px;line-height:1.5;">
+                Downloads require a web server. Open this page via GitHub Pages or run:<br>
+                <code style="font-size:0.68rem;opacity:0.85;">python3 -m http.server 8080</code>
+              </div>
               <div style="display:flex;align-items:center;gap:12px;">
                 <button id="smDownloadAllBtn" onclick="smDownloadAll()"
                   style="font-size:0.72rem;font-weight:600;color:var(--c-session);background:rgba(124,184,168,0.1);border:1px solid rgba(124,184,168,0.3);padding:5px 14px;border-radius:20px;cursor:pointer;white-space:nowrap;">
@@ -2494,8 +2498,12 @@ Free 7-min daily meditation: [link] #MiracleOfMind</div>
       if (btn) { btn.disabled = false; btn.textContent = 'Re-download'; }
     } catch(err) {
       if (prog) prog.style.display = 'none';
-      if (st)  { st.textContent = 'Failed'; st.style.color = '#e07070'; }
+      const needsServer = location.protocol === 'file:';
+      if (st)  { st.textContent = needsServer ? 'Needs server' : 'Failed'; st.style.color = '#e07070'; }
       if (btn) { btn.disabled = false; btn.textContent = 'Retry'; }
+      if (needsServer && document.getElementById('smServerHint')) {
+        document.getElementById('smServerHint').style.display = 'block';
+      }
       console.error('smDownloadOne:', id, err);
     }
   }
