@@ -397,7 +397,7 @@ for (let i = 1; i <= 12; i++) {
   const d = document.createElement('div');
   d.className = 'tmpl-thumb' + (i === 1 ? ' sel' : '');
   d.dataset.id = i;
-  d.innerHTML = `<img src="files/templates/${i}.png" alt="Template ${i}" loading="lazy"><span class="n">${i}</span>`;
+  d.innerHTML = `<img src="files/templates/${i}.webp" alt="Template ${i}" loading="lazy"><span class="n">${i}</span>`;
   d.onclick = () => {
     selectedId = i;
     document.querySelectorAll('.tmpl-thumb').forEach(el =>
@@ -445,7 +445,7 @@ async function renderOnCtx(ctx, scale) {
   // Draw template image
   let img;
   try {
-    img = await loadImage(`files/templates/${selectedId}.png`);
+    img = await loadImage(`files/templates/${selectedId}.webp`);
   } catch (_) {
     ctx.fillStyle = '#333'; ctx.fillRect(0, 0, sw, sh);
     ctx.fillStyle = '#999';
@@ -517,7 +517,15 @@ async function downloadFlyer() {
 ['fDate','fTime','fAddr1','fAddr2'].forEach(id =>
   document.getElementById(id).addEventListener('input', scheduleRender));
 
-document.fonts.ready.then(() => scheduleRender());
+document.fonts.ready.then(() => {
+  scheduleRender();
+  // Preload remaining templates in the background after first render
+  setTimeout(() => {
+    for (let i = 1; i <= 12; i++) {
+      if (i !== selectedId) loadImage(`files/templates/${i}.webp`).catch(() => {});
+    }
+  }, 800);
+});
 </script>
 
 </body>
