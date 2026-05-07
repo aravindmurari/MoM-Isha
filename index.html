@@ -1979,7 +1979,7 @@ Free 7-min daily meditation: [link] #MiracleOfMind</div>
             <div class="sm-video-ratio">
               <iframe id="smPlayer" style="display:none;" allow="autoplay" allowfullscreen></iframe>
               <video id="smLocalPlayer"
-                src="https://www.dropbox.com/scl/fo/hp1orcoku47w1517cf6ql/AEQwdm7dsgpF_CUHNYOrZ8g/1_MoMEx_Yogapadhi_15min.mp4?rlkey=2y6tu4osh4nfyog49fb2zhylm&amp;st=fs3a6nld&amp;dl=1"
+                src="https://dl.dropboxusercontent.com/scl/fo/hp1orcoku47w1517cf6ql/AEQwdm7dsgpF_CUHNYOrZ8g/1_MoMEx_Yogapadhi_15min.mp4?rlkey=2y6tu4osh4nfyog49fb2zhylm&amp;st=fs3a6nld"
                 style="position:absolute;top:0;left:0;width:100%;height:100%;display:block;background:#000;"
                 controls>
               </video>
@@ -2323,14 +2323,15 @@ Free 7-min daily meditation: [link] #MiracleOfMind</div>
   }
 
   // ── Offline mode: File System Access API + IndexedDB ──────────────────
+  // dl.dropboxusercontent.com serves CORS headers; www.dropbox.com does not
   const SM_URLS = {
-    'yoga-padhi':  'https://www.dropbox.com/scl/fo/hp1orcoku47w1517cf6ql/AEQwdm7dsgpF_CUHNYOrZ8g/1_MoMEx_Yogapadhi_15min.mp4?rlkey=2y6tu4osh4nfyog49fb2zhylm&st=fs3a6nld&dl=1',
-    'waiting-yp':  'https://www.dropbox.com/scl/fo/hp1orcoku47w1517cf6ql/ALMTnUJZ-CsM2LcKY8p342g/2_MoMEx_waitingYP_4min.mp4?rlkey=2y6tu4osh4nfyog49fb2zhylm&dl=1',
-    'intro-med':   'https://www.dropbox.com/scl/fo/hp1orcoku47w1517cf6ql/AFuPHGtUgJNWAS9EJNE2yuM/4_MoMIntroandMeditation.mp4?rlkey=2y6tu4osh4nfyog49fb2zhylm&dl=1',
-    'managing':    'https://www.dropbox.com/scl/fo/hp1orcoku47w1517cf6ql/AL5rCYRts40j9N_b53qe91k/5_MoM_post_video.mp4?rlkey=2y6tu4osh4nfyog49fb2zhylm&dl=1',
-    'participant': 'https://www.dropbox.com/scl/fo/hp1orcoku47w1517cf6ql/AD55yA_PHjg6Uc7fq5UeVGE/MoM-ParticipantSharing.mp4?rlkey=2y6tu4osh4nfyog49fb2zhylm&dl=1',
-    'qr-code':     'https://www.dropbox.com/scl/fo/hp1orcoku47w1517cf6ql/ANsFVvZWnwQtL4mA3gpcBLc/QRcode.png?rlkey=2y6tu4osh4nfyog49fb2zhylm&dl=1',
-    'sg-isha':     'https://www.dropbox.com/scl/fo/hp1orcoku47w1517cf6ql/ABja5NhlAqfzxv3kg9Ik-8M/6__MoMEx_SGIshaIntro_3mi.mp4?rlkey=2y6tu4osh4nfyog49fb2zhylm&dl=1',
+    'yoga-padhi':  'https://dl.dropboxusercontent.com/scl/fo/hp1orcoku47w1517cf6ql/AEQwdm7dsgpF_CUHNYOrZ8g/1_MoMEx_Yogapadhi_15min.mp4?rlkey=2y6tu4osh4nfyog49fb2zhylm&st=fs3a6nld',
+    'waiting-yp':  'https://dl.dropboxusercontent.com/scl/fo/hp1orcoku47w1517cf6ql/ALMTnUJZ-CsM2LcKY8p342g/2_MoMEx_waitingYP_4min.mp4?rlkey=2y6tu4osh4nfyog49fb2zhylm',
+    'intro-med':   'https://dl.dropboxusercontent.com/scl/fo/hp1orcoku47w1517cf6ql/AFuPHGtUgJNWAS9EJNE2yuM/4_MoMIntroandMeditation.mp4?rlkey=2y6tu4osh4nfyog49fb2zhylm',
+    'managing':    'https://dl.dropboxusercontent.com/scl/fo/hp1orcoku47w1517cf6ql/AL5rCYRts40j9N_b53qe91k/5_MoM_post_video.mp4?rlkey=2y6tu4osh4nfyog49fb2zhylm',
+    'participant': 'https://dl.dropboxusercontent.com/scl/fo/hp1orcoku47w1517cf6ql/AD55yA_PHjg6Uc7fq5UeVGE/MoM-ParticipantSharing.mp4?rlkey=2y6tu4osh4nfyog49fb2zhylm',
+    'qr-code':     'https://dl.dropboxusercontent.com/scl/fo/hp1orcoku47w1517cf6ql/ANsFVvZWnwQtL4mA3gpcBLc/QRcode.png?rlkey=2y6tu4osh4nfyog49fb2zhylm',
+    'sg-isha':     'https://dl.dropboxusercontent.com/scl/fo/hp1orcoku47w1517cf6ql/ABja5NhlAqfzxv3kg9Ik-8M/6__MoMEx_SGIshaIntro_3mi.mp4?rlkey=2y6tu4osh4nfyog49fb2zhylm',
   };
   const SM_VIDEOS = [
     { id: 'yoga-padhi',  title: 'Yoga Padhi' },
