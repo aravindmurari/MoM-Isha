@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Find a Miracle of Mind Session Near You</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Trirong:ital,wght@0,400;0,600;1,400;1,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --mom-black:  #100d0a;
+      --mom-cream:  #dfd8ce;
+      --mom-cream2: #e8ddd0;
+      --mom-muted:  #6e665b;
+      --mom-muted2: #9e968c;
+      --vol-amber:  #d4914a;
+      --border2:    rgba(255,255,255,0.08);
+    }
+
+    body {
+      background: var(--mom-black);
+      color: var(--mom-cream);
+      font-family: 'Inter', sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 24px;
+      text-align: center;
+    }
+
+    .logo {
+      width: 72px;
+      height: auto;
+      margin-bottom: 32px;
+      opacity: 0.92;
+    }
+
+    .eyebrow {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--vol-amber);
+      margin-bottom: 16px;
+    }
+
+    h1 {
+      font-family: 'Trirong', serif;
+      font-style: italic;
+      font-size: clamp(2rem, 5vw, 3rem);
+      font-weight: 400;
+      color: var(--mom-cream2);
+      line-height: 1.2;
+      margin-bottom: 20px;
+    }
+
+    .desc {
+      font-size: 1rem;
+      font-weight: 300;
+      color: var(--mom-muted2);
+      max-width: 420px;
+      line-height: 1.7;
+      margin-bottom: 48px;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(212,145,74,0.1);
+      border: 1px solid rgba(212,145,74,0.25);
+      color: var(--vol-amber);
+      font-size: 0.82rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 10px 22px;
+      border-radius: 100px;
+      margin-bottom: 48px;
+    }
+
+    .badge::before {
+      content: '';
+      width: 7px; height: 7px;
+      background: var(--vol-amber);
+      border-radius: 50%;
+      animation: pulse 1.6s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50%       { opacity: 0.4; transform: scale(0.7); }
+    }
+
+    .back {
+      font-size: 0.82rem;
+      color: var(--mom-muted);
+      text-decoration: none;
+      border-bottom: 1px solid var(--border2);
+      padding-bottom: 2px;
+      transition: color 0.15s;
+    }
+    .back:hover { color: var(--mom-cream2); }
+  </style>
+</head>
+<body>
+
+  <img class="logo"
+    src="https://static.sadhguru.org/d/46272/1739879389-group-1597883432.png"
+    alt="Miracle of Mind" />
+
+  <p class="eyebrow">Miracle of Mind &nbsp;·&nbsp; Session Finder</p>
+
+  <h1>Find a Session<br>Near You</h1>
+
+  <p class="desc">
+    We are working on a way for you to discover Miracle of Mind sessions being offered in your area. Check back soon.
+  </p>
+
+  <div class="badge">Coming Soon</div>
+
+  <a class="back" href="index.html">← Back to Booom Buddy Resource Kit</a>
+
+</body>
+</html>

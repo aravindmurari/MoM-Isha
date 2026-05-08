@@ -642,6 +642,39 @@
     #sessionkit .sm-item-meta    { font-size: 0.79rem; }
     #sessionkit .sm-now-title    { font-size: 0.97rem; }
     #sessionkit .sm-now-context  { font-size: 0.81rem; }
+
+    /* Walkthrough video modal */
+    .wt-btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      margin-top: 20px;
+      background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.25);
+      color: #fff; font-size: 0.9rem; letter-spacing: 0.04em;
+      padding: 9px 20px; border-radius: 100px; cursor: pointer;
+      transition: background 0.18s;
+      text-decoration: none;
+    }
+    .wt-btn:hover { background: rgba(255,255,255,0.22); }
+    .wt-btn svg { flex-shrink: 0; }
+
+    .wt-overlay {
+      display: none; position: fixed; inset: 0; z-index: 9000;
+      background: rgba(0,0,0,0.88);
+      align-items: center; justify-content: center;
+    }
+    .wt-overlay.open { display: flex; }
+    .wt-modal {
+      position: relative; width: min(900px, 94vw);
+      background: #000; border-radius: 10px; overflow: hidden;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.7);
+    }
+    .wt-modal video { display: block; width: 100%; max-height: 80vh; }
+    .wt-close {
+      position: absolute; top: 10px; right: 12px;
+      background: rgba(0,0,0,0.55); border: none; color: #fff;
+      font-size: 1.4rem; line-height: 1; padding: 4px 10px;
+      border-radius: 6px; cursor: pointer; z-index: 1;
+    }
+    .wt-close:hover { background: rgba(0,0,0,0.8); }
   </style>
 </head>
 <body>
@@ -664,7 +697,10 @@
   <div class="nav-right">
     <a class="nav-link" href="#toolkit">Promo Kit</a>
     <a class="nav-link" href="#sessionkit">Session Kit</a>
-    <a class="nav-btn" href="https://isha.sadhguru.org/us/en/miracle-of-mind" target="_blank" rel="noopener">Miracle of Mind App ↗</a>
+    <button class="nav-btn" onclick="wtOpen()" style="border:none;cursor:pointer;display:inline-flex;align-items:center;gap:7px;">
+      <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><circle cx="8" cy="8" r="7.5" stroke="currentColor" stroke-width="1.2" fill="none"/><polygon points="6.5,5 11.5,8 6.5,11"/></svg>
+      Watch Walkthrough
+    </button>
   </div>
 </nav>
 
@@ -1476,9 +1512,9 @@ Free 7-min daily meditation: [link] #MiracleOfMind</div>
             </div>
 
             <div>
-              <div class="tp-phase-label">Hand Demonstration</div>
+              <div class="tp-phase-label">Introduce Miracle of Mind</div>
               <p class="tp-aside">Move hand in an unsteady manner</p>
-              <div class="tp-dialogue">"There is a whole science and technology with which you can take charge of your mind and explore its infinite potential. It is both possible and simple; it just needs a little attention and care. Shall we explore this meditation called Miracle of Mind?"</div>
+              <div class="tp-dialogue">"There is a whole science and technology with which you can take charge of your mind and explore its infinite potential. It is both possible and simple; it just needs a little attention and care. Shall we explore this meditation called Miracle of Mind, which can assist you in this direction?<br><br>Sadhguru will first explain the science behind the Miracle of Mind meditation, and then guide us through it."</div>
             </div>
 
             <div>
@@ -1564,7 +1600,9 @@ Free 7-min daily meditation: [link] #MiracleOfMind</div>
 
             <div>
               <div class="tp-phase-label">Closing &nbsp;<span style="color:var(--mom-muted);">|</span>&nbsp; ~1 min</div>
-              <div class="tp-dialogue">"This meditation is available for free through the Miracle of Mind app. It's simple and can be practiced anytime, anywhere. We will be circulating the QR code to download the app after the session."</div>
+              <div class="tp-dialogue">"This meditation is available for free through the Miracle of Mind app. It's simple and can be practiced anytime, anywhere. We will be circulating the QR code to download the app after the session. You can download the app and continue the practice on your own.<br><br>This is just a drop of what Sadhguru has to offer for one's transformation and wellbeing. If you are willing to invest more time and bring about a complete overhaul of your body, mind, emotions and energy, Inner Engineering is the foundational program that Sadhguru offers. In Inner Engineering, you receive Shambhavi Mahamudra Kriya from Sadhguru, which is a very ancient and powerful kriya."</div>
+              <p class="tp-aside" style="margin-top:10px;">Share your personal experience of Inner Engineering here.</p>
+              <div class="tp-dialogue" style="margin-top:6px;">"Inner Engineering has completely transformed my life and is the reason why I am standing here today to offer this possibility to more and more people. Inner Engineering can be done online and in person. We have an in-person program coming up in [city] from [dates]. If you wish to know more about the program, we can connect afterwards."</div>
             </div>
 
             <div>
@@ -1689,141 +1727,126 @@ Free 7-min daily meditation: [link] #MiracleOfMind</div>
         <div class="tp-phases">
 
           <div>
-            <div class="tp-phase-label">1 · Pre-Session Setup</div>
+            <div class="tp-phase-label">1 · Pre-Session Setup &nbsp;<span style="color:var(--mom-muted);">|</span>&nbsp; 15 min</div>
             <p class="tp-aside" style="margin-bottom:8px;">Create a conducive atmosphere that helps participants become receptive.</p>
             <ul class="tp-list">
               <li>Play Yoga Padhi music approximately 15 minutes before the session start time</li>
               <li>Set up the Unfollow Wall with sticky notes and markers</li>
               <li>Keep QR codes and standees ready and visible</li>
-              <li>Volunteers welcome participants and engage in a natural interaction</li>
+              <li>Volunteers welcome participants and engage in natural interaction</li>
             </ul>
+            <div class="tp-action" style="margin-top:8px;">▶ On screen: Yoga Padhi + Setup</div>
           </div>
 
           <div>
             <div class="tp-phase-label">2 · Unfollow Wall</div>
             <p class="tp-aside" style="margin-bottom:8px;">As participants walk in, volunteers invite them:</p>
             <ul class="tp-list">
-              <li>You are welcome to take a moment to write one thing you would like to unfollow today</li>
-              <li>It could be something that feels unnecessary, distracting, or something you are simply ready to let go of</li>
+              <li>Invite participants to write one thing they would like to unfollow today</li>
+              <li>Something that feels unnecessary, distracting, or that they're simply ready to let go of</li>
               <li>Optional prompts: Overthinking · Constant distraction · Comparison · Academic or work stress</li>
               <li>Allow participants to write without rush (no announcement yet)</li>
             </ul>
+            <div class="tp-action" style="margin-top:8px;">▶ On screen: Waiting slide</div>
           </div>
 
           <div>
-            <div class="tp-phase-label">3 · Waiting &amp; Opening</div>
+            <div class="tp-phase-label">3 · Waiting Announcement &nbsp;<span style="color:var(--mom-muted);">|</span>&nbsp; ~1 min</div>
             <ul class="tp-list">
-              <li>Welcome participants at the announced start time</li>
-              <li>As a courtesy, ask if it's okay to wait briefly for late comers, no more than 5 minutes</li>
-              <li>Invite those who have not used the Unfollow Wall to do so</li>
-              <li>Guide participants to keep phones on Silent / Do Not Disturb and avoid getting up during meditation</li>
+              <li>Welcome everyone and wait a few minutes to begin</li>
+              <li>Invite any remaining participants to the Unfollow Wall</li>
+              <li>Request phones on silent / Do Not Disturb</li>
             </ul>
           </div>
 
           <div>
-            <div class="tp-phase-label">4 · Introduction</div>
+            <div class="tp-phase-label">4 · Welcome &amp; Introduction &nbsp;<span style="color:var(--mom-muted);">|</span>&nbsp; ~2 min</div>
             <p class="tp-aside" style="margin-bottom:8px;">Introduce yourself as a volunteer with Isha Foundation.</p>
             <ul class="tp-list">
-              <li>Keep the introduction natural and appropriate to the audience</li>
-              <li>Share your name, profession, and brief personal details that help you connect and be relatable</li>
-              <li>Introduce Isha Foundation and Sadhguru</li>
-              <li>Briefly mention the offering of tools for wellbeing and self-transformation rooted in the science of yoga</li>
+              <li>Share your name, profession, and a brief personal note that helps you connect and be relatable</li>
+              <li>Introduce Isha Foundation and Sadhguru — briefly mention tools for wellbeing rooted in the science of yoga</li>
+              <li>Set intent: mental wellbeing and peak potential</li>
             </ul>
           </div>
 
           <div>
-            <div class="tp-phase-label">5 · Engaging Participants</div>
-            <p class="tp-aside" style="margin-bottom:8px;">Create curiosity, awareness, and interest in mental well-being.</p>
+            <div class="tp-phase-label">5 · Interaction &nbsp;<span style="color:var(--mom-muted);">|</span>&nbsp; ~1 min</div>
+            <p class="tp-aside" style="margin-bottom:8px;">Create curiosity and awareness around the nature of the mind.</p>
             <ul class="tp-list">
-              <li>Ask simple, relatable questions about noisy thoughts, lack of control, and the desire to do something about it</li>
-              <li>Demonstrate an uncontrolled hand movement to illustrate how the mind can act without our control</li>
-              <li>Help participants relate by comparing uncontrolled thoughts to hands moving on their own</li>
-              <li>Emphasize that there is a science and technology through which one can take charge of the mind and explore its potential</li>
-              <li>This approach creates context, sparks interest, and prepares participants for the meditation experience</li>
+              <li>Ask: thoughts noisy? Ever wished to mute them?</li>
+              <li>Ask: How many times have we tried to control our thoughts, and it didn't work?</li>
+              <li>Pause — let participants respond</li>
             </ul>
           </div>
 
           <div>
-            <div class="tp-phase-label">6 · Introduce Miracle of Mind App, a tool for Mental Wellbeing</div>
+            <div class="tp-phase-label">6 · Introduce Miracle of Mind &nbsp;<span style="color:var(--mom-muted);">|</span>&nbsp; ~1 min</div>
+            <ul class="tp-list">
+              <li>Demonstrate an uncontrolled hand movement to illustrate how the mind can act without our control</li>
+              <li>There is a science and technology through which one can take charge of the mind and explore its infinite potential</li>
+              <li>Introduce MoM — Sadhguru will explain the science and guide participants through it</li>
+            </ul>
+          </div>
+
+          <div>
+            <div class="tp-phase-label">7 · Introduction to Practice &nbsp;<span style="color:var(--mom-muted);">|</span>&nbsp; ~2 min</div>
             <p class="tp-aside" style="margin-bottom:8px;">A simple yet powerful tool for mental well-being.</p>
             <ul class="tp-list">
-              <li>Just 7 minutes a day can improve mental health, like how 10,000 steps benefit the body</li>
-              <li>Combines scientific backing and ancient wisdom</li>
-              <li>Easily accessible anywhere</li>
-              <li>Empowers participants to take charge of their own mind</li>
-              <li>Address the perception that meditation requires a lot of time</li>
-              <li>Studies indicate neurophysiological effects begin within 2–3 minutes and peak at around 7 minutes</li>
+              <li>MoM: free, 7-minute guided meditation — no experience needed, anytime anywhere</li>
+              <li>Research: neurophysiological effects begin within 2–3 minutes and peak at 7 minutes, even for beginners</li>
+              <li>Like exercise supports the body, this meditation brings clarity and stability to the mind</li>
             </ul>
           </div>
 
           <div>
-            <div class="tp-phase-label">7 · Play Sadhguru Video &amp; Guided Meditation</div>
+            <div class="tp-phase-label">8 · Guided Meditation &nbsp;<span style="color:var(--mom-muted);">|</span>&nbsp; ~9 min</div>
             <ul class="tp-list">
-              <li>Play the main Sadhguru video that explains the science behind meditation</li>
-              <li>Continue with the full guided meditation (no interruptions)</li>
+              <li>Play the full meditation video — no interruptions</li>
             </ul>
-            <div class="tp-action" style="margin-top:8px;">▶ Duration: 7 minutes for meditation</div>
+            <div class="tp-action" style="margin-top:8px;">▶ On screen: App-guided meditation</div>
           </div>
 
           <div>
-            <div class="tp-phase-label">8 · Participant Sharing</div>
+            <div class="tp-phase-label">9 · Sharing &nbsp;<span style="color:var(--mom-muted);">|</span>&nbsp; ~1 min</div>
             <ul class="tp-list">
-              <li>Invite participants to share their experience (they may say things like peaceful, calm, quiet)</li>
-              <li>Acknowledge that some may feel their mind was still restless. Normalize all experiences</li>
-              <li>Take a few sharings and allow participants to reorient themselves to the screen</li>
+              <li>Ask: How was your experience?</li>
+              <li>Take 2–3 participants to share — normalize all experiences</li>
             </ul>
           </div>
 
           <div>
-            <div class="tp-phase-label">9 · Sadhguru Video on Thoughts During Meditation</div>
-            <ul class="tp-list">
-              <li>Introduce the topic of handling thoughts during meditation</li>
-            </ul>
-            <div class="tp-action" style="margin-top:8px;">▶ Play Sadhguru video — how to manage thoughts during meditation</div>
+            <div class="tp-phase-label">10 · Sadhguru Video on Thoughts During Meditation &nbsp;<span style="color:var(--mom-muted);">|</span>&nbsp; ~1 min</div>
+            <div class="tp-action">▶ Play: How to Manage Thoughts During Meditation</div>
           </div>
 
           <div>
-            <div class="tp-phase-label">10 · Participant Experience Video</div>
-            <div class="tp-action">▶ Play short video of participant experiences to reinforce relatability</div>
+            <div class="tp-phase-label">11 · Participant Experience Video &nbsp;<span style="color:var(--mom-muted);">|</span>&nbsp; ~1 min</div>
+            <div class="tp-action">▶ Play short video of participant experiences</div>
           </div>
 
           <div>
-            <div class="tp-phase-label">11 · Sadhguru &amp; Isha Foundation Intro &nbsp;<span style="color:var(--mom-muted);">|</span>&nbsp; Optional</div>
+            <div class="tp-phase-label">12 · Sadhguru &amp; Isha Foundation Intro &nbsp;<span style="color:var(--mom-muted);">|</span>&nbsp; Optional (~2 min)</div>
             <ul class="tp-list">
-              <li>Briefly introduce Sadhguru as a yogi and New York Times bestselling author focused on human wellbeing and inner transformation</li>
-              <li>Share about his work in offering tools for transformation and involvement in various initiatives</li>
-              <li>Position Miracle of Mind as a simple and accessible offering for everyday use</li>
-            </ul>
-            <div class="tp-action" style="margin-top:8px;">▶ Play Sadhguru introduction video (optional, based on audience context)</div>
-          </div>
-
-          <div>
-            <div class="tp-phase-label">12 · Empower Participants to Help Others Benefit and Spread Mental Well-being</div>
-            <p class="tp-aside" style="margin-bottom:8px;">Steps:</p>
-            <ul class="tp-list">
-              <li>Display the QR code for the Miracle of Mind app</li>
-              <li>Encourage participants to download and continue the practice</li>
-              <li>Highlight key features: AI Q&amp;A support · Adjustable pace · Hopscotch · Bite-sized wisdom</li>
-              <li>Encourage participants to share it with friends, family, and colleagues</li>
-              <li>Volunteers support participants in downloading the app</li>
+              <li>Briefly introduce Sadhguru — yogi, New York Times bestselling author, humanitarian</li>
+              <li>Play Sadhguru intro video</li>
             </ul>
           </div>
 
           <div>
-            <div class="tp-phase-label">13 · Customizing for Audience</div>
-            <p class="tp-aside" style="margin-bottom:8px;">Make the session relatable and conversational to increase engagement.</p>
+            <div class="tp-phase-label">13 · App Download CTA &nbsp;<span style="color:var(--mom-muted);">|</span>&nbsp; ~1 min</div>
             <ul class="tp-list">
-              <li><strong style="color:var(--mom-cream2);">Friends / Family:</strong> No need for a formal introduction. Connect to your personal journey</li>
-              <li><strong style="color:var(--mom-cream2);">Colleagues:</strong> Relate to workplace challenges, stress management, and productivity</li>
-              <li><strong style="color:var(--mom-cream2);">General tip:</strong> Keep the tone conversational, relatable, and natural to maintain engagement</li>
+              <li>Highlight key app features: AI Q&amp;A · Adjustable meditation pace · Hopscotch · Wisdom</li>
+              <li>Display QR code — volunteers support participants in downloading the app</li>
+              <li>Pause ~1 minute for downloads</li>
             </ul>
+            <div class="tp-action" style="margin-top:8px;">▶ On screen: QR code slide</div>
           </div>
 
           <div>
-            <div class="tp-phase-label">14 · Closing</div>
+            <div class="tp-phase-label">14 · Closing &nbsp;<span style="color:var(--mom-muted);">|</span>&nbsp; ~1 min</div>
             <ul class="tp-list">
-              <li>Thank participants for joining</li>
-              <li>Close the session</li>
+              <li>Thank participants for joining and encourage regular practice</li>
+              <li>Do Namaskar</li>
             </ul>
           </div>
 
@@ -2014,7 +2037,7 @@ Free 7-min daily meditation: [link] #MiracleOfMind</div>
             <div class="sm-video-ratio">
               <iframe id="smPlayer" style="display:none;" allow="autoplay" allowfullscreen></iframe>
               <video id="smLocalPlayer"
-                src="https://dl.dropboxusercontent.com/scl/fo/hp1orcoku47w1517cf6ql/AEQwdm7dsgpF_CUHNYOrZ8g/1_MoMEx_Yogapadhi_15min.mp4?rlkey=2y6tu4osh4nfyog49fb2zhylm&amp;st=fs3a6nld"
+                preload="none"
                 style="position:absolute;top:0;left:0;width:100%;height:100%;display:block;background:#000;"
                 controls>
               </video>
@@ -2132,9 +2155,9 @@ Free 7-min daily meditation: [link] #MiracleOfMind</div>
     <p style="font-size:0.88rem; color:var(--mom-muted2); margin:0; line-height:1.5;">
       🔍 &nbsp;Want to observe a Miracle of Mind session being offered close by?
     </p>
-    <span style="display:inline-flex; align-items:center; gap:6px; font-size:0.82rem; font-weight:600; color:var(--mom-muted); border:1px solid var(--border2); padding:6px 16px; border-radius:50px;">
-      Explore here &nbsp;·&nbsp; Coming Soon
-    </span>
+    <a href="http://isha.us/MoMsession-finder" target="_blank" rel="noopener" style="display:inline-flex; align-items:center; gap:6px; font-size:0.82rem; font-weight:600; color:var(--vol-amber); border:1px solid rgba(212,145,74,0.3); padding:6px 16px; border-radius:50px; text-decoration:none; transition:background 0.15s;" onmouseover="this.style.background='rgba(212,145,74,0.08)'" onmouseout="this.style.background='transparent'">
+      Find a session near you ↗
+    </a>
   </div>
 
   </div><!-- /sessionkit-content -->
@@ -2152,7 +2175,7 @@ Free 7-min daily meditation: [link] #MiracleOfMind</div>
 
     <!-- Offer a Group Session -->
     <div style="background: rgba(155,132,196,0.06); border: 1px solid rgba(155,132,196,0.2); border-radius: 14px; padding: 28px 28px 24px;">
-      <div style="font-size: 1rem; font-weight: 700; color: var(--mom-cream); margin-bottom: 8px;">🧘 Offer a Group Session</div>
+      <div style="font-size: 1rem; font-weight: 700; color: var(--mom-cream); margin-bottom: 8px;">🧘 Host a Group Session</div>
       <p style="font-size: 0.84rem; color: var(--mom-muted2); line-height: 1.65; margin-bottom: 16px;">Interested in bringing any of the below yoga &amp; meditation sessions to your workplace, community, or anywhere else?</p>
       <p style="font-size:0.82rem; color:var(--mom-cream2); line-height:1.8; margin-bottom:20px;">
         Miracle of Mind Experience Session <span style="color:var(--mom-muted);">· 30 min</span> &nbsp;<span style="color:var(--mom-muted);">|</span>&nbsp;
@@ -2160,30 +2183,28 @@ Free 7-min daily meditation: [link] #MiracleOfMind</div>
         Yoga for Workplace <span style="color:var(--mom-muted);">· 45 min</span> &nbsp;<span style="color:var(--mom-muted);">|</span>&nbsp;
         Yoga for Mental Well-being <span style="color:var(--mom-muted);">· 45 min</span>
       </p>
-      <a href="mailto:miracleofmind@ishausa.org?subject=Group Session Interest"
-         style="display:inline-flex; align-items:center; gap:7px; background: rgba(155,132,196,0.12); border: 1px solid rgba(155,132,196,0.35); color: #b8a8d8; font-size: 0.84rem; font-weight: 600; padding: 9px 20px; border-radius: 50px; text-decoration: none;">
-        Express your interest ↗
-      </a>
+      <p style="font-size:0.78rem; color:var(--mom-muted); margin-bottom:4px;">Email us at</p>
+      <a href="mailto:freeofferings@ishausa.org?subject=Host a Group Session"
+         style="font-size:0.84rem; color:#b8a8d8; font-weight:600; text-decoration:none;">freeofferings@ishausa.org</a>
     </div>
 
     <!-- CME Session -->
     <div style="background: rgba(212,145,74,0.06); border: 1px solid rgba(212,145,74,0.2); border-radius: 14px; padding: 28px 28px 24px;">
       <div style="font-size: 1rem; font-weight: 700; color: var(--mom-cream); margin-bottom: 8px;">🩺 Miracle of Mind for Healthcare Professionals</div>
       <p style="font-size: 0.84rem; color: var(--mom-muted2); line-height: 1.65; margin-bottom: 20px;">Interested in offering the Miracle of Mind CME Session to healthcare professionals? Express your interest and we will reach out to you.</p>
-      <a href="mailto:miracleofmind@ishausa.org?subject=CME Session Interest"
-         style="display:inline-flex; align-items:center; gap:7px; background: rgba(212,145,74,0.12); border: 1px solid rgba(212,145,74,0.3); color: var(--vol-amber); font-size: 0.84rem; font-weight: 600; padding: 9px 20px; border-radius: 50px; text-decoration: none;">
-        Express your interest ↗
-      </a>
+      <span style="display:inline-flex; align-items:center; background: rgba(212,145,74,0.06); border: 1px solid rgba(212,145,74,0.2); color: var(--mom-muted); font-size: 0.84rem; font-weight: 600; padding: 9px 20px; border-radius: 50px; cursor: default;">
+        Coming soon
+      </span>
     </div>
 
     <!-- Campus Club -->
     <div style="background: rgba(124,184,168,0.06); border: 1px solid rgba(124,184,168,0.2); border-radius: 14px; padding: 28px 28px 24px;">
       <div style="font-size: 1rem; font-weight: 700; color: var(--mom-cream); margin-bottom: 8px;">🎓 Explore a Campus Club</div>
-      <p style="font-size: 0.84rem; color: var(--mom-muted2); line-height: 1.65; margin-bottom: 20px;">Thinking about bringing Miracle of Mind to your university? Share your interest — we'll connect with you.</p>
-      <a href="mailto:miracleofmind@ishausa.org?subject=Campus Club Interest"
-         style="display:inline-flex; align-items:center; gap:7px; background: rgba(124,184,168,0.12); border: 1px solid rgba(124,184,168,0.35); color: var(--c-session); font-size: 0.84rem; font-weight: 600; padding: 9px 20px; border-radius: 50px; text-decoration: none;">
-        Share your interest ↗
-      </a>
+      <p style="font-size: 0.84rem; color: var(--mom-muted2); line-height: 1.65; margin-bottom: 16px;">Thinking about bringing Miracle of Mind to your university? Share your interest — we'll connect with you.</p>
+      <p style="font-size:0.78rem; color:var(--mom-muted); margin-bottom:4px;">Email us at</p>
+      <a href="mailto:freeofferings@ishausa.org?subject=Campus Club Interest"
+         style="font-size:0.84rem; color:var(--c-session); font-weight:600; text-decoration:none;">freeofferings@ishausa.org</a>
+      <p style="font-size:0.78rem; color:var(--mom-muted); margin-top:6px;">Subject: Campus Club Interest</p>
     </div>
 
     <!-- Get in Touch -->
@@ -2271,13 +2292,13 @@ Free 7-min daily meditation: [link] #MiracleOfMind</div>
   // ── Offline mode: File System Access API + IndexedDB ──────────────────
   // dl.dropboxusercontent.com serves CORS headers; www.dropbox.com does not
   const SM_URLS = {
-    'yoga-padhi':  'https://dl.dropboxusercontent.com/scl/fo/hp1orcoku47w1517cf6ql/AEQwdm7dsgpF_CUHNYOrZ8g/1_MoMEx_Yogapadhi_15min.mp4?rlkey=2y6tu4osh4nfyog49fb2zhylm&st=fs3a6nld',
-    'waiting-yp':  'https://dl.dropboxusercontent.com/scl/fo/hp1orcoku47w1517cf6ql/ALMTnUJZ-CsM2LcKY8p342g/2_MoMEx_waitingYP_4min.mp4?rlkey=2y6tu4osh4nfyog49fb2zhylm',
-    'intro-med':   'https://dl.dropboxusercontent.com/scl/fo/hp1orcoku47w1517cf6ql/AFuPHGtUgJNWAS9EJNE2yuM/4_MoMIntroandMeditation.mp4?rlkey=2y6tu4osh4nfyog49fb2zhylm',
-    'managing':    'https://dl.dropboxusercontent.com/scl/fo/hp1orcoku47w1517cf6ql/AL5rCYRts40j9N_b53qe91k/5_MoM_post_video.mp4?rlkey=2y6tu4osh4nfyog49fb2zhylm',
-    'participant': 'https://dl.dropboxusercontent.com/scl/fo/hp1orcoku47w1517cf6ql/AD55yA_PHjg6Uc7fq5UeVGE/MoM-ParticipantSharing.mp4?rlkey=2y6tu4osh4nfyog49fb2zhylm',
-    'qr-code':     'https://dl.dropboxusercontent.com/scl/fo/hp1orcoku47w1517cf6ql/ANsFVvZWnwQtL4mA3gpcBLc/QRcode.png?rlkey=2y6tu4osh4nfyog49fb2zhylm',
-    'sg-isha':     'https://dl.dropboxusercontent.com/scl/fo/hp1orcoku47w1517cf6ql/ABja5NhlAqfzxv3kg9Ik-8M/6__MoMEx_SGIshaIntro_3mi.mp4?rlkey=2y6tu4osh4nfyog49fb2zhylm',
+    'yoga-padhi':  'https://dl.dropboxusercontent.com/scl/fo/1sycc2gff066vuwgx0tci/AHAcLGps__sN4Y9ugCOD0ZI/1_MoMEx_Yogapadhi_15min.mp4?rlkey=ikz1rzvmog4ntns2xhv94tt4k',
+    'waiting-yp':  'https://dl.dropboxusercontent.com/scl/fo/1sycc2gff066vuwgx0tci/ANXW4ohlxUYrxUntHhcF7zg/2_MoMEx_waitingYP_4min.mp4?rlkey=ikz1rzvmog4ntns2xhv94tt4k',
+    'intro-med':   'https://dl.dropboxusercontent.com/scl/fo/1sycc2gff066vuwgx0tci/AI-FQCjEPG-dSPV6Oq-jMxo/4_MoMIntroandMeditation.mp4?rlkey=ikz1rzvmog4ntns2xhv94tt4k',
+    'managing':    'https://dl.dropboxusercontent.com/scl/fo/1sycc2gff066vuwgx0tci/ANQS3_AoEm2VELYpZ9y3vuI/5_MoM_post_video.mp4?rlkey=ikz1rzvmog4ntns2xhv94tt4k',
+    'participant': 'https://dl.dropboxusercontent.com/scl/fo/1sycc2gff066vuwgx0tci/AKenZeDzDnZYAop3qk3nfEg/MoM-ParticipantSharing.mp4?rlkey=ikz1rzvmog4ntns2xhv94tt4k',
+    'qr-code':     'https://dl.dropboxusercontent.com/scl/fo/1sycc2gff066vuwgx0tci/ACNwVcvXemxjvEJvhZHOxlY/MoM-AppDownload-QRcode.png?rlkey=ikz1rzvmog4ntns2xhv94tt4k',
+    'sg-isha':     'https://dl.dropboxusercontent.com/scl/fo/1sycc2gff066vuwgx0tci/AJEH0MMW7ERBOmZDt_g6gIQ/6__MoMEx_SGIshaIntro_3mi.mp4?rlkey=ikz1rzvmog4ntns2xhv94tt4k',
   };
   const SM_VIDEOS = [
     { id: 'yoga-padhi',  title: 'Yoga Padhi' },
@@ -2562,6 +2583,31 @@ Free 7-min daily meditation: [link] #MiracleOfMind</div>
       navigator.clipboard.writeText(plain).then(showFeedback);
     }
   }
+</script>
+
+<!-- Walkthrough video modal -->
+<div class="wt-overlay" id="wtOverlay" onclick="wtBgClose(event)">
+  <div class="wt-modal" id="wtModal">
+    <button class="wt-close" onclick="wtClose()" aria-label="Close">&times;</button>
+    <video id="wtVideo" controls preload="none"
+      src="https://dl.dropboxusercontent.com/scl/fo/1sycc2gff066vuwgx0tci/AEVo4tJglDpls1BEWi2PwnM/MoM-BBResourceKit-WalkThrough.mp4?rlkey=ikz1rzvmog4ntns2xhv94tt4k">
+    </video>
+  </div>
+</div>
+<script>
+  function wtOpen() {
+    document.getElementById('wtOverlay').classList.add('open');
+    document.getElementById('wtVideo').play();
+  }
+  function wtClose() {
+    const v = document.getElementById('wtVideo');
+    v.pause(); v.currentTime = 0;
+    document.getElementById('wtOverlay').classList.remove('open');
+  }
+  function wtBgClose(e) {
+    if (e.target === document.getElementById('wtOverlay')) wtClose();
+  }
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') wtClose(); });
 </script>
 </body>
 </html>
