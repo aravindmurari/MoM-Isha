@@ -1,4 +1,4 @@
-# Booom Buddy Resource Kit — Deployment Guide
+# Boom Buddy Resource Kit — Deployment Guide
 
 This document is intended for the Isha IT team to assist with hosting this project on the official Isha web infrastructure.
 
@@ -6,7 +6,7 @@ This document is intended for the Isha IT team to assist with hosting this proje
 
 ## Overview
 
-The Booom Buddy Resource Kit is a **fully static website** — no backend, no database, no build step required. It consists of plain HTML, CSS, and JavaScript files that can be served from any standard web server or CDN.
+The Boom Buddy Resource Kit is a **fully static website** — no backend, no database, no build step required. It consists of plain HTML, CSS, and JavaScript files that can be served from any standard web server or CDN.
 
 **Live reference:** `https://aravindmurari.github.io/MoM-Isha`
 
