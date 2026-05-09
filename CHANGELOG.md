@@ -73,7 +73,38 @@ Each entry includes the file, the specific change, and any notes relevant for me
 // Before
 const BB_PASS = 'BoomBuddy123';
 
-// After
+// After (updated again later in this session — see below)
 const BB_PASS = 'LetsB000M!';
 ```
 **Note:** This passcode is shared with volunteers via email upon completion of BoomBuddy training. Update the email template accordingly.
+
+---
+
+### BoomBuddy Passcode — Updated Again
+**File:** `index.html`
+**Change:** Passcode updated a second time.
+```javascript
+// Before
+const BB_PASS = 'LetsB000M!';
+
+// After
+const BB_PASS = 'LetsB00M!';
+```
+
+---
+
+### Rebrand — "Booom Buddy" → "Boom Buddy"
+**Files:** `index.html`, `session-finder.html`, `flyer.html`, `DEPLOYMENT.md`
+**Change:** All 12 instances of "Booom" (3 O's) replaced with "Boom" (2 O's) across all site files to match updated branding.
+
+---
+
+### CME Card — Coming Soon Text Styling
+**File:** `index.html`
+**Change:** Replaced the "Coming soon" pill badge on the CME card with a plain italic text label in amber color, matching the card's accent color.
+
+---
+
+### Other Useful Content — Corporate Presentation Deck Added
+**File:** `index.html`
+**Change:** Added "Miracle of Mind — Corporate Presentation Deck" as a new entry under Other Useful Content. Links to the Canva deck with a note to make a copy before editing.
