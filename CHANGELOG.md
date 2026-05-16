@@ -7,6 +7,14 @@ Each entry includes the file, the specific change, and any notes relevant for me
 
 ## 2026-05-15
 
+### Outreach Resources — Card Order Updated
+**File:** `index.html`
+**Change:** Reordered accordion cards in Outreach Resources. New order: App Features Guide, Booth Setup, Email Templates, WhatsApp Templates, Social Media Captions, Printables, Other Useful Content.
+
+---
+
+## 2026-05-15
+
 ### Booth Setup — New Card Added to Outreach Resources
 **File:** `index.html`
 **Source:** MoM-Artifacts Master Sheet (Section: Promotion > Sub-Section: Booth Setup)
