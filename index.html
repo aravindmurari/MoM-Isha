@@ -2598,7 +2598,17 @@ Free 7-min daily meditation: [link] #MiracleOfMind</div>
   }
 
   function toggleExpand(id) {
-    document.getElementById(id).classList.toggle('open');
+    const card   = document.getElementById(id);
+    const wasOpen = card.classList.contains('open');
+    card.classList.toggle('open');
+
+    // First time a user ever opens the session media card, auto-play the first video.
+    // The flag is set immediately so repeat opens (same or future sessions) never auto-play.
+    if (id === 'card-session-media' && !wasOpen && !localStorage.getItem('sm_first_play_done')) {
+      localStorage.setItem('sm_first_play_done', '1');
+      const firstItem = card.querySelector('.sm-item');
+      if (firstItem) firstItem.click();
+    }
   }
 
   function switchTab(group, tab, btn) {

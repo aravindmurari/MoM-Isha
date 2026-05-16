@@ -5,6 +5,14 @@ Each entry includes the file, the specific change, and any notes relevant for me
 
 ---
 
+## 2026-05-16
+
+### Session Media — First-Open Auto-Play (One-Time Only)
+**File:** `index.html`
+**Change:** The first video in Session Media now auto-plays exactly once: the first time a volunteer expands the Session Media card on a given device. On all subsequent visits, no auto-play occurs (the user's last state is preserved). Controlled via a `sm_first_play_done` flag in localStorage.
+
+---
+
 ## 2026-05-15
 
 ### Outreach Resources — Card Order Updated
