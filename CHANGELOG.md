@@ -5,6 +5,98 @@ Each entry includes the file, the specific change, and any notes relevant for me
 
 ---
 
+## 2026-05-15
+
+### Booth Setup — New Card Added to Outreach Resources
+**File:** `index.html`
+**Source:** MoM-Artifacts Master Sheet (Section: Promotion > Sub-Section: Booth Setup)
+**Change:** Added a new expandable "Booth Setup" card positioned above Printables in the Outreach Resources accordion. Contains:
+- **"↗ Open Guide"** link (top-right) — published Google Doc (WebURL from master sheet)
+- **Embedded video player** — direct Dropbox CDN `<video>` tag (`dl.dropboxusercontent.com`, file hash `ALPmFro7gTjMBzSWliFVX2Q`, rlkey `ozpzdll9z9ymv07vvv17k3ovk`)
+
+---
+
+### Unfollow Wall — Engagement Guide Link + New Document Added
+**File:** `index.html`
+**Change:** Renamed existing "Open file" button to "Engagement Guide". Added a second button ("Print Guide") linking to the new published Google Doc URL.
+
+---
+
+### Take It Further — Campus Club Email Updated
+**File:** `index.html`
+**Change:** "Explore a Campus Club" card email updated from `freeofferings@ishausa.org` to `miracleofmind@ishausa.org`.
+
+---
+
+### Template Labels — Amber Color Applied Across All Three Cards
+**File:** `index.html`
+**Change:** Template label color (e.g. "Caption 1 — Quote post", "Friends & Family", etc.) updated from `--mom-muted` (#6e665b) to `--vol-amber` (#d4914a) across Email Templates, WhatsApp Templates, and Social Media Captions for better visibility and visual distinction.
+
+---
+
+### Email / WhatsApp / Social Media — Mobile Copy Button Added
+**File:** `index.html`
+**Change:** On mobile (≤768px), a "Copy" button now appears at the top of every template panel across Email Templates (5), WhatsApp Templates (5), and Social Media Captions (IG×4, FB×2, LinkedIn×2, X×2) so users don't need to scroll past long text to find it. The bottom copy button is hidden on mobile to avoid duplication. Desktop experience is unchanged.
+
+---
+
+### Talking Points — Web URL Updated from Master Sheet
+**File:** `index.html`
+**Source:** MoM-Artifacts Master Sheet
+**Change:** Updated the published Google Doc URL for the Talking Points "Open file" link in the Session Kit.
+```
+Before: ...2PACX-1vS2vLzhk3sGpuUEOOJ5rFdaG0-nVyT_itKQVMSq0wcTMjOQQxyx8ihWUWXv5D4PaIhjFBaJjq06OVlK/pub
+After:  ...2PACX-1vTRKzbV3BDQ4pi9cz7wZpf_O8wZo2hIiVa9LuRdLoaSkpRsCcTNySpNoYmCWfMISUjHHyYwSLptvW3_/pub
+```
+
+---
+
+### Session Flow — Links Updated from Master Sheet
+**File:** `index.html`
+**Source:** MoM-Artifacts Master Sheet
+**Change:** Updated both document links in the Session Flow card to the latest versions.
+```
+Session Flow PDF:
+  Before: drive.google.com/file/d/1jTYElEkUqcRFfxiJI2aqCTDFiQ14GGqo
+  After:  drive.google.com/file/d/1Q04cA42TFbLMe6iqjU5tDUlYIkVGILbT
+
+Quick Reference Card:
+  Before: drive.google.com/file/d/1Q1Ele1flvU78CG2fdBIExb-bx5RTnRUs
+  After:  drive.google.com/file/d/14SXhep0eZa1LyEh4NUnZR6ITdV4p37lF
+```
+
+---
+
+### Disclaimer Bar — Removed
+**File:** `index.html`
+**Change:** Removed the top disclaimer bar ("This is not the official Miracle of Mind website"). The MoM logo in the hero section is now a clickable link to `isha.sadhguru.org/us/en/miracle-of-mind` instead.
+
+---
+
+### Hero Logo — Now a Link
+**File:** `index.html`
+**Change:** Wrapped the MoM logo `<img>` in an `<a>` tag linking to the official Miracle of Mind page (`https://isha.sadhguru.org/us/en/miracle-of-mind`), opens in a new tab.
+
+---
+
+### Section Headers — Icons Added
+**File:** `index.html`
+**Change:** Replaced emoji icons with flat inline SVG icons that inherit the section's theme color via `currentColor`.
+- Outreach Resources → Phosphor Icons `megaphone-fill` in amber (`--c-tool`)
+- Session Resources → Phosphor Icons `flower-lotus-fill` in teal (`--c-session`)
+
+---
+
+### Hero Stat — Downloads Label Updated
+**File:** `index.html`
+**Change:** Updated the hero stat label for clarity.
+```
+Before: "Downloads in 15 hrs"
+After:  "Downloads in first 15 hrs"
+```
+
+---
+
 ## 2026-05-08
 
 ### Talking Points & Session Flow Content Update

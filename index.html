@@ -628,13 +628,22 @@
       .accordion-stack .expand-body { padding: 0 16px 20px; }
       .asset-row { flex-direction: column; align-items: flex-start; gap: 12px; }
       .cta-grid { grid-template-columns: 1fr !important; }
+      /* Show top copy button on mobile, hide bottom one to avoid duplication */
+      .copy-btn-top { display: inline-flex !important; }
+      #card-email .copy-btn:not(.copy-btn-top),
+      #card-wa .copy-btn:not(.copy-btn-top),
+      #card-social .copy-btn:not(.copy-btn-top) { display: none; }
     }
+    .copy-btn-top { display: none; }
     /* ── Larger body text: Promote & Host a Session ── */
     #toolkit .card-title, #sessionkit .card-title { font-size: 1.06rem; }
     #toolkit .card-desc,  #sessionkit .card-desc  { font-size: 0.92rem; }
     #toolkit .canva-name  { font-size: 0.92rem; }
     #toolkit .accordion-stack .template-box,
     #sessionkit .accordion-stack .template-box    { font-size: 0.97rem; }
+    #card-email .template-label,
+    #card-wa .template-label,
+    #card-social .template-label { color: var(--vol-amber); }
     #sessionkit .tp-phase-label  { font-size: 0.73rem; }
     #sessionkit .tp-dialogue     { font-size: 0.95rem; }
     #sessionkit .tp-action       { font-size: 0.91rem; }
@@ -685,10 +694,6 @@
 <body>
 
 <!-- DISCLAIMER BAR -->
-<div class="disclaimer-bar">
-  Boom Buddy Resource Kit &nbsp;<span style="color:var(--mom-muted);">|</span>&nbsp; This is not the official Miracle of Mind website &nbsp;<span style="color:var(--mom-muted);">|</span>&nbsp;
-  <a href="https://isha.sadhguru.org/us/en/miracle-of-mind" target="_blank" rel="noopener">Official site ↗</a>
-</div>
 
 <!-- NAV -->
 <nav>
@@ -719,13 +724,15 @@
   <p class="hero-sub" style="font-size: clamp(1rem, 2.2vw, 1.35rem); font-weight: 300; letter-spacing: 0.04em;">Everything you need to share Miracle of Mind</p>
 
   <div class="hero-logo">
-    <img src="https://static.sadhguru.org/d/46272/1739879389-group-1597883432.png" alt="Miracle of Mind logo" />
+    <a href="https://isha.sadhguru.org/us/en/miracle-of-mind" target="_blank" rel="noopener" style="display:flex;align-items:center;justify-content:center;">
+      <img src="https://static.sadhguru.org/d/46272/1739879389-group-1597883432.png" alt="Miracle of Mind logo" />
+    </a>
   </div>
 
   <div class="hero-stats">
     <div class="hero-stat">
       <div class="hero-stat-num">1M+</div>
-      <div class="hero-stat-label">Downloads in 15 hrs</div>
+      <div class="hero-stat-label">Downloads in first 15 hrs</div>
     </div>
     <div class="hero-stat">
       <div class="hero-stat-num">7 min</div>
@@ -743,7 +750,7 @@
 <!-- ══ TOOL KIT ══ -->
 <section class="section tool-kit" id="toolkit">
   <div class="section-header">
-    <div class="section-kicker"><span class="kicker-dot"></span>Outreach Resources</div>
+    <div class="section-kicker"><span class="kicker-dot"></span><svg xmlns="http://www.w3.org/2000/svg" width="0.85em" height="0.85em" viewBox="0 0 256 256" fill="currentColor" style="flex-shrink:0;vertical-align:-0.1em"><path d="M200,72H160.2c-2.91-.17-53.62-3.74-101.91-44.24A16,16,0,0,0,32,40V200a16,16,0,0,0,26.29,12.25c37.77-31.68,77-40.76,93.71-43.3v31.72A16,16,0,0,0,159.12,214l11,7.33A16,16,0,0,0,194.5,212l11.77-44.36A48,48,0,0,0,200,72ZM179,207.89l0,.11-11-7.33V168h21.6ZM200,152H168V88h32a32,32,0,1,1,0,64Z"/></svg> Outreach Resources</div>
     <p class="section-desc">Digital and print resources for your outreach</p>
   </div>
 
@@ -794,6 +801,9 @@
         </div>
 
         <div class="template-panel active" id="email-friends">
+          <div style="display:flex; justify-content:flex-end; margin-bottom:6px;">
+            <button class="copy-btn copy-btn-top" onclick="copyTemplate('txt-email-friends', this)">⧉ Copy Template</button>
+          </div>
           <div class="template-label">Personalize [Name], then send</div>
           <div class="template-box" contenteditable="true" spellcheck="false" id="txt-email-friends">Subject: Something I've been meaning to share with you
 
@@ -816,6 +826,9 @@ With love,
         </div>
 
         <div class="template-panel" id="email-universities">
+          <div style="display:flex; justify-content:flex-end; margin-bottom:6px;">
+            <button class="copy-btn copy-btn-top" onclick="copyTemplate('txt-email-universities', this)">⧉ Copy Template</button>
+          </div>
           <div class="template-label">Personalize [University Name] and [Name], then send</div>
           <div class="template-box" contenteditable="true" spellcheck="false" id="txt-email-universities">Subject: Supporting Student Well-Being at [University Name]
 
@@ -840,6 +853,9 @@ Warmly,
         </div>
 
         <div class="template-panel" id="email-nonprofits">
+          <div style="display:flex; justify-content:flex-end; margin-bottom:6px;">
+            <button class="copy-btn copy-btn-top" onclick="copyTemplate('txt-email-nonprofits', this)">⧉ Copy Template</button>
+          </div>
           <div class="template-label">Personalize [Name] and [program/initiative], then send</div>
           <div class="template-box" contenteditable="true" spellcheck="false" id="txt-email-nonprofits">Subject: Resource to Support Your Community
 
@@ -862,6 +878,9 @@ Gratefully,
         </div>
 
         <div class="template-panel" id="email-corporate">
+          <div style="display:flex; justify-content:flex-end; margin-bottom:6px;">
+            <button class="copy-btn copy-btn-top" onclick="copyTemplate('txt-email-corporate', this)">⧉ Copy Template</button>
+          </div>
           <div class="template-label">Personalize [Company] and [Name], then send</div>
           <div class="template-box" contenteditable="true" spellcheck="false" id="txt-email-corporate">Subject: A simple addition to [Company]'s well-being initiatives
 
@@ -884,6 +903,9 @@ Best regards,
         </div>
 
         <div class="template-panel" id="email-influencers">
+          <div style="display:flex; justify-content:flex-end; margin-bottom:6px;">
+            <button class="copy-btn copy-btn-top" onclick="copyTemplate('txt-email-influencers', this)">⧉ Copy Template</button>
+          </div>
           <div class="template-label">Personalize [Creator Name] and audience tie-in, then send</div>
           <div class="template-box" contenteditable="true" spellcheck="false" id="txt-email-influencers">Subject: Thought this could resonate with your audience
 
@@ -937,6 +959,9 @@ Best,
         </div>
 
         <div class="template-panel active" id="wa-friends">
+          <div style="display:flex; justify-content:flex-end; margin-bottom:6px;">
+            <button class="copy-btn copy-btn-top" onclick="copyTemplate('txt-wa-friends', this)">⧉ Copy Message</button>
+          </div>
           <div class="template-label">Personalize [Name], then send</div>
           <div class="template-box" contenteditable="true" spellcheck="false" id="txt-wa-friends">Hey [Name], I've been using this free meditation app called Miracle of Mind — it's just 7 minutes and honestly feels like a reset in the middle of the day.
 
@@ -947,6 +972,9 @@ Here's the link: [QR/App Link]</div>
         </div>
 
         <div class="template-panel" id="wa-students">
+          <div style="display:flex; justify-content:flex-end; margin-bottom:6px;">
+            <button class="copy-btn copy-btn-top" onclick="copyTemplate('txt-wa-students', this)">⧉ Copy Message</button>
+          </div>
           <div class="template-label">Personalize [Name] and context, then send</div>
           <div class="template-box" contenteditable="true" spellcheck="false" id="txt-wa-students">Hi [Name], saw your post about [exams/stress/sleep] — made me think of this.
 
@@ -959,6 +987,9 @@ Here's the link: [Link]</div>
         </div>
 
         <div class="template-panel" id="wa-faculty">
+          <div style="display:flex; justify-content:flex-end; margin-bottom:6px;">
+            <button class="copy-btn copy-btn-top" onclick="copyTemplate('txt-wa-faculty', this)">⧉ Copy Message</button>
+          </div>
           <div class="template-label">Personalize [Name] and [program/initiative], then send</div>
           <div class="template-box" contenteditable="true" spellcheck="false" id="txt-wa-faculty">Hi [Name], I came across your work on [program/initiative] and really appreciate what you're doing.
 
@@ -973,6 +1004,9 @@ Happy to share a short overview or QR materials if useful.</div>
         </div>
 
         <div class="template-panel" id="wa-nonprofits">
+          <div style="display:flex; justify-content:flex-end; margin-bottom:6px;">
+            <button class="copy-btn copy-btn-top" onclick="copyTemplate('txt-wa-nonprofits', this)">⧉ Copy Message</button>
+          </div>
           <div class="template-label">Personalize [Name] and [program/initiative], then send</div>
           <div class="template-box" contenteditable="true" spellcheck="false" id="txt-wa-nonprofits">Hi [Name], I came across your work on [program/initiative/community focus] and really appreciate the approach you're taking.
 
@@ -989,6 +1023,9 @@ Here's the link: [QR/App Link]</div>
         </div>
 
         <div class="template-panel" id="wa-corporate">
+          <div style="display:flex; justify-content:flex-end; margin-bottom:6px;">
+            <button class="copy-btn copy-btn-top" onclick="copyTemplate('txt-wa-corporate', this)">⧉ Copy Message</button>
+          </div>
           <div class="template-label">Personalize [Name] and company context, then send</div>
           <div class="template-box" contenteditable="true" spellcheck="false" id="txt-wa-corporate">Hi [Name], I came across [something about their team/company/initiative] — really appreciate the focus there.
 
@@ -1034,6 +1071,7 @@ Happy to share a quick overview or examples if helpful.</div>
           <div class="two-col">
             <div>
               <div class="template-label">Caption 1 — Quote post</div>
+              <div style="display:flex; justify-content:flex-end; margin-bottom:4px;"><button class="copy-btn copy-btn-top" onclick="copyTemplate('txt-ig-1', this)">⧉ Copy</button></div>
               <div class="template-box" contenteditable="true" spellcheck="false" id="txt-ig-1">"If your mind becomes a conscious process, it becomes the greatest miracle in existence." — Sadhguru
 
 A free 7-minute meditation. Designed by Sadhguru. Backed by science. Available right now.
@@ -1044,6 +1082,7 @@ A free 7-minute meditation. Designed by Sadhguru. Backed by science. Available r
             </div>
             <div>
               <div class="template-label">Caption 2 — Session invite</div>
+              <div style="display:flex; justify-content:flex-end; margin-bottom:4px;"><button class="copy-btn copy-btn-top" onclick="copyTemplate('txt-ig-2', this)">⧉ Copy</button></div>
               <div class="template-box" contenteditable="true" spellcheck="false" id="txt-ig-2">We're hosting a free 30-minute meditation session in your city — and you're invited. 🙏
 
 No experience needed. Just show up.
@@ -1056,6 +1095,7 @@ Register: [link]
             </div>
             <div>
               <div class="template-label">Caption 3 — Lifestyle / benefit</div>
+              <div style="display:flex; justify-content:flex-end; margin-bottom:4px;"><button class="copy-btn copy-btn-top" onclick="copyTemplate('txt-ig-3', this)">⧉ Copy</button></div>
               <div class="template-box" contenteditable="true" spellcheck="false" id="txt-ig-3">7 minutes a day.
 More clarity. Better sleep. Less stress.
 
@@ -1068,6 +1108,7 @@ Try it today 👇 [link]
             </div>
             <div>
               <div class="template-label">Caption 4 — Social proof</div>
+              <div style="display:flex; justify-content:flex-end; margin-bottom:4px;"><button class="copy-btn copy-btn-top" onclick="copyTemplate('txt-ig-4', this)">⧉ Copy</button></div>
               <div class="template-box" contenteditable="true" spellcheck="false" id="txt-ig-4">1 million downloads in 15 hours. 🌍
 
 People everywhere are discovering what 7 minutes of meditation can do. Join them. The Miracle of Mind app is free, guided by Sadhguru, and takes less time than your morning coffee.
@@ -1085,6 +1126,7 @@ People everywhere are discovering what 7 minutes of meditation can do. Join them
           <div class="two-col">
             <div>
               <div class="template-label">Caption 1 — Community invite</div>
+              <div style="display:flex; justify-content:flex-end; margin-bottom:4px;"><button class="copy-btn copy-btn-top" onclick="copyTemplate('txt-fb-1', this)">⧉ Copy</button></div>
               <div class="template-box" contenteditable="true" spellcheck="false" id="txt-fb-1">Hi friends! I'm volunteering with Isha Foundation to bring something special to our community — a free Miracle of Mind meditation session.
 
 In just 30 minutes, you'll learn a simple 7-minute practice designed by Sadhguru that you can use every single day to reduce stress, improve focus, and feel more at ease.
@@ -1098,6 +1140,7 @@ Register here: [link]</div>
             </div>
             <div>
               <div class="template-label">Caption 2 — Personal story</div>
+              <div style="display:flex; justify-content:flex-end; margin-bottom:4px;"><button class="copy-btn copy-btn-top" onclick="copyTemplate('txt-fb-2', this)">⧉ Copy</button></div>
               <div class="template-box" contenteditable="true" spellcheck="false" id="txt-fb-2">A few months ago, I started doing a 7-minute meditation every morning. I was skeptical at first — 7 minutes didn't seem like nearly enough.
 
 But something shifted. I started responding instead of reacting. Sleep got better. The mental chatter quieted down.
@@ -1115,6 +1158,7 @@ If you're curious, download it here: [link] 🌱</div>
           <div class="two-col">
             <div>
               <div class="template-label">Caption 1 — Workplace wellness</div>
+              <div style="display:flex; justify-content:flex-end; margin-bottom:4px;"><button class="copy-btn copy-btn-top" onclick="copyTemplate('txt-li-1', this)">⧉ Copy</button></div>
               <div class="template-box" contenteditable="true" spellcheck="false" id="txt-li-1">Burnout. Anxiety. Lack of focus. These aren't personal failures — they're signals.
 
 Isha Foundation is offering free Miracle of Mind Experience Sessions for organizations: a 30-minute session introducing employees to a science-backed 7-minute daily meditation designed by Sadhguru.
@@ -1128,6 +1172,7 @@ If you're in HR, L&D, or lead a team and want to bring this to your organization
             </div>
             <div>
               <div class="template-label">Caption 2 — Thought leadership</div>
+              <div style="display:flex; justify-content:flex-end; margin-bottom:4px;"><button class="copy-btn copy-btn-top" onclick="copyTemplate('txt-li-2', this)">⧉ Copy</button></div>
               <div class="template-box" contenteditable="true" spellcheck="false" id="txt-li-2">We spend years building skills, strategies, and systems.
 But the mind running all of it? Often left unattended.
 
@@ -1147,6 +1192,7 @@ I've found it genuinely useful. Sharing it here in case it helps someone else to
           <div class="two-col">
             <div>
               <div class="template-label">Post 1 — Punchy stat</div>
+              <div style="display:flex; justify-content:flex-end; margin-bottom:4px;"><button class="copy-btn copy-btn-top" onclick="copyTemplate('txt-x-1', this)">⧉ Copy</button></div>
               <div class="template-box" contenteditable="true" spellcheck="false" id="txt-x-1">7 minutes of meditation.
 50% reduction in stress.
 Free app by Sadhguru.
@@ -1156,6 +1202,7 @@ That's Miracle of Mind. → [link]</div>
             </div>
             <div>
               <div class="template-label">Post 2 — Quote</div>
+              <div style="display:flex; justify-content:flex-end; margin-bottom:4px;"><button class="copy-btn copy-btn-top" onclick="copyTemplate('txt-x-2', this)">⧉ Copy</button></div>
               <div class="template-box" contenteditable="true" spellcheck="false" id="txt-x-2">"If your mind becomes a conscious process, it becomes the greatest miracle in existence."
 — Sadhguru
 
@@ -1220,6 +1267,32 @@ Free 7-min daily meditation: [link] #MiracleOfMind</div>
             <!-- Home indicator -->
             <div style="margin: 10px auto 0; width: 80px; height: 4px; border-radius: 4px; background: #333;"></div>
           </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- BOOTH SETUP -->
+    <div class="expand-card" id="card-booth-setup">
+      <button class="expand-trigger" onclick="toggleExpand('card-booth-setup')">
+        <div class="expand-icon-wrap">🪧</div>
+        <div class="expand-text">
+          <div class="card-title">Booth Setup</div>
+          <div class="card-desc" style="margin-top:5px;">Step-by-step guide and video walkthrough for setting up a Miracle of Mind booth at your venue.</div>
+        </div>
+        <span class="expand-chevron">▼</span>
+      </button>
+      <div class="expand-body">
+        <div style="display:flex; justify-content:flex-end; margin-bottom:10px;">
+          <a href="https://docs.google.com/document/d/e/2PACX-1vTfZBy-eGo1cS2R179Yqlrq0d52yr-wO5OhVGRQFc4jPZ0VinS6HOwGISxMJKPADS6c4bDN7A6gmSwa/pub"
+             target="_blank" rel="noopener"
+             style="display:inline-flex;align-items:center;gap:5px;font-size:0.76rem;font-weight:600;color:var(--vol-amber);text-decoration:none;">
+            ↗ Open Guide
+          </a>
+        </div>
+        <div style="position:relative; width:100%; aspect-ratio:16/9; background:#000; border-radius:10px; overflow:hidden;">
+          <video controls preload="metadata" style="position:absolute; top:0; left:0; width:100%; height:100%; display:block;">
+            <source src="https://dl.dropboxusercontent.com/scl/fo/1sycc2gff066vuwgx0tci/ALPmFro7gTjMBzSWliFVX2Q/Video%20Booth%20set%20up%20.m4v?rlkey=ikz1rzvmog4ntns2xhv94tt4k" type="video/mp4" />
+          </video>
         </div>
       </div>
     </div>
@@ -1391,6 +1464,7 @@ Free 7-min daily meditation: [link] #MiracleOfMind</div>
       </div>
     </div>
 
+    <!-- BOOTH SETUP -->
   </div><!-- /accordion-stack -->
 </section>
 
@@ -1399,7 +1473,7 @@ Free 7-min daily meditation: [link] #MiracleOfMind</div>
 <!-- ══ SESSION KIT ══ -->
 <section class="section session-kit" id="sessionkit">
   <div class="section-header">
-    <div class="section-kicker"><span class="kicker-dot"></span>Session Resources</div>
+    <div class="section-kicker"><span class="kicker-dot"></span><svg xmlns="http://www.w3.org/2000/svg" width="0.85em" height="0.85em" viewBox="0 0 256 256" fill="currentColor" style="flex-shrink:0;vertical-align:-0.1em"><path d="M245.83,121.63a15.53,15.53,0,0,0-9.52-7.33,73.55,73.55,0,0,0-22.17-2.22c4-19.85,1-35.55-2-44.86a16.17,16.17,0,0,0-18.8-10.88,85.53,85.53,0,0,0-28.55,12.12,94.58,94.58,0,0,0-27.11-33.25,16.05,16.05,0,0,0-19.26,0A94.58,94.58,0,0,0,91.26,68.46,85.53,85.53,0,0,0,62.71,56.34,16.14,16.14,0,0,0,43.92,67.22c-3,9.31-6,25-2.06,44.86a73.55,73.55,0,0,0-22.17,2.22,15.53,15.53,0,0,0-9.52,7.33,16,16,0,0,0-1.6,12.26c3.39,12.58,13.8,36.49,45.33,55.33S113.13,208,128.05,208s42.67,0,74-18.78c31.53-18.84,41.94-42.75,45.33-55.33A16,16,0,0,0,245.83,121.63ZM62.1,175.49C35.47,159.57,26.82,140.05,24,129.7a59.61,59.61,0,0,1,22.5-1.17,129.08,129.08,0,0,0,9.15,19.41,142.28,142.28,0,0,0,34,39.56A114.92,114.92,0,0,1,62.1,175.49ZM128,190.4c-9.33-6.94-32-28.23-32-71.23C96,76.7,118.38,55.24,128,48c9.62,7.26,32,28.72,32,71.19C160,162.17,137.33,183.46,128,190.4Zm104-60.68c-2.77,10.24-11.4,29.81-38.09,45.77a114.92,114.92,0,0,1-27.55,12,142.28,142.28,0,0,0,34-39.56,129.08,129.08,0,0,0,9.15-19.41A59.69,59.69,0,0,1,232,129.71Z"/></svg> Session Resources</div>
     <p class="section-desc">Step-by-step guide and checklist to facilitate the meditation session.</p>
   </div>
 
@@ -1475,7 +1549,7 @@ Free 7-min daily meditation: [link] #MiracleOfMind</div>
       </button>
       <div class="expand-body">
         <div style="display:flex; justify-content:flex-end; margin-bottom:10px;">
-          <a href="https://docs.google.com/document/d/e/2PACX-1vS2vLzhk3sGpuUEOOJ5rFdaG0-nVyT_itKQVMSq0wcTMjOQQxyx8ihWUWXv5D4PaIhjFBaJjq06OVlK/pub"
+          <a href="https://docs.google.com/document/d/e/2PACX-1vTRKzbV3BDQ4pi9cz7wZpf_O8wZo2hIiVa9LuRdLoaSkpRsCcTNySpNoYmCWfMISUjHHyYwSLptvW3_/pub"
              target="_blank" rel="noopener"
              style="display:inline-flex;align-items:center;gap:5px;font-size:0.76rem;font-weight:600;color:var(--vol-amber);text-decoration:none;">
             ↗ Talking Points
@@ -1731,12 +1805,12 @@ Free 7-min daily meditation: [link] #MiracleOfMind</div>
       </button>
       <div class="expand-body">
         <div style="display:flex; justify-content:flex-end; gap:12px; margin-bottom:14px; flex-wrap:wrap;">
-          <a href="https://drive.google.com/file/d/1jTYElEkUqcRFfxiJI2aqCTDFiQ14GGqo/view?usp=sharing"
+          <a href="https://drive.google.com/file/d/1Q04cA42TFbLMe6iqjU5tDUlYIkVGILbT/view?usp=sharing"
              target="_blank" rel="noopener"
              style="display:inline-flex;align-items:center;gap:5px;font-size:0.76rem;font-weight:600;color:var(--c-session);text-decoration:none;border:1px solid rgba(124,184,168,0.35);padding:3px 12px;border-radius:50px;">
             ↗ Session Flow PDF
           </a>
-          <a href="https://drive.google.com/file/d/1Q1Ele1flvU78CG2fdBIExb-bx5RTnRUs/view?usp=sharing"
+          <a href="https://drive.google.com/file/d/14SXhep0eZa1LyEh4NUnZR6ITdV4p37lF/view?usp=sharing"
              target="_blank" rel="noopener"
              style="display:inline-flex;align-items:center;gap:5px;font-size:0.76rem;font-weight:600;color:var(--c-session);text-decoration:none;border:1px solid rgba(124,184,168,0.4);padding:3px 10px;border-radius:50px;background:rgba(124,184,168,0.07);">
             ⚡ Quick Reference Card
@@ -1933,11 +2007,16 @@ Free 7-min daily meditation: [link] #MiracleOfMind</div>
       </button>
       <div class="expand-body">
 
-        <div style="display:flex; justify-content:flex-end; margin-bottom:14px;">
+        <div style="display:flex; justify-content:flex-end; gap:10px; margin-bottom:14px; flex-wrap:wrap;">
           <a href="https://docs.google.com/document/d/e/2PACX-1vQ0kVV-pVgpLkBpoXXRp501E1U4KWvTh-0MGvBgiBtrIz59RuYwSPLHEJIn3MR1Fve9xujvm12oxABd/pub"
              target="_blank" rel="noopener"
              style="display:inline-flex;align-items:center;gap:5px;font-size:0.76rem;font-weight:600;color:var(--c-session);text-decoration:none;border:1px solid rgba(124,184,168,0.35);padding:3px 12px;border-radius:50px;">
-            ↗ Open file
+            ↗ Engagement Guide
+          </a>
+          <a href="https://docs.google.com/document/d/e/2PACX-1vRD8SrulGOLsVPlYFIxH05VTstbtmLmjNkblxjjdFUQimxe90BcH-AGrD8fJsLlN_v4Gl4Wd3of79qT/pub"
+             target="_blank" rel="noopener"
+             style="display:inline-flex;align-items:center;gap:5px;font-size:0.76rem;font-weight:600;color:var(--c-session);text-decoration:none;border:1px solid rgba(124,184,168,0.35);padding:3px 12px;border-radius:50px;background:rgba(124,184,168,0.07);">
+            ↗ Print Guide
           </a>
         </div>
 
@@ -2218,8 +2297,8 @@ Free 7-min daily meditation: [link] #MiracleOfMind</div>
       <div style="font-size: 1rem; font-weight: 700; color: var(--mom-cream); margin-bottom: 8px;">🎓 Explore a Campus Club</div>
       <p style="font-size: 0.84rem; color: var(--mom-muted2); line-height: 1.65; margin-bottom: 16px;">Thinking about bringing Miracle of Mind to your university? Share your interest — we'll connect with you.</p>
       <p style="font-size:0.78rem; color:var(--mom-muted); margin-bottom:4px;">Email us at</p>
-      <a href="mailto:freeofferings@ishausa.org?subject=Campus Club Interest"
-         style="font-size:0.84rem; color:var(--c-session); font-weight:600; text-decoration:none;">freeofferings@ishausa.org</a>
+      <a href="mailto:miracleofmind@ishausa.org?subject=Campus Club Interest"
+         style="font-size:0.84rem; color:var(--c-session); font-weight:600; text-decoration:none;">miracleofmind@ishausa.org</a>
       <p style="font-size:0.78rem; color:var(--mom-muted); margin-top:6px;">Subject: Campus Club Interest</p>
     </div>
 
