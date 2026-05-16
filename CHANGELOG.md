@@ -9,7 +9,13 @@ Each entry includes the file, the specific change, and any notes relevant for me
 
 ### Outreach Resources — Card Order Updated
 **File:** `index.html`
-**Change:** Reordered accordion cards in Outreach Resources. New order: App Features Guide, Booth Setup, Email Templates, WhatsApp Templates, Social Media Captions, Printables, Other Useful Content.
+**Change:** Reordered cards in Outreach Resources. New order: App Features Guide, Booth Setup, Flyer Templates, Email Templates, WhatsApp Templates, Social Media Captions, Printables, Other Useful Content. App Features Guide and Booth Setup are now the first two items, above Flyer Templates.
+
+---
+
+### Session Resources — "Find a Session Near You" Moved and Restyled
+**File:** `index.html`
+**Change:** Moved the "Find a session near you" block from the bottom of the Session Resources section to directly below the "Revisit Training" card. Restyled the link as a solid amber button (matching the visual pattern of the Revisit Training button) for greater prominence.
 
 ---
 
