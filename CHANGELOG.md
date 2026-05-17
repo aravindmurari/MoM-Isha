@@ -5,6 +5,14 @@ Each entry includes the file, the specific change, and any notes relevant for me
 
 ---
 
+## 2026-05-17
+
+### Session Script — Renamed from "Talking Points"
+**File:** `index.html`
+**Change:** Renamed the "Talking Points" accordion card to "Session Script". Updated both the card heading and the "↗ Open file" link label accordingly.
+
+---
+
 ## 2026-05-16
 
 ### Session Media — First-Open Auto-Play (One-Time Only)
