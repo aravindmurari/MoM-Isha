@@ -2102,9 +2102,12 @@ Free 7-min daily meditation: [link] #MiracleOfMind</div>
               <iframe id="smPlayer" style="display:none;" allow="autoplay" allowfullscreen></iframe>
               <video id="smLocalPlayer"
                 preload="none"
-                style="position:absolute;top:0;left:0;width:100%;height:100%;display:block;background:#000;"
+                style="position:absolute;top:0;left:0;width:100%;height:100%;display:none;background:#000;"
                 controls>
               </video>
+              <div id="smPlaceholder" style="position:absolute;top:0;left:0;width:100%;height:100%;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:8px;background:#000;pointer-events:none;">
+                <div style="font-size:0.8rem;color:var(--mom-muted2);">Select a video from the playlist to play</div>
+              </div>
               <img id="smImagePlayer"
                 style="position:absolute;top:0;left:0;width:100%;height:100%;display:none;object-fit:contain;background:#000;"
                 alt="">
@@ -2368,7 +2371,6 @@ Free 7-min daily meditation: [link] #MiracleOfMind</div>
   ];
   let smBlobUrl = null;
   let presentWin = null;
-  let smMediaOpened = false; // true after first expand this page load
 
   let presentWinPoller = null;
 
@@ -2456,8 +2458,11 @@ Free 7-min daily meditation: [link] #MiracleOfMind</div>
     iframe.style.display = 'none';
     block.style.display  = 'none';
 
-    const overlay = document.getElementById('smPresentOverlay');
+    const overlay     = document.getElementById('smPresentOverlay');
+    const placeholder = document.getElementById('smPlaceholder');
     const presentOpen = presentWin && !presentWin.closed;
+
+    placeholder.style.display = 'none';
 
     if (presentOpen) {
       // Presentation view is open — lock local playback, show overlay
@@ -2610,15 +2615,7 @@ Free 7-min daily meditation: [link] #MiracleOfMind</div>
   }
 
   function toggleExpand(id) {
-    const card = document.getElementById(id);
-    const wasOpen = card.classList.contains('open');
-    card.classList.toggle('open');
-
-    if (id === 'card-session-media' && !wasOpen && !smMediaOpened) {
-      smMediaOpened = true;
-      const firstItem = card.querySelector('.sm-item');
-      if (firstItem) firstItem.click();
-    }
+    document.getElementById(id).classList.toggle('open');
   }
 
   function switchTab(group, tab, btn) {

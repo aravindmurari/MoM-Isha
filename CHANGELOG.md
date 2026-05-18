@@ -13,15 +13,9 @@ Each entry includes the file, the specific change, and any notes relevant for me
 
 ---
 
-### Session Media — Auto-Play on First Expand (Per Page Load)
+### Session Media — Auto-Play Removed; Placeholder Added
 **File:** `index.html`
-**Change:** The first video in Session Media now auto-plays the first time the card is expanded after each page load or refresh. Subsequent opens within the same session leave the user's current selection untouched. Controlled via an in-memory flag (`smMediaOpened`) that resets on every page load — no localStorage involvement.
-
----
-
-### Session Media — Auto-Play Removed
-**File:** `index.html`
-**Change:** Removed the first-open auto-play behavior from the Session Media card. Opening the accordion no longer plays any video automatically. Videos only play when the user explicitly clicks a playlist item.
+**Change:** Removed all auto-play behavior from the Session Media card. Opening the accordion no longer plays any video automatically. A "Select a video from the playlist to play" placeholder message is shown in the video area until the user clicks a playlist item, at which point it is dismissed and the video plays.
 
 ---
 
