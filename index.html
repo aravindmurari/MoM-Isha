@@ -2065,10 +2065,10 @@ Free 7-min daily meditation: [link] #MiracleOfMind</div>
           <div class="sm-video-side">
             <!-- Actions bar -->
             <div style="padding:10px 16px 8px; display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid var(--border);">
-              <a href="present.html" target="_blank" rel="noopener"
-                 style="display:inline-flex;align-items:center;gap:6px;font-size:0.76rem;font-weight:600;color:var(--c-session);text-decoration:none;border:1px solid rgba(124,184,168,0.3);padding:5px 14px;border-radius:50px;">
+              <button onclick="smOpenPresent()"
+                 style="display:inline-flex;align-items:center;gap:6px;font-size:0.76rem;font-weight:600;color:var(--c-session);background:none;cursor:pointer;border:1px solid rgba(124,184,168,0.3);padding:5px 14px;border-radius:50px;">
                 🖥 Open Presentation View
-              </a>
+              </button>
               <button id="smOfflineBtn" onclick="smToggleOffline()"
                 style="display:inline-flex;align-items:center;gap:5px;font-size:0.74rem;font-weight:600;color:var(--mom-muted2);background:none;border:1px solid var(--border2);padding:5px 12px;border-radius:50px;cursor:pointer;">
                 ⬇ Offline Setup
@@ -2109,6 +2109,11 @@ Free 7-min daily meditation: [link] #MiracleOfMind</div>
                 style="position:absolute;top:0;left:0;width:100%;height:100%;display:none;object-fit:contain;background:#000;"
                 alt="">
               <div id="smDriveBlock" style="display:none;"></div>
+              <div id="smPresentOverlay" style="display:none;position:absolute;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.82);z-index:10;display:none;align-items:center;justify-content:center;flex-direction:column;gap:10px;padding:20px;box-sizing:border-box;text-align:center;">
+                <div style="font-size:1.4rem;">🖥</div>
+                <div style="font-size:0.85rem;font-weight:600;color:var(--mom-cream);line-height:1.5;">Video is playing on the presentation screen.</div>
+                <div style="font-size:0.76rem;color:var(--mom-muted2);line-height:1.5;">Close the presentation view to preview here.</div>
+              </div>
             </div>
             <div class="sm-now-playing">
               <div class="sm-now-label">Now Playing</div>
@@ -2362,6 +2367,31 @@ Free 7-min daily meditation: [link] #MiracleOfMind</div>
     { id: 'sg-isha',     title: 'Sadhguru & Isha Intro' },
   ];
   let smBlobUrl = null;
+  let presentWin = null;
+  let smMediaOpened = false; // true after first expand this page load
+
+  function smOpenPresent() {
+    presentWin = window.open('present.html', 'presentView');
+
+    // If a video is already playing locally, lock it immediately and push
+    // the current selection to present.html via localStorage.
+    const video   = document.getElementById('smLocalPlayer');
+    const img     = document.getElementById('smImagePlayer');
+    const overlay = document.getElementById('smPresentOverlay');
+    const hasCurrent = localStorage.getItem('smCurrentVideo');
+
+    if (hasCurrent) {
+      video.pause(); video.src = ''; video.style.display = 'none';
+      img.style.display = 'none';
+      overlay.style.display = 'flex';
+
+      // Re-write so the storage event fires in the newly opened window once loaded.
+      // The 300 ms delay gives present.html time to attach its event listener.
+      const stored = hasCurrent;
+      localStorage.removeItem('smCurrentVideo');
+      setTimeout(() => localStorage.setItem('smCurrentVideo', stored), 300);
+    }
+  }
   const SM_CACHE_TTL = 7 * 24 * 60 * 60 * 1000; // 7 days
 
   // ── IndexedDB blob cache ───────────────────────────────────────────────
@@ -2412,20 +2442,31 @@ Free 7-min daily meditation: [link] #MiracleOfMind</div>
     iframe.style.display = 'none';
     block.style.display  = 'none';
 
-    if (key === 'qr-code') {
-      video.style.display = 'none'; video.src = '';
-      img.style.display   = 'block'; img.src  = url;
-    } else {
+    const overlay = document.getElementById('smPresentOverlay');
+    const presentOpen = presentWin && !presentWin.closed;
+
+    if (presentOpen) {
+      // Presentation view is open — lock local playback, show overlay
+      video.pause(); video.src = ''; video.style.display = 'none';
       img.style.display = 'none'; img.src = '';
-      const cachedBlob = key ? await smGetCachedBlob(key) : null;
-      if (cachedBlob) {
-        smBlobUrl = URL.createObjectURL(cachedBlob);
-        video.src = smBlobUrl;
+      overlay.style.display = 'flex';
+    } else {
+      overlay.style.display = 'none';
+      if (key === 'qr-code') {
+        video.style.display = 'none'; video.src = '';
+        img.style.display   = 'block'; img.src  = url;
       } else {
-        video.src = url;
+        img.style.display = 'none'; img.src = '';
+        const cachedBlob = key ? await smGetCachedBlob(key) : null;
+        if (cachedBlob) {
+          smBlobUrl = URL.createObjectURL(cachedBlob);
+          video.src = smBlobUrl;
+        } else {
+          video.src = url;
+        }
+        video.style.display = 'block';
+        if (url) video.play().catch(() => {});
       }
-      video.style.display = 'block';
-      if (url) video.play().catch(() => {});
     }
 
     document.getElementById('smTitle').textContent   = title;
@@ -2555,14 +2596,12 @@ Free 7-min daily meditation: [link] #MiracleOfMind</div>
   }
 
   function toggleExpand(id) {
-    const card   = document.getElementById(id);
+    const card = document.getElementById(id);
     const wasOpen = card.classList.contains('open');
     card.classList.toggle('open');
 
-    // First time a user ever opens the session media card, auto-play the first video.
-    // The flag is set immediately so repeat opens (same or future sessions) never auto-play.
-    if (id === 'card-session-media' && !wasOpen && !localStorage.getItem('sm_first_play_done')) {
-      localStorage.setItem('sm_first_play_done', '1');
+    if (id === 'card-session-media' && !wasOpen && !smMediaOpened) {
+      smMediaOpened = true;
       const firstItem = card.querySelector('.sm-item');
       if (firstItem) firstItem.click();
     }

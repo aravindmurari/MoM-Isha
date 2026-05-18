@@ -7,6 +7,24 @@ Each entry includes the file, the specific change, and any notes relevant for me
 
 ## 2026-05-17
 
+### Session Media — Auto-Play on First Expand (Per Page Load)
+**File:** `index.html`
+**Change:** The first video in Session Media now auto-plays the first time the card is expanded after each page load or refresh. Subsequent opens within the same session leave the user's current selection untouched. Controlled via an in-memory flag (`smMediaOpened`) that resets on every page load — no localStorage involvement.
+
+---
+
+### Session Media — Auto-Play Removed
+**File:** `index.html`
+**Change:** Removed the first-open auto-play behavior from the Session Media card. Opening the accordion no longer plays any video automatically. Videos only play when the user explicitly clicks a playlist item.
+
+---
+
+### Session Media — Presentation View Conflict Fixed
+**File:** `index.html`
+**Change:** When the Presentation View window is open, clicking a playlist item on the main page no longer plays the video locally. Instead, an overlay is displayed: "Video is playing on the presentation screen. Close the presentation view to preview here." The video still loads on the presentation screen as expected. The "Open Presentation View" link was converted to a button that stores a reference to the opened window, allowing the main page to detect when that window is open or closed.
+
+---
+
 ### Revisit Training & Find a Session — Icons Added and Layout Updated
 **File:** `index.html`
 **Change:** Both the "Revisit Training" (🎓) and "Find a session near you" (📍) blocks now have an icon on the left with the text and button stacked to the right, consistent with the Submit Post-Session Report card layout. Button stretch bug also fixed.
