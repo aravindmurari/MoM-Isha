@@ -2370,6 +2370,8 @@ Free 7-min daily meditation: [link] #MiracleOfMind</div>
   let presentWin = null;
   let smMediaOpened = false; // true after first expand this page load
 
+  let presentWinPoller = null;
+
   function smOpenPresent() {
     presentWin = window.open('present.html', 'presentView');
 
@@ -2391,6 +2393,18 @@ Free 7-min daily meditation: [link] #MiracleOfMind</div>
       localStorage.removeItem('smCurrentVideo');
       setTimeout(() => localStorage.setItem('smCurrentVideo', stored), 300);
     }
+
+    // Poll until the presentation window is closed, then restore local playback.
+    if (presentWinPoller) clearInterval(presentWinPoller);
+    presentWinPoller = setInterval(() => {
+      if (presentWin && presentWin.closed) {
+        clearInterval(presentWinPoller);
+        presentWinPoller = null;
+        // Re-click the active playlist item so smPlay() restores local video.
+        const activeItem = document.querySelector('#card-session-media .sm-item.sm-active');
+        if (activeItem) activeItem.click();
+      }
+    }, 500);
   }
   const SM_CACHE_TTL = 7 * 24 * 60 * 60 * 1000; // 7 days
 

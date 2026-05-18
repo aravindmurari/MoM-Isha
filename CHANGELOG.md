@@ -19,6 +19,12 @@ Each entry includes the file, the specific change, and any notes relevant for me
 
 ---
 
+### Session Media — Presentation View Close Restores Local Playback
+**File:** `index.html`
+**Change:** When the Presentation View window is closed, the overlay on the main page is automatically dismissed and the previously selected video resumes playing locally — without requiring the user to click anything. Implemented via a 500ms interval that detects when the presentation window closes and re-triggers playback of the active playlist item.
+
+---
+
 ### Session Media — Presentation View Conflict Fixed
 **File:** `index.html`
 **Change:** When the Presentation View window is open, clicking a playlist item on the main page no longer plays the video locally. Instead, an overlay is displayed: "Video is playing on the presentation screen. Close the presentation view to preview here." The video still loads on the presentation screen as expected. The "Open Presentation View" link was converted to a button that stores a reference to the opened window, allowing the main page to detect when that window is open or closed.
