@@ -287,6 +287,11 @@
     }
     .expand-card.open::before,
     .expand-card:hover::before { opacity: 1; }
+    .expand-card.c-session {
+      background: rgba(124,184,168,0.08);
+      border-color: rgba(124,184,168,0.22);
+    }
+    .expand-card.c-session::before { background: var(--c-session); }
 
     .expand-trigger {
       width: 100%; background: none; border: none; cursor: pointer;
@@ -1558,7 +1563,7 @@ Free 7-min daily meditation: [link] #MiracleOfMind</div>
 
   <!-- Full-width Session Script accordion -->
   <div class="accordion-stack" style="--accent:var(--c-session);">
-    <div class="expand-card" id="card-talking" style="--accent:var(--c-session);">
+    <div class="expand-card c-session" id="card-talking" style="--accent:var(--c-session);">
       <button class="expand-trigger" onclick="toggleExpand('card-talking')">
         <div class="expand-icon-wrap">🗣️</div>
         <div class="expand-text">
@@ -1756,7 +1761,7 @@ Free 7-min daily meditation: [link] #MiracleOfMind</div>
   </div><!-- /accordion-stack -->
 
   <div class="accordion-stack" style="--accent:var(--c-session); margin-top:16px;">
-    <div class="expand-card" id="card-session-flow" style="--accent:var(--c-session);">
+    <div class="expand-card c-session" id="card-session-flow" style="--accent:var(--c-session);">
       <button class="expand-trigger" onclick="toggleExpand('card-session-flow')">
         <div class="expand-icon-wrap">🗺️</div>
         <div class="expand-text">
@@ -1910,7 +1915,7 @@ Free 7-min daily meditation: [link] #MiracleOfMind</div>
   </div>
 
   <div class="accordion-stack" style="--accent:var(--c-session); margin-top:16px;">
-    <div class="expand-card" id="card-checklist" style="--accent:var(--c-session);">
+    <div class="expand-card c-session" id="card-checklist" style="--accent:var(--c-session);">
       <button class="expand-trigger" onclick="toggleExpand('card-checklist')">
         <div class="expand-icon-wrap">✅</div>
         <div class="expand-text">
@@ -1943,7 +1948,7 @@ Free 7-min daily meditation: [link] #MiracleOfMind</div>
 
   <div class="accordion-stack" style="--accent:var(--c-session); margin-top:16px;">
 
-    <div class="expand-card" id="card-unfollow" style="--accent:var(--c-session);">
+    <div class="expand-card c-session" id="card-unfollow" style="--accent:var(--c-session);">
       <button class="expand-trigger" onclick="toggleExpand('card-unfollow')">
         <div class="expand-icon-wrap">
           <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -2044,7 +2049,7 @@ Free 7-min daily meditation: [link] #MiracleOfMind</div>
   </div>
   <!-- SESSION MEDIA PLAYLIST -->
   <div class="accordion-stack" style="--accent:var(--c-session); margin-top:16px;">
-    <div class="expand-card" id="card-session-media" style="--accent:var(--c-session);">
+    <div class="expand-card c-session" id="card-session-media" style="--accent:var(--c-session);">
       <button class="expand-trigger" onclick="toggleExpand('card-session-media')">
         <div class="expand-icon-wrap">🎬</div>
         <div class="expand-text">
