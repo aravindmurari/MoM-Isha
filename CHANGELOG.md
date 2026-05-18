@@ -7,9 +7,15 @@ Each entry includes the file, the specific change, and any notes relevant for me
 
 ## 2026-05-17
 
+### Session Script — "Full Session Script" Tab Renamed
+**File:** `index.html`
+**Change:** Renamed the "Full Session" tab to "Full Session Script" for clarity.
+
+---
+
 ### Session Script — Short Session Tab Removed
 **File:** `index.html`
-**Change:** Removed the "Short Session" tab and its content from the Session Script accordion. Remaining tabs: Full Session and FAQ.
+**Change:** Removed the "Short Session" tab and its content from the Session Script accordion. Remaining tabs: Full Session Script and FAQ.
 
 ---
 
