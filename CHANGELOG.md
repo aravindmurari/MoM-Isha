@@ -7,9 +7,9 @@ Each entry includes the file, the specific change, and any notes relevant for me
 
 ## 2026-05-17
 
-### Revisit Training & Find a Session — Button Layout Updated
+### Revisit Training & Find a Session — Icons Added and Layout Updated
 **File:** `index.html`
-**Change:** Both the "Revisit Training" and "Find a session near you" blocks now stack the button below the text (left-aligned) instead of placing it on the right side, consistent with the Submit Post-Session Report card layout.
+**Change:** Both the "Revisit Training" (🎓) and "Find a session near you" (📍) blocks now have an icon on the left with the text and button stacked to the right, consistent with the Submit Post-Session Report card layout. Button stretch bug also fixed.
 
 ---
 
