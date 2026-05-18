@@ -7,6 +7,12 @@ Each entry includes the file, the specific change, and any notes relevant for me
 
 ## 2026-05-17
 
+### Session Media — Playlist Order Updated
+**File:** `index.html`
+**Change:** Moved "Sadhguru & Isha Intro" from position 7 to position 3, immediately after the two Yoga Padhi videos. New order: Yoga Padhi · Waiting Yoga Padhi · Sadhguru & Isha Intro · Intro with Meditation · Managing Thoughts · Participant Experience · App Download QR Code.
+
+---
+
 ### Session Media — Auto-Play on First Expand (Per Page Load)
 **File:** `index.html`
 **Change:** The first video in Session Media now auto-plays the first time the card is expanded after each page load or refresh. Subsequent opens within the same session leave the user's current selection untouched. Controlled via an in-memory flag (`smMediaOpened`) that resets on every page load — no localStorage involvement.
