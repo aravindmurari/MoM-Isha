@@ -7,6 +7,12 @@ Each entry includes the file, the specific change, and any notes relevant for me
 
 ## 2026-05-17
 
+### Session Script — Short Session Tab Removed
+**File:** `index.html`
+**Change:** Removed the "Short Session" tab and its content from the Session Script accordion. Remaining tabs: Full Session and FAQ.
+
+---
+
 ### Session Script — Renamed from "Talking Points"
 **File:** `index.html`
 **Change:** Renamed the "Talking Points" accordion card to "Session Script". Updated both the card heading and the "↗ Open file" link label accordingly.
