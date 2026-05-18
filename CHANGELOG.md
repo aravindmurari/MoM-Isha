@@ -13,21 +13,15 @@ Each entry includes the file, the specific change, and any notes relevant for me
 
 ---
 
-### Session Media — Auto-Play Removed; Placeholder Added
+### Session Media — Auto-Play Removed; Idle Placeholder Added
 **File:** `index.html`
-**Change:** Removed all auto-play behavior from the Session Media card. Opening the accordion no longer plays any video automatically. A "Select a video from the playlist to play" placeholder message is shown in the video area until the user clicks a playlist item, at which point it is dismissed and the video plays.
+**Change:** No video plays automatically when the Session Media card is opened. A "Select a video from the playlist to play" placeholder is shown in the video area until the user clicks a playlist item.
 
 ---
 
-### Session Media — Presentation View Close Restores Local Playback
+### Session Media — Presentation View Behavior
 **File:** `index.html`
-**Change:** When the Presentation View window is closed, the overlay on the main page is automatically dismissed and the previously selected video resumes playing locally — without requiring the user to click anything. Implemented via a 500ms interval that detects when the presentation window closes and re-triggers playback of the active playlist item.
-
----
-
-### Session Media — Presentation View Conflict Fixed
-**File:** `index.html`
-**Change:** When the Presentation View window is open, clicking a playlist item on the main page no longer plays the video locally. Instead, an overlay is displayed: "Video is playing on the presentation screen. Close the presentation view to preview here." The video still loads on the presentation screen as expected. The "Open Presentation View" link was converted to a button that stores a reference to the opened window, allowing the main page to detect when that window is open or closed.
+**Change:** When the Presentation View window is open, videos play only on the presentation screen. The main page shows an overlay: "Video is playing on the presentation screen. Close the presentation view to preview here." When the presentation window is closed, the main page returns to the idle placeholder rather than auto-playing. Opening the Presentation View while a video is already selected on the main page immediately locks local playback and pushes the current video to the presentation screen.
 
 ---
 
