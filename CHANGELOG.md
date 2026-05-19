@@ -5,6 +5,14 @@ Each entry includes the file, the specific change, and any notes relevant for me
 
 ---
 
+## 2026-05-18
+
+### Take It Further — Mobile Layout Fixed
+**File:** `index.html`
+**Change:** The four "Take It Further" cards now stack into a single column on mobile (≤768px) instead of showing as a partial 2-column grid that required horizontal scrolling. Side padding is also reduced on small screens to match the rest of the page.
+
+---
+
 ## 2026-05-17
 
 ### Session Media — Playlist Order Updated
