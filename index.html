@@ -638,7 +638,6 @@
       .copy-btn-top { display: inline-flex !important; }
       #card-email .copy-btn:not(.copy-btn-top),
       #card-wa .copy-btn:not(.copy-btn-top),
-      #card-social .copy-btn:not(.copy-btn-top) { display: none; }
     }
     .copy-btn-top { display: none; }
     /* ── Larger body text: Promote & Host a Session ── */
@@ -649,7 +648,6 @@
     #sessionkit .accordion-stack .template-box    { font-size: 0.97rem; }
     #card-email .template-label,
     #card-wa .template-label,
-    #card-social .template-label { color: var(--vol-amber); }
     #sessionkit .tp-phase-label  { font-size: 0.73rem; }
     #sessionkit .tp-dialogue     { font-size: 0.95rem; }
     #sessionkit .tp-action       { font-size: 0.91rem; }
@@ -868,7 +866,7 @@
         <div class="expand-icon-wrap">✉️</div>
         <div class="expand-text">
           <div class="card-title">Email Templates</div>
-          <div class="card-desc" style="margin-top:5px;">Templates for friends & family, universities, nonprofits, corporations, and influencers — personalize and send.</div>
+          <div class="card-desc" style="margin-top:5px;">Ready-to-send email templates for organizations, small group sessions, and post-session follow-ups — personalize and send.</div>
         </div>
         <span class="expand-chevron">▼</span>
       </button>
@@ -881,138 +879,105 @@
           </a>
         </div>
         <div class="sub-tabs">
-          <button class="sub-tab active" onclick="switchTab('email','friends',this)">Friends &amp; Family</button>
-          <button class="sub-tab" onclick="switchTab('email','universities',this)">Universities</button>
-          <button class="sub-tab" onclick="switchTab('email','nonprofits',this)">Nonprofits</button>
-          <button class="sub-tab" onclick="switchTab('email','corporate',this)">Corporations</button>
-          <button class="sub-tab" onclick="switchTab('email','influencers',this)">Influencers</button>
+          <button class="sub-tab active" onclick="switchTab('email','corporate',this)">Corporations &amp; Organizations</button>
+          <button class="sub-tab" onclick="switchTab('email','friends',this)">Small Group / Friends &amp; Family</button>
+          <button class="sub-tab" onclick="switchTab('email','postsession',this)">Post-Session</button>
         </div>
 
-        <div class="template-panel active" id="email-friends">
+        <div class="template-panel active" id="email-corporate">
+          <div style="display:flex; justify-content:flex-end; margin-bottom:6px;">
+            <button class="copy-btn copy-btn-top" onclick="copyTemplate('txt-email-corporate', this)">⧉ Copy Template</button>
+          </div>
+          <div class="template-label">Personalize [Name], then send</div>
+          <div class="template-box" contenteditable="true" spellcheck="false" id="txt-email-corporate">Subject: Free Offering - Miracle of Mind Meditation EXPERIENCE Session for Your Organization
+
+Greetings!
+
+In today's fast-paced world, stress, anxiety, and burnout have become common challenges across workplaces and educational institutions. At Isha Foundation, we are offering a simple yet transformative solution – the Miracle of Mind Experience Session.
+
+This is a 30-minute in-person session designed to introduce participants to Miracle of Mind, a powerful 7-minute guided meditation by Sadhguru. The practice is accessible to all, requires no prior experience, and can be easily integrated into one's daily routine.
+
+Why Offer This Session?
+- Enhance mental clarity, focus, and emotional balance
+- Reduce stress and anxiety
+- Improve overall wellbeing and productivity
+- Cultivate a positive and energized atmosphere among employees, staff and students.
+
+The Miracle of Mind app clocked over one million downloads within 15 hours of launch, with people from all walks of life sharing inspiring outcomes after practicing daily. Here's what some participants are saying:
+
+"After a week of meditation, everything changed. I now handle tasks with ease, experience less friction, and find genuine joy in my work."
+– Natesh Bhat, Engineer, Tumkur, India
+
+"I found myself feeling calm in previously stressful situations and less identified with my thoughts and emotions."
+– Tom Davis, Software Developer, North Carolina, USA
+
+How to Get Started
+
+If your institution or company is interested in hosting this session for your staff, employees, or students, please email us at: corporate@ishausa.org
+
+Our team will connect with you to schedule the session at a time that suits you best.
+
+This is a unique opportunity to introduce a scientifically backed, time-efficient wellbeing practice to your community — one that empowers individuals to take charge of their own inner state.
+
+We look forward to partnering with you in bringing this simple yet profound offering to your people.
+
+In Love, Light, Laughter
+Isha Volunteers</div>
+          <button class="copy-btn" onclick="copyTemplate('txt-email-corporate', this)">⧉ Copy Template</button>
+        </div>
+
+        <div class="template-panel" id="email-friends">
           <div style="display:flex; justify-content:flex-end; margin-bottom:6px;">
             <button class="copy-btn copy-btn-top" onclick="copyTemplate('txt-email-friends', this)">⧉ Copy Template</button>
           </div>
-          <div class="template-label">Personalize [Name], then send</div>
-          <div class="template-box" contenteditable="true" spellcheck="false" id="txt-email-friends">Subject: Something I've been meaning to share with you
+          <div class="template-label">Personalize [Name/Friends/Neighbors], [Location], [Date &amp; Time], then send</div>
+          <div class="template-box" contenteditable="true" spellcheck="false" id="txt-email-friends">Subject: You're invited! Miracle of Mind Meditation EXPERIENCE Session
 
-Hi [Name],
+Hi [Name/Friends/Neighbors],
 
-I thought of you recently and wanted to share something that's been part of my daily routine.
+Namaskaram!
 
-It's called Miracle of Mind, a free 7-minute guided meditation app. It's very simple, no signup, and easy to fit into the day.
+I hope you're doing well. I wanted to personally invite you to a simple but powerful 30-minute meditation session that can make a real difference to your mental well-being.
 
-What I've appreciated is how consistent it feels. Just a short pause that helps bring a bit more clarity and ease.
+I'll be offering a Miracle of Mind (MoM) session — a guided 7-minute meditation designed by Sadhguru to bring clarity, calm, and focus to your everyday life.
 
-There's also ongoing research (including Harvard-affiliated work) looking at its impact on mental well-being, which has been interesting to see.
+Where: [Insert location]
+When: [Insert date & time]
 
-If you feel like trying it, here's the link:
-[QR/App Link]
+What do you need? Just your presence. No prior experience needed!
 
-With love,
+At the end of the session, you'll be able to download the free Miracle of Mind app and continue the 7-minute meditation at your convenience — anytime, anywhere.
+
+I would love for you to join and feel free to bring a friend or family member too!
+
+Let me know if you have any questions.
+
+Warm Regards
 [Your Name]</div>
           <button class="copy-btn" onclick="copyTemplate('txt-email-friends', this)">⧉ Copy Template</button>
         </div>
 
-        <div class="template-panel" id="email-universities">
+        <div class="template-panel" id="email-postsession">
           <div style="display:flex; justify-content:flex-end; margin-bottom:6px;">
-            <button class="copy-btn copy-btn-top" onclick="copyTemplate('txt-email-universities', this)">⧉ Copy Template</button>
+            <button class="copy-btn copy-btn-top" onclick="copyTemplate('txt-email-postsession', this)">⧉ Copy Template</button>
           </div>
-          <div class="template-label">Personalize [University Name] and [Name], then send</div>
-          <div class="template-box" contenteditable="true" spellcheck="false" id="txt-email-universities">Subject: Supporting Student Well-Being at [University Name]
+          <div class="template-label">Send to participants after the session</div>
+          <div class="template-box" contenteditable="true" spellcheck="false" id="txt-email-postsession">Dear Participant,
 
-Dear [Name],
+Thank you for joining us for today's Miracle of Mind Experience session. It was wonderful to have you with us, and we hope you continue to make use of the practice.
 
-I came across [specific program/initiative/student focus] and really appreciate the work being done around student well-being.
+For maximum benefit, the practice is recommended on a daily basis.
+You can access it by downloading the Miracle of Mind app here:
+isha.co/app
 
-I wanted to share something that's been resonating with students in similar settings : Miracle of Mind, a free 7-minute guided meditation app.
+To stay informed about future programs, Sadhguru's events, and wellbeing tips, we invite you to fill out this form:
+isha.co/idystayconnected
 
-It's easy to access, requires no onboarding, and fits naturally into student routines as a simple daily practice.
+Wishing you continued wellbeing. Stay safe and healthy.
 
-There's also early research (including Harvard-affiliated studies) showing measurable shifts in stress and mental clarity within minutes of practice.
-
-Would you be open to a brief 15-minute conversation to see if this could complement what you're already offering at [University]?
-
-We can also support a small demo or "pause" pop-up if helpful.
-
-Warmly,
-[Your Name]
-[Your Contact Info]</div>
-          <button class="copy-btn" onclick="copyTemplate('txt-email-universities', this)">⧉ Copy Template</button>
-        </div>
-
-        <div class="template-panel" id="email-nonprofits">
-          <div style="display:flex; justify-content:flex-end; margin-bottom:6px;">
-            <button class="copy-btn copy-btn-top" onclick="copyTemplate('txt-email-nonprofits', this)">⧉ Copy Template</button>
-          </div>
-          <div class="template-label">Personalize [Name] and [program/initiative], then send</div>
-          <div class="template-box" contenteditable="true" spellcheck="false" id="txt-email-nonprofits">Subject: Resource to Support Your Community
-
-Hi [Name],
-
-I came across your work on [program/initiative/community focus] and really appreciate the approach you're taking.
-
-I wanted to share something that's been resonating in similar spaces : Miracle of Mind, a free 7-minute guided meditation app.
-
-It's designed as a simple daily practice, easy to access, and can be integrated alongside existing programs without adding complexity or cost.
-
-There's also early research (including Harvard-affiliated work) and user data showing meaningful impact on overall mental well-being.
-
-If it feels aligned, I'd be happy to share a short overview or explore how this could support your community in a way that fits naturally with what you're already doing.
-
-Gratefully,
-[Your Name]
-[Your Contact Info]</div>
-          <button class="copy-btn" onclick="copyTemplate('txt-email-nonprofits', this)">⧉ Copy Template</button>
-        </div>
-
-        <div class="template-panel" id="email-corporate">
-          <div style="display:flex; justify-content:flex-end; margin-bottom:6px;">
-            <button class="copy-btn copy-btn-top" onclick="copyTemplate('txt-email-corporate', this)">⧉ Copy Template</button>
-          </div>
-          <div class="template-label">Personalize [Company] and [Name], then send</div>
-          <div class="template-box" contenteditable="true" spellcheck="false" id="txt-email-corporate">Subject: A simple addition to [Company]'s well-being initiatives
-
-Hi [Name],
-
-I came across [wellness initiative / ERG / team focus] and really appreciate the emphasis on employee well-being.
-
-I wanted to share something that teams have been starting to use informally : Miracle of Mind, a free 7-minute guided meditation app.
-
-It's designed as a short, structured practice that employees can use in a way that fits naturally into their existing routines, without requiring additional programs or logistics.
-
-There's also research (including Harvard-affiliated studies) showing improvements in stress regulation, clarity, and focus within minutes of practice.
-
-If it feels relevant, I'd be happy to share a quick overview or examples of how other teams are introducing it in a low-lift way.
-
-Best regards,
-[Your Name]
-[Your Contact Info]</div>
-          <button class="copy-btn" onclick="copyTemplate('txt-email-corporate', this)">⧉ Copy Template</button>
-        </div>
-
-        <div class="template-panel" id="email-influencers">
-          <div style="display:flex; justify-content:flex-end; margin-bottom:6px;">
-            <button class="copy-btn copy-btn-top" onclick="copyTemplate('txt-email-influencers', this)">⧉ Copy Template</button>
-          </div>
-          <div class="template-label">Personalize [Creator Name] and audience tie-in, then send</div>
-          <div class="template-box" contenteditable="true" spellcheck="false" id="txt-email-influencers">Subject: Thought this could resonate with your audience
-
-Hi [Creator Name],
-
-I've been following your content around [wellness / routines / productivity / mental health], and I really appreciate how you approach it.
-
-I wanted to share something that's been gaining traction: Miracle of Mind, a free 7-minute guided meditation app people are using as a simple daily practice.
-
-It's very easy to try (no signup), and there's also ongoing research (including Harvard-affiliated work) looking at its impact on mental well-being.
-
-It felt like something that could naturally resonate with your audience, especially around [specific tie-in].
-
-If you're open, I'd love to explore a simple way to collaborate.
-
-Best,
-[Your Name]
-[Your Contact Info]</div>
-          <button class="copy-btn" onclick="copyTemplate('txt-email-influencers', this)">⧉ Copy Template</button>
+In Love, Light, Laughter
+Isha Volunteers</div>
+          <button class="copy-btn" onclick="copyTemplate('txt-email-postsession', this)">⧉ Copy Template</button>
         </div>
       </div>
     </div>
@@ -1129,180 +1094,6 @@ Happy to share a quick overview or examples if helpful.</div>
       </div>
     </div>
 
-    <!-- SOCIAL MEDIA CAPTIONS -->
-    <div class="expand-card" id="card-social">
-      <button class="expand-trigger" onclick="toggleExpand('card-social')">
-        <div class="expand-icon-wrap">📱</div>
-        <div class="expand-text">
-          <div class="card-title">Social Media Captions</div>
-          <div class="card-desc" style="margin-top:5px;">Ready-to-post captions for Instagram, Facebook, LinkedIn, and X. Copy, add your event details, and post.</div>
-        </div>
-        <span class="expand-chevron">▼</span>
-      </button>
-      <div class="expand-body">
-        <div style="display:flex; justify-content:flex-end; margin-bottom:10px;">
-          <a href="https://docs.google.com/document/d/e/2PACX-1vTbUJqXjlLyTXOyvRVvRcuMYBa054Vo6lHcbiZaDUTju8fIZT78iJ_BmBw6ttS4iIIcyKZtpBPt-rnj/pub"
-             target="_blank" rel="noopener"
-             style="display:inline-flex;align-items:center;gap:5px;font-size:0.76rem;font-weight:600;color:var(--vol-amber);text-decoration:none;">
-            ↗ Open file
-          </a>
-        </div>
-        <div class="sub-tabs">
-          <button class="sub-tab active" onclick="switchTab('social','ig',this)">Instagram</button>
-          <button class="sub-tab" onclick="switchTab('social','fb',this)">Facebook</button>
-          <button class="sub-tab" onclick="switchTab('social','li',this)">LinkedIn</button>
-          <button class="sub-tab" onclick="switchTab('social','x',this)">X</button>
-        </div>
-
-        <!-- INSTAGRAM -->
-        <div class="template-panel active" id="social-ig">
-          <div class="two-col">
-            <div>
-              <div class="template-label">Caption 1 — Quote post</div>
-              <div style="display:flex; justify-content:flex-end; margin-bottom:4px;"><button class="copy-btn copy-btn-top" onclick="copyTemplate('txt-ig-1', this)">⧉ Copy</button></div>
-              <div class="template-box" contenteditable="true" spellcheck="false" id="txt-ig-1">"If your mind becomes a conscious process, it becomes the greatest miracle in existence." — Sadhguru
-
-A free 7-minute meditation. Designed by Sadhguru. Backed by science. Available right now.
-👉 Download Miracle of Mind. Link in bio.
-
-#MiracleOfMind #Sadhguru #Meditation #MentalWellbeing #IshaFoundation</div>
-              <button class="copy-btn" onclick="copyTemplate('txt-ig-1', this)" style="margin-top:8px;">⧉ Copy</button>
-            </div>
-            <div>
-              <div class="template-label">Caption 2 — Session invite</div>
-              <div style="display:flex; justify-content:flex-end; margin-bottom:4px;"><button class="copy-btn copy-btn-top" onclick="copyTemplate('txt-ig-2', this)">⧉ Copy</button></div>
-              <div class="template-box" contenteditable="true" spellcheck="false" id="txt-ig-2">We're hosting a free 30-minute meditation session in your city — and you're invited. 🙏
-
-No experience needed. Just show up.
-
-📍 [Location] · 🗓️ [Date] · ⏰ [Time]
-Register: [link]
-
-#MiracleOfMindSession #FreeEvent #MiracleOfMind #IshaVolunteers</div>
-              <button class="copy-btn" onclick="copyTemplate('txt-ig-2', this)" style="margin-top:8px;">⧉ Copy</button>
-            </div>
-            <div>
-              <div class="template-label">Caption 3 — Lifestyle / benefit</div>
-              <div style="display:flex; justify-content:flex-end; margin-bottom:4px;"><button class="copy-btn copy-btn-top" onclick="copyTemplate('txt-ig-3', this)">⧉ Copy</button></div>
-              <div class="template-box" contenteditable="true" spellcheck="false" id="txt-ig-3">7 minutes a day.
-More clarity. Better sleep. Less stress.
-
-That's what thousands of people are experiencing with the Miracle of Mind app by Sadhguru. And it's completely free.
-
-Try it today 👇 [link]
-
-#MiracleOfMind #7Minutes #MindfulLiving #Sadhguru</div>
-              <button class="copy-btn" onclick="copyTemplate('txt-ig-3', this)" style="margin-top:8px;">⧉ Copy</button>
-            </div>
-            <div>
-              <div class="template-label">Caption 4 — Social proof</div>
-              <div style="display:flex; justify-content:flex-end; margin-bottom:4px;"><button class="copy-btn copy-btn-top" onclick="copyTemplate('txt-ig-4', this)">⧉ Copy</button></div>
-              <div class="template-box" contenteditable="true" spellcheck="false" id="txt-ig-4">1 million downloads in 15 hours. 🌍
-
-People everywhere are discovering what 7 minutes of meditation can do. Join them. The Miracle of Mind app is free, guided by Sadhguru, and takes less time than your morning coffee.
-
-📲 Download: [link]
-
-#MiracleOfMind #Sadhguru #Meditation</div>
-              <button class="copy-btn" onclick="copyTemplate('txt-ig-4', this)" style="margin-top:8px;">⧉ Copy</button>
-            </div>
-          </div>
-        </div>
-
-        <!-- FACEBOOK -->
-        <div class="template-panel" id="social-fb">
-          <div class="two-col">
-            <div>
-              <div class="template-label">Caption 1 — Community invite</div>
-              <div style="display:flex; justify-content:flex-end; margin-bottom:4px;"><button class="copy-btn copy-btn-top" onclick="copyTemplate('txt-fb-1', this)">⧉ Copy</button></div>
-              <div class="template-box" contenteditable="true" spellcheck="false" id="txt-fb-1">Hi friends! I'm volunteering with Isha Foundation to bring something special to our community — a free Miracle of Mind meditation session.
-
-In just 30 minutes, you'll learn a simple 7-minute practice designed by Sadhguru that you can use every single day to reduce stress, improve focus, and feel more at ease.
-
-📍 [Location] · 🗓️ [Date & Time]
-
-No prior experience needed. Just bring yourself. Feel free to share this with anyone who could use a little more calm in their life. 🙏
-
-Register here: [link]</div>
-              <button class="copy-btn" onclick="copyTemplate('txt-fb-1', this)" style="margin-top:8px;">⧉ Copy</button>
-            </div>
-            <div>
-              <div class="template-label">Caption 2 — Personal story</div>
-              <div style="display:flex; justify-content:flex-end; margin-bottom:4px;"><button class="copy-btn copy-btn-top" onclick="copyTemplate('txt-fb-2', this)">⧉ Copy</button></div>
-              <div class="template-box" contenteditable="true" spellcheck="false" id="txt-fb-2">A few months ago, I started doing a 7-minute meditation every morning. I was skeptical at first — 7 minutes didn't seem like nearly enough.
-
-But something shifted. I started responding instead of reacting. Sleep got better. The mental chatter quieted down.
-
-That practice is the Miracle of Mind, a free app by Sadhguru, available to anyone. I'm now volunteering to share it as widely as possible.
-
-If you're curious, download it here: [link] 🌱</div>
-              <button class="copy-btn" onclick="copyTemplate('txt-fb-2', this)" style="margin-top:8px;">⧉ Copy</button>
-            </div>
-          </div>
-        </div>
-
-        <!-- LINKEDIN -->
-        <div class="template-panel" id="social-li">
-          <div class="two-col">
-            <div>
-              <div class="template-label">Caption 1 — Workplace wellness</div>
-              <div style="display:flex; justify-content:flex-end; margin-bottom:4px;"><button class="copy-btn copy-btn-top" onclick="copyTemplate('txt-li-1', this)">⧉ Copy</button></div>
-              <div class="template-box" contenteditable="true" spellcheck="false" id="txt-li-1">Burnout. Anxiety. Lack of focus. These aren't personal failures — they're signals.
-
-Isha Foundation is offering free Miracle of Mind Experience Sessions for organizations: a 30-minute session introducing employees to a science-backed 7-minute daily meditation designed by Sadhguru.
-
-20+ studies from world-class institutions validate its effectiveness. Over 1 million people downloaded the app within 15 hours of launch.
-
-If you're in HR, L&D, or lead a team and want to bring this to your organization, reach out or visit: [link]
-
-#WorkplaceWellness #MentalHealth #MiracleOfMind #IshaFoundation</div>
-              <button class="copy-btn" onclick="copyTemplate('txt-li-1', this)" style="margin-top:8px;">⧉ Copy</button>
-            </div>
-            <div>
-              <div class="template-label">Caption 2 — Thought leadership</div>
-              <div style="display:flex; justify-content:flex-end; margin-bottom:4px;"><button class="copy-btn copy-btn-top" onclick="copyTemplate('txt-li-2', this)">⧉ Copy</button></div>
-              <div class="template-box" contenteditable="true" spellcheck="false" id="txt-li-2">We spend years building skills, strategies, and systems.
-But the mind running all of it? Often left unattended.
-
-The Miracle of Mind app by Sadhguru offers a simple 7-minute daily practice, free, guided, and validated by science, to help you take charge of your mental wellbeing.
-
-I've found it genuinely useful. Sharing it here in case it helps someone else too.
-📲 [link]
-
-#MiracleOfMind #Sadhguru #Leadership #Wellbeing</div>
-              <button class="copy-btn" onclick="copyTemplate('txt-li-2', this)" style="margin-top:8px;">⧉ Copy</button>
-            </div>
-          </div>
-        </div>
-
-        <!-- X -->
-        <div class="template-panel" id="social-x">
-          <div class="two-col">
-            <div>
-              <div class="template-label">Post 1 — Punchy stat</div>
-              <div style="display:flex; justify-content:flex-end; margin-bottom:4px;"><button class="copy-btn copy-btn-top" onclick="copyTemplate('txt-x-1', this)">⧉ Copy</button></div>
-              <div class="template-box" contenteditable="true" spellcheck="false" id="txt-x-1">7 minutes of meditation.
-50% reduction in stress.
-Free app by Sadhguru.
-
-That's Miracle of Mind. → [link]</div>
-              <button class="copy-btn" onclick="copyTemplate('txt-x-1', this)" style="margin-top:8px;">⧉ Copy</button>
-            </div>
-            <div>
-              <div class="template-label">Post 2 — Quote</div>
-              <div style="display:flex; justify-content:flex-end; margin-bottom:4px;"><button class="copy-btn copy-btn-top" onclick="copyTemplate('txt-x-2', this)">⧉ Copy</button></div>
-              <div class="template-box" contenteditable="true" spellcheck="false" id="txt-x-2">"If your mind becomes a conscious process, it becomes the greatest miracle in existence."
-— Sadhguru
-
-Free 7-min daily meditation: [link] #MiracleOfMind</div>
-              <button class="copy-btn" onclick="copyTemplate('txt-x-2', this)" style="margin-top:8px;">⧉ Copy</button>
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </div>
-
     <!-- PRINTABLES -->
     <div class="expand-card" id="card-printables">
       <button class="expand-trigger" onclick="toggleExpand('card-printables')">
@@ -1413,19 +1204,6 @@ Free 7-min daily meditation: [link] #MiracleOfMind</div>
       </button>
       <div class="expand-body">
         <div style="display:flex; flex-direction:column; gap:14px;">
-
-          <div style="display:flex; align-items:center; gap:14px; padding:14px 16px; background:var(--mom-black3); border-radius:10px; border:1px solid var(--border);">
-            <div style="font-size:1.5rem; line-height:1;">🔬</div>
-            <div style="flex:1;">
-              <div style="font-size:0.96rem; font-weight:600; color:var(--mom-cream2); margin-bottom:3px;">Sadhguru Center for a Conscious Planet — Research Summary</div>
-              <div style="font-size:0.78rem; color:var(--mom-muted2);">Science-backed research supporting the program — useful for universities, corporations, and skeptical audiences.</div>
-            </div>
-            <a href="https://docs.google.com/document/d/e/2PACX-1vQdIx7wV9pC5AoNlXRToErqpDgh1X811T6rr_1XJAbsk06nfWn3GsOcLlaU5YauriUpZV-AeRxUoOkJ/pub"
-               target="_blank" rel="noopener"
-               style="flex-shrink:0; display:inline-flex; align-items:center; gap:5px; font-size:0.76rem; font-weight:600; color:var(--vol-amber); text-decoration:none; border:1px solid rgba(212,145,74,0.35); padding:6px 14px; border-radius:50px; white-space:nowrap;">
-              ↗ Open file
-</a>
-          </div>
 
           <div style="display:flex; align-items:center; gap:14px; padding:14px 16px; background:var(--mom-black3); border-radius:10px; border:1px solid var(--border);">
             <div style="font-size:1.5rem; line-height:1;">📊</div>
@@ -1574,11 +1352,16 @@ Free 7-min daily meditation: [link] #MiracleOfMind</div>
         <span class="expand-chevron">▼</span>
       </button>
       <div class="expand-body">
-        <div style="display:flex; justify-content:flex-end; margin-bottom:10px;">
-          <a href="https://docs.google.com/document/d/e/2PACX-1vTRKzbV3BDQ4pi9cz7wZpf_O8wZo2hIiVa9LuRdLoaSkpRsCcTNySpNoYmCWfMISUjHHyYwSLptvW3_/pub"
+        <div style="display:flex; justify-content:flex-end; gap:12px; margin-bottom:10px; flex-wrap:wrap;">
+          <a href="https://docs.google.com/document/d/e/2PACX-1vS2vLzhk3sGpuUEOOJ5rFdaG0-nVyT_itKQVMSq0wcTMjOQQxyx8ihWUWXv5D4PaIhjFBaJjq06OVlK/pub"
              target="_blank" rel="noopener"
              style="display:inline-flex;align-items:center;gap:5px;font-size:0.76rem;font-weight:600;color:var(--vol-amber);text-decoration:none;">
             ↗ Session Script
+          </a>
+          <a href="https://drive.google.com/file/d/14SXhep0eZa1LyEh4NUnZR6ITdV4p37lF/view?usp=sharing"
+             target="_blank" rel="noopener"
+             style="display:inline-flex;align-items:center;gap:5px;font-size:0.76rem;font-weight:600;color:var(--c-session);text-decoration:none;border:1px solid rgba(124,184,168,0.4);padding:3px 10px;border-radius:50px;background:rgba(124,184,168,0.07);">
+            ⚡ Quick Reference Card
           </a>
         </div>
         <div class="sub-tabs">
@@ -1593,7 +1376,7 @@ Free 7-min daily meditation: [link] #MiracleOfMind</div>
             <div>
               <div class="tp-phase-label">15 Minutes Before Session</div>
               <ul class="tp-list">
-                <li>Play Yoga Padhi music</li>
+                <li>Play Yoga Padhi music (Track 3)</li>
                 <li>Set up the Unfollow Wall with sticky notes and markers</li>
                 <li>Keep QR codes and standees ready and visible</li>
                 <li>Volunteers welcome participants and engage in light, natural interaction</li>
@@ -1603,96 +1386,80 @@ Free 7-min daily meditation: [link] #MiracleOfMind</div>
             <div>
               <div class="tp-phase-label">Unfollow Wall</div>
               <p class="tp-aside">As participants walk in, volunteers invite them:</p>
-              <div class="tp-dialogue">"Hello. You are welcome to take a moment to write one thing you would like to unfollow today. It could be something that feels unnecessary, distracting, or something you are simply ready to let go of."</div>
+              <div class="tp-dialogue">"Hello. You're welcome to take a moment to write one thing you would like to unfollow today. It could be something that feels unnecessary, distracting, or something you are simply ready to let go of."</div>
               <p class="tp-aside">Optional prompts if needed: Overthinking · Constant distraction · Comparison · Academic or work stress</p>
               <p class="tp-aside">Allow participants to write without rush. No announcement yet.</p>
             </div>
 
             <div>
-              <div class="tp-phase-label">Waiting Announcement</div>
-              <div class="tp-dialogue">"Good Morning / Good Evening everyone. Welcome to today's session. We will wait for a couple of minutes for everyone to join. In the meantime, those who didn't get a chance to post in the unfollow wall can do so now. Also, you can keep your phone on silent mode. We will begin shortly."</div>
+              <div class="tp-phase-label">Welcome &amp; Sadhguru Introduction &nbsp;<span style="color:var(--mom-muted);">|</span>&nbsp; ~3.5 min</div>
+              <div class="tp-dialogue">"Good Morning / Good Evening everyone. My name is ________. I am a student / working professional and also a volunteer with the Isha Foundation, founded by Sadhguru.<br><br>For over four decades, Isha Foundation has been offering tools for wellbeing and self-transformation rooted in the science of yoga, touching millions of lives across the world.<br><br>Today, we'll be learning a meditation designed by Sadhguru that can help you experience the Miracle of Mind and explore your peak potential. We would now like to begin with a short video introducing the work of Sadhguru &amp; Isha Foundation."</div>
+              <div class="tp-action">▶ Play Sadhguru &amp; Isha intro video</div>
             </div>
 
             <div>
-              <div class="tp-phase-label">Welcome &amp; Introduction</div>
-              <div class="tp-dialogue">"Good Morning / Good Evening everyone. My name is ______. I am a student / working professional. I'm also a volunteer with Isha Foundation founded by Sadhguru. Sadhguru has been offering tools for wellbeing and self-transformation rooted in the science of yoga that have touched the lives of millions of people worldwide over the past four decades.<br><br>Today, we'll be learning a simple yet powerful meditation designed by Sadhguru — that can help you to experience the Miracle of the Mind, to take charge of your mental wellbeing and explore your peak potential."</div>
-            </div>
-
-            <div>
-              <div class="tp-phase-label">Interaction</div>
+              <div class="tp-phase-label">Opening Questions &nbsp;<span style="color:var(--mom-muted);">|</span>&nbsp; ~1 min</div>
               <ul class="tp-list">
                 <li>"Do you feel your thoughts are noisy sometimes?"</li>
-                <li>"Have you wished you could just mute them for a while so you could focus on something?"</li>
-                <li>"How many times have we tried to control our thoughts, and it didn't work?"</li>
+                <li>"Have you ever wished you could just mute them for a while so you could focus better?"</li>
+                <li>"How many times have we tried to control our thoughts, and it doesn't work?"</li>
               </ul>
-              <p class="tp-aside" style="margin-top:8px;">Pause — allow them to respond</p>
+              <p class="tp-aside" style="margin-top:8px;">Pause and allow responses.</p>
             </div>
 
             <div>
-              <div class="tp-phase-label">Introduce Miracle of Mind</div>
-              <p class="tp-aside">Move hand in an unsteady manner</p>
-              <div class="tp-dialogue">"There is a whole science and technology with which you can take charge of your mind and explore its infinite potential. It is both possible and simple; it just needs a little attention and care. Shall we explore this meditation called Miracle of Mind, which can assist you in this direction?<br><br>Sadhguru will first explain the science behind the Miracle of Mind meditation, and then guide us through it."</div>
+              <div class="tp-phase-label">Introduce Miracle of Mind &nbsp;<span style="color:var(--mom-muted);">|</span>&nbsp; ~1 min</div>
+              <div class="tp-dialogue">"The human mind is a miraculous instrument meant to serve you, but it doesn't always work the way you want it to. There is a whole science and technology through which you can make your mind function at its optimal level without creating any stress and anxiety. Miracle of Mind is a free, 7-minute guided meditation offered by Sadhguru that can help you take charge of your mental wellbeing."</div>
             </div>
 
             <div>
-              <div class="tp-phase-label">Introduction to Practice</div>
-              <div class="tp-dialogue">"Miracle of Mind is a free, 7-minute guided meditation by Sadhguru — a yogi, author, and humanitarian who brings tools from ancient yogic science into a practical, modern-day context. It's simple, requires no prior experience, and can be practiced anytime, anywhere.<br><br>Many people skip meditation because they think it only works after years of daily practice. It's not true! A new study tracked the exact timing of brainwave changes during meditation. Significant neurophysiological effects begin within 2–3 minutes and peak at 7 minutes, even for beginners. Just like exercise supports the body, this meditation helps bring clarity and stability to the mind."</div>
-            </div>
-
-            <div>
-              <div class="tp-phase-label">Guided Meditation</div>
-              <div class="tp-dialogue">"Now, are we ready to give it a try? Sadhguru will explain the science behind this meditation and guide you through the steps."</div>
-              <div class="tp-action">▶ Play video — full meditation (no interruptions)</div>
+              <div class="tp-phase-label">Guided Meditation &nbsp;<span style="color:var(--mom-muted);">|</span>&nbsp; ~17.5 min</div>
+              <div class="tp-dialogue">"Are we ready to give it a try? Sadhguru will explain the science behind this meditation and guide us through the steps."</div>
+              <div class="tp-action">▶ Play full meditation video — no interruptions</div>
             </div>
 
             <div>
               <div class="tp-phase-label">Sharing &nbsp;<span style="color:var(--mom-muted);">|</span>&nbsp; ~1 min</div>
               <div class="tp-dialogue">"How was your experience?"</div>
-              <p class="tp-aside">Pause. Allow sharing.</p>
+              <p class="tp-aside">Pause and allow sharing.</p>
             </div>
 
             <div>
-              <div class="tp-phase-label">Managing Thoughts Video &nbsp;<span style="color:var(--mom-muted);">|</span>&nbsp; ~1 min</div>
-              <div class="tp-dialogue">"Some of you shared: you felt calm, peaceful. Some also shared that thoughts were racing. So how do we manage thoughts during meditation? We will now explore this further."</div>
-              <div class="tp-action">▶ Play — How to manage thoughts during meditation</div>
+              <div class="tp-phase-label">How to Meditate When Thoughts Are Noisy &nbsp;<span style="color:var(--mom-muted);">|</span>&nbsp; ~2 min</div>
+              <div class="tp-dialogue">"Some of you may have felt calm and peaceful. Others may have noticed the mind staying active. So how do we manage thoughts during meditation? Let us explore this further with Sadhguru."</div>
+              <div class="tp-action">▶ Play — How to Manage Thoughts During Meditation</div>
             </div>
 
             <div>
               <div class="tp-phase-label">Participant Experience Video &nbsp;<span style="color:var(--mom-muted);">|</span>&nbsp; ~1 min</div>
-              <div class="tp-dialogue">"Now let's take a moment to hear some experiences of people who've been practicing Miracle of Mind."</div>
+              <div class="tp-dialogue">"Now let's take a moment to hear from people who've been practicing Miracle of Mind."</div>
               <div class="tp-action">▶ Play — participant experience video</div>
             </div>
 
             <div>
-              <div class="tp-phase-label">Sadhguru &amp; Isha Intro &nbsp;<span style="color:var(--mom-muted);">|</span>&nbsp; Optional</div>
-              <div class="tp-dialogue">"This meditation is designed by Sadhguru, a yogi and New York Times bestselling author whose work is centered on human wellbeing and inner transformation. He has inspired millions around the world. His clarity, wisdom and sense of humor are unmatched.<br><br>Miracle of Mind is one such meditation — designed to be simple, easy to practice, and supportive in everyday situations."</div>
-              <div class="tp-action">▶ Play Sadhguru intro video (if time permits)</div>
+              <div class="tp-phase-label">App Features Walk Thru &nbsp;<span style="color:var(--mom-muted);">|</span>&nbsp; ~3 min</div>
+              <div class="tp-dialogue">"What you experienced today is the meditation itself. But the app doesn't end there. Want to take a quick peek and see what else is inside? We will look at a short video that walks you through the app features."</div>
             </div>
 
             <div>
-              <div class="tp-phase-label">App Download</div>
-              <div class="tp-dialogue">"Before we close, just a quick note on a few helpful features in the app:</div>
-              <ul class="tp-list" style="margin: 6px 0 10px 14px;">
-                <li>AI Q&amp;A if you have questions or need support anytime</li>
-                <li>Slow down the meditation in settings to find a pace that works for you</li>
-                <li>Hopscotch offers short, engaging activities to stay connected</li>
-                <li>Wisdom has bite-sized insights to support you along the way</li>
-              </ul>
-              <div class="tp-dialogue" style="margin-top:0;">"You may scan the QR code to download the app and continue the practice at your own pace."</div>
+              <div class="tp-phase-label">App Download CTA &nbsp;<span style="color:var(--mom-muted);">|</span>&nbsp; ~1 min</div>
+              <div class="tp-dialogue">"You can download the app and practice it on your own on a daily basis. You may now scan the QR code to download the app and continue the practice at your own pace."</div>
               <p class="tp-aside">Pause ~1 minute — volunteers assist with downloads</p>
             </div>
 
             <div>
-              <div class="tp-phase-label">Closing</div>
-              <div class="tp-dialogue">"Thank you for joining. We hope you enjoyed the session."</div>
+              <div class="tp-phase-label">Closing &nbsp;<span style="color:var(--mom-muted);">|</span>&nbsp; ~1 min</div>
+              <div class="tp-dialogue">"This is a simple yet powerful tool designed to bring greater balance and clarity into your daily life. Just like how you try to get 10,000 steps a day for physical fitness, just invest 7 minutes a day for your mental fitness. Recent Harvard studies suggest significant neurophysiological effects can begin within 2–3 minutes and peak around 7 minutes, even for beginners.<br><br>We hope you feel inspired to commit 7 minutes a day and also share this app with others so more people can benefit from it."</div>
+              <p class="tp-aside">Optional: If you wish to explore further offerings from Sadhguru, you are welcome to learn more about Inner Engineering. Volunteers will be available after the session.</p>
+              <div class="tp-dialogue">"Thank you for joining us today. We hope you enjoyed the session."</div>
             </div>
 
             <div>
               <div class="tp-phase-label">Post-Session</div>
               <ul class="tp-list">
-                <li>QR code standee for easy access</li>
-                <li>Photo booth for selfie / optional engagement</li>
-                <li>Volunteers available for interaction</li>
+                <li>QR code standee available for easy access</li>
+                <li>Photobooth / selfie space for optional engagement</li>
+                <li>Volunteers available for interaction and support</li>
               </ul>
             </div>
 
@@ -1762,160 +1529,6 @@ Free 7-min daily meditation: [link] #MiracleOfMind</div>
   </div><!-- /accordion-stack -->
 
   <div class="accordion-stack" style="--accent:var(--c-session); margin-top:16px;">
-    <div class="expand-card c-session" id="card-session-flow" style="--accent:var(--c-session);">
-      <button class="expand-trigger" onclick="toggleExpand('card-session-flow')">
-        <div class="expand-icon-wrap">🗺️</div>
-        <div class="expand-text">
-          <div class="card-title">Session Flow</div>
-          <div class="card-desc" style="margin-top:5px;">Step-by-step sequence of the full Miracle of Mind session — what happens, when, and how long.</div>
-        </div>
-        <span class="expand-chevron">▼</span>
-      </button>
-      <div class="expand-body">
-        <div style="display:flex; justify-content:flex-end; gap:12px; margin-bottom:14px; flex-wrap:wrap;">
-          <a href="https://drive.google.com/file/d/1Q04cA42TFbLMe6iqjU5tDUlYIkVGILbT/view?usp=sharing"
-             target="_blank" rel="noopener"
-             style="display:inline-flex;align-items:center;gap:5px;font-size:0.76rem;font-weight:600;color:var(--c-session);text-decoration:none;border:1px solid rgba(124,184,168,0.35);padding:3px 12px;border-radius:50px;">
-            ↗ Session Flow PDF
-          </a>
-          <a href="https://drive.google.com/file/d/14SXhep0eZa1LyEh4NUnZR6ITdV4p37lF/view?usp=sharing"
-             target="_blank" rel="noopener"
-             style="display:inline-flex;align-items:center;gap:5px;font-size:0.76rem;font-weight:600;color:var(--c-session);text-decoration:none;border:1px solid rgba(124,184,168,0.4);padding:3px 10px;border-radius:50px;background:rgba(124,184,168,0.07);">
-            ⚡ Quick Reference Card
-          </a>
-        </div>
-        <div class="tp-phases">
-
-          <div>
-            <div class="tp-phase-label">1 · Pre-Session Setup &nbsp;<span style="color:var(--mom-muted);">|</span>&nbsp; 15 min</div>
-            <p class="tp-aside" style="margin-bottom:8px;">Create a conducive atmosphere that helps participants become receptive.</p>
-            <ul class="tp-list">
-              <li>Play Yoga Padhi music approximately 15 minutes before the session start time</li>
-              <li>Set up the Unfollow Wall with sticky notes and markers</li>
-              <li>Keep QR codes and standees ready and visible</li>
-              <li>Volunteers welcome participants and engage in natural interaction</li>
-            </ul>
-            <div class="tp-action" style="margin-top:8px;">▶ On screen: Yoga Padhi + Setup</div>
-          </div>
-
-          <div>
-            <div class="tp-phase-label">2 · Unfollow Wall</div>
-            <p class="tp-aside" style="margin-bottom:8px;">As participants walk in, volunteers invite them:</p>
-            <ul class="tp-list">
-              <li>Invite participants to write one thing they would like to unfollow today</li>
-              <li>Something that feels unnecessary, distracting, or that they're simply ready to let go of</li>
-              <li>Optional prompts: Overthinking · Constant distraction · Comparison · Academic or work stress</li>
-              <li>Allow participants to write without rush (no announcement yet)</li>
-            </ul>
-            <div class="tp-action" style="margin-top:8px;">▶ On screen: Waiting slide</div>
-          </div>
-
-          <div>
-            <div class="tp-phase-label">3 · Waiting Announcement &nbsp;<span style="color:var(--mom-muted);">|</span>&nbsp; ~1 min</div>
-            <ul class="tp-list">
-              <li>Welcome everyone and wait a few minutes to begin</li>
-              <li>Invite any remaining participants to the Unfollow Wall</li>
-              <li>Request phones on silent / Do Not Disturb</li>
-            </ul>
-          </div>
-
-          <div>
-            <div class="tp-phase-label">4 · Welcome &amp; Introduction &nbsp;<span style="color:var(--mom-muted);">|</span>&nbsp; ~2 min</div>
-            <p class="tp-aside" style="margin-bottom:8px;">Introduce yourself as a volunteer with Isha Foundation.</p>
-            <ul class="tp-list">
-              <li>Share your name, profession, and a brief personal note that helps you connect and be relatable</li>
-              <li>Introduce Isha Foundation and Sadhguru — briefly mention tools for wellbeing rooted in the science of yoga</li>
-              <li>Set intent: mental wellbeing and peak potential</li>
-            </ul>
-          </div>
-
-          <div>
-            <div class="tp-phase-label">5 · Interaction &nbsp;<span style="color:var(--mom-muted);">|</span>&nbsp; ~1 min</div>
-            <p class="tp-aside" style="margin-bottom:8px;">Create curiosity and awareness around the nature of the mind.</p>
-            <ul class="tp-list">
-              <li>Ask: thoughts noisy? Ever wished to mute them?</li>
-              <li>Ask: How many times have we tried to control our thoughts, and it didn't work?</li>
-              <li>Pause — let participants respond</li>
-            </ul>
-          </div>
-
-          <div>
-            <div class="tp-phase-label">6 · Introduce Miracle of Mind &nbsp;<span style="color:var(--mom-muted);">|</span>&nbsp; ~1 min</div>
-            <ul class="tp-list">
-              <li>Demonstrate an uncontrolled hand movement to illustrate how the mind can act without our control</li>
-              <li>There is a science and technology through which one can take charge of the mind and explore its infinite potential</li>
-              <li>Introduce MoM — Sadhguru will explain the science and guide participants through it</li>
-            </ul>
-          </div>
-
-          <div>
-            <div class="tp-phase-label">7 · Introduction to Practice &nbsp;<span style="color:var(--mom-muted);">|</span>&nbsp; ~2 min</div>
-            <p class="tp-aside" style="margin-bottom:8px;">A simple yet powerful tool for mental well-being.</p>
-            <ul class="tp-list">
-              <li>MoM: free, 7-minute guided meditation — no experience needed, anytime anywhere</li>
-              <li>Research: neurophysiological effects begin within 2–3 minutes and peak at 7 minutes, even for beginners</li>
-              <li>Like exercise supports the body, this meditation brings clarity and stability to the mind</li>
-            </ul>
-          </div>
-
-          <div>
-            <div class="tp-phase-label">8 · Guided Meditation &nbsp;<span style="color:var(--mom-muted);">|</span>&nbsp; ~9 min</div>
-            <ul class="tp-list">
-              <li>Play the full meditation video — no interruptions</li>
-            </ul>
-            <div class="tp-action" style="margin-top:8px;">▶ On screen: App-guided meditation</div>
-          </div>
-
-          <div>
-            <div class="tp-phase-label">9 · Sharing &nbsp;<span style="color:var(--mom-muted);">|</span>&nbsp; ~1 min</div>
-            <ul class="tp-list">
-              <li>Ask: How was your experience?</li>
-              <li>Take 2–3 participants to share — normalize all experiences</li>
-            </ul>
-          </div>
-
-          <div>
-            <div class="tp-phase-label">10 · Sadhguru Video on Thoughts During Meditation &nbsp;<span style="color:var(--mom-muted);">|</span>&nbsp; ~1 min</div>
-            <div class="tp-action">▶ Play: How to Manage Thoughts During Meditation</div>
-          </div>
-
-          <div>
-            <div class="tp-phase-label">11 · Participant Experience Video &nbsp;<span style="color:var(--mom-muted);">|</span>&nbsp; ~1 min</div>
-            <div class="tp-action">▶ Play short video of participant experiences</div>
-          </div>
-
-          <div>
-            <div class="tp-phase-label">12 · Sadhguru &amp; Isha Foundation Intro &nbsp;<span style="color:var(--mom-muted);">|</span>&nbsp; Optional (~2 min)</div>
-            <ul class="tp-list">
-              <li>Briefly introduce Sadhguru — yogi, New York Times bestselling author, humanitarian</li>
-              <li>Play Sadhguru intro video</li>
-            </ul>
-          </div>
-
-          <div>
-            <div class="tp-phase-label">13 · App Download CTA &nbsp;<span style="color:var(--mom-muted);">|</span>&nbsp; ~1 min</div>
-            <ul class="tp-list">
-              <li>Highlight key app features: AI Q&amp;A · Adjustable meditation pace · Hopscotch · Wisdom</li>
-              <li>Display QR code — volunteers support participants in downloading the app</li>
-              <li>Pause ~1 minute for downloads</li>
-            </ul>
-            <div class="tp-action" style="margin-top:8px;">▶ On screen: QR code slide</div>
-          </div>
-
-          <div>
-            <div class="tp-phase-label">14 · Closing &nbsp;<span style="color:var(--mom-muted);">|</span>&nbsp; ~1 min</div>
-            <ul class="tp-list">
-              <li>Thank participants for joining and encourage regular practice</li>
-              <li>Do Namaskar</li>
-            </ul>
-          </div>
-
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="accordion-stack" style="--accent:var(--c-session); margin-top:16px;">
     <div class="expand-card c-session" id="card-checklist" style="--accent:var(--c-session);">
       <button class="expand-trigger" onclick="toggleExpand('card-checklist')">
         <div class="expand-icon-wrap">✅</div>
@@ -1937,7 +1550,7 @@ Free 7-min daily meditation: [link] #MiracleOfMind</div>
           <li onclick="toggleCheck(this)"><span class="check-box"></span><span class="check-text">Send WhatsApp / email invite at least 48 hrs before</span></li>
           <li onclick="toggleCheck(this)"><span class="check-box"></span><span class="check-text">Download session media and test audio</span></li>
           <li onclick="toggleCheck(this)"><span class="check-box"></span><span class="check-text">Print or display flyer at the venue</span></li>
-          <li onclick="toggleCheck(this)"><span class="check-box"></span><span class="check-text">Review talking points before the session</span></li>
+          <li onclick="toggleCheck(this)"><span class="check-box"></span><span class="check-text">Review session script before the session</span></li>
           <li onclick="toggleCheck(this)"><span class="check-box"></span><span class="check-text">Set up Unfollow Wall materials (if applicable)</span></li>
           <li onclick="toggleCheck(this)"><span class="check-box"></span><span class="check-text">Collect attendance and feedback after the session</span></li>
         </ul>

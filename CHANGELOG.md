@@ -5,6 +5,57 @@ Each entry includes the file, the specific change, and any notes relevant for me
 
 ---
 
+## 2026-05-23
+
+### Email Templates — Content Updated from Master Sheet
+**File:** `index.html`
+**Source:** MoM-Artifacts Master Sheet → Email Templates Google Doc
+**Change:** Replaced all 5 previous tabs (Friends & Family, Universities, Nonprofits, Corporations, Influencers) with 3 tabs matching the current document: Corporations & Organizations (formal proposal letter), Small Group / Friends & Family (personal session invite), and Post-Session (follow-up message with app download link and stay-connected form).
+
+---
+
+### Other Useful Content — Research Summary Removed
+**File:** `index.html`
+**Change:** Removed the "Sadhguru Center for a Conscious Planet — Research Summary" entry from Other Useful Content.
+
+---
+
+### Outreach Resources — Social Media Captions Section Removed
+**File:** `index.html`
+**Change:** Removed the Social Media Captions accordion card (Instagram, Facebook, LinkedIn, X tabs) from Outreach Resources entirely.
+
+---
+
+### Session Flow — Section Removed; Quick Reference Card Moved to Session Script
+**File:** `index.html`
+**Change:** Removed the Session Flow accordion card entirely. The Quick Reference Card PDF link has been added to the Session Script accordion header (alongside the existing Session Script link). The Session Checklist item "Review talking points" has also been renamed to "Review session script".
+
+---
+
+### Session Script — Content Updated from Master Sheet
+**File:** `index.html`
+**Source:** MoM-Artifacts Master Sheet → Session Script Google Doc
+**Change:** Updated the Full Session Script accordion content to match the latest version of the document. Key changes:
+- Removed "Waiting Announcement" phase
+- "Welcome & Introduction" + "Sadhguru & Isha Intro" merged into a single upfront phase: "Welcome & Sadhguru Introduction" (~3.5 min); intro video now plays at the start, not as an optional late-session segment
+- "Interaction" renamed to "Opening Questions" with updated dialogue
+- "Introduce Miracle of Mind" updated with new text ("The human mind is a miraculous instrument...")
+- "Introduction to Practice" removed as a separate phase
+- New phase added: "App Features Walk Thru" (~3 min)
+- "Managing Thoughts Video" renamed to "How to Meditate When Thoughts Are Noisy" with new dialogue
+- "Closing" updated with new text (10,000 steps analogy, Harvard study reference)
+- "Open file" link updated to match the canonical URL from the master sheet
+
+---
+
+## 2026-05-23
+
+### Flyer Generator — Template 1 Updated
+**File:** `files/templates/1.png`, `files/templates/1.webp`
+**Change:** Replaced Flyer Template 1 with a new design (four-panel photo collage, "FREE & OPEN TO ALL" / "Sadhguru Meditation Experience"). Both the PNG source and the WebP used by the generator have been updated.
+
+---
+
 ## 2026-05-18
 
 ### Take It Further — Mobile Layout Fixed

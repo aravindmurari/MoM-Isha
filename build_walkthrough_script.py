@@ -109,17 +109,21 @@ body(
     "The first section is Outreach Resources — everything you need to get people to a session."
 )
 body(
-    "At the top you have Flyer Templates — twelve ready-made designs. Use the Flyer Generator to fill in "
+    "At the top you have an App Features Guide — a walkthrough of the Miracle of Mind app so you can "
+    "confidently answer questions during outreach. Next is Booth Setup, with a guide and video for setting "
+    "up your session venue."
+)
+body(
+    "Below that are Flyer Templates — twelve ready-made designs. Use the Flyer Generator to fill in "
     "your event details and download a print-ready PNG, or open in Canva for full customization."
 )
 body(
-    "Below that are expandable cards for Email Templates, WhatsApp Templates, and Social Media Captions — "
+    "Then expandable cards for Email Templates, WhatsApp Templates, and Social Media Captions — "
     "each organized by audience type: friends and family, universities, corporations, nonprofits, and more. "
     "Click to expand, pick your audience, personalize the text, and you're ready to send."
 )
 body(
-    "You'll also find an App Features Guide with a walkthrough of the Miracle of Mind app so you can "
-    "confidently answer questions, Printables for your session venue, and Other Useful Content with reference "
+    "You'll also find Printables for your session venue, and Other Useful Content with reference "
     "materials like the research summary, a corporate presentation deck, and verified Sadhguru quotes."
 )
 
@@ -138,13 +142,14 @@ body(
     "this page to revisit the Boom Buddy training video."
 )
 body(
-    "Once you're inside, you'll find three things. First, Talking Points — with tabs for a Full Session, "
-    "a Short Session for Punya Pooja, and an FAQ. These are your session scripts and dialogue guides. "
+    "Once you're inside, you'll find three things. First, the Session Script — with tabs for the Full "
+    "Session Script and an FAQ. These are your dialogue guides for running the session. "
     "Second, a Session Flow Checklist — step-by-step with timing cues for each step; check things off "
     "as you go. And third, the Session Media player — all the videos for the session are right here. "
-    "Click any item to load it, and hit the Present button to send it full-screen to your projector or "
-    "second monitor. If you're running a session without reliable internet, you can also download the "
-    "videos for offline use ahead of time."
+    "Click any item from the playlist to load and play it. When you're ready to present, hit Open "
+    "Presentation View to send the video full-screen to your projector or second monitor — while that "
+    "window is open, playback is locked to the presentation screen only. "
+    "If you're running a session without reliable internet, you can also download the videos for offline use ahead of time."
 )
 
 # SECTION 3
