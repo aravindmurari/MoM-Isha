@@ -5,12 +5,20 @@ Each entry includes the file, the specific change, and any notes relevant for me
 
 ---
 
+## 2026-05-25
+
+### Post-Session Report — Button Link Updated
+**File:** `index.html`
+**Change:** Updated the "Submit Report" button link from `https://isha.co/bb-kit/session-report` to `https://isha.us/mom-session-report`.
+
+---
+
 ## 2026-05-23
 
 ### Email Templates — Content Updated from Master Sheet
 **File:** `index.html`
 **Source:** MoM-Artifacts Master Sheet → Email Templates Google Doc
-**Change:** Replaced all 5 previous tabs (Friends & Family, Universities, Nonprofits, Corporations, Influencers) with 3 tabs matching the current document: Corporations & Organizations (formal proposal letter), Small Group / Friends & Family (personal session invite), and Post-Session (follow-up message with app download link and stay-connected form).
+**Change:** Replaced all previous tabs with 3 tabs matching the current document: Corporations & Organizations (formal proposal letter), Small Group / Friends & Family (personal session invite), and Post-Session (follow-up message with app download link and stay-connected form).
 
 ---
 
@@ -47,8 +55,6 @@ Each entry includes the file, the specific change, and any notes relevant for me
 - "Open file" link updated to match the canonical URL from the master sheet
 
 ---
-
-## 2026-05-23
 
 ### Flyer Generator — Template 1 Updated
 **File:** `files/templates/1.png`, `files/templates/1.webp`
@@ -90,31 +96,9 @@ Each entry includes the file, the specific change, and any notes relevant for me
 
 ---
 
-## 2026-05-17
-
-### Session Script — "Full Session Script" Tab Renamed
+### Session Script — Renamed from "Talking Points"; Short Session Tab Removed; Tab Renamed
 **File:** `index.html`
-**Change:** Renamed the "Full Session" tab to "Full Session Script" for clarity.
-
----
-
-### Session Script — Short Session Tab Removed
-**File:** `index.html`
-**Change:** Removed the "Short Session" tab and its content from the Session Script accordion. Remaining tabs: Full Session Script and FAQ.
-
----
-
-### Session Script — Renamed from "Talking Points"
-**File:** `index.html`
-**Change:** Renamed the "Talking Points" accordion card to "Session Script". Updated both the card heading and the "↗ Open file" link label accordingly.
-
----
-
-## 2026-05-16
-
-### Session Media — First-Open Auto-Play (One-Time Only)
-**File:** `index.html`
-**Change:** The first video in Session Media now auto-plays exactly once: the first time a volunteer expands the Session Media card on a given device. On all subsequent visits, no auto-play occurs (the user's last state is preserved). Controlled via a `sm_first_play_done` flag in localStorage.
+**Change:** Renamed the "Talking Points" accordion card to "Session Script". Removed the "Short Session" tab. Renamed the "Full Session" tab to "Full Session Script". Updated the "↗ Open file" link label accordingly.
 
 ---
 
@@ -122,24 +106,22 @@ Each entry includes the file, the specific change, and any notes relevant for me
 
 ### Outreach Resources — Card Order Updated
 **File:** `index.html`
-**Change:** Reordered cards in Outreach Resources. New order: App Features Guide, Booth Setup, Flyer Templates, Email Templates, WhatsApp Templates, Social Media Captions, Printables, Other Useful Content. App Features Guide and Booth Setup are now the first two items, above Flyer Templates.
+**Change:** Reordered cards in Outreach Resources. New order: App Features Guide, Booth Setup, Flyer Templates, Email Templates, WhatsApp Templates, Printables, Other Useful Content. App Features Guide and Booth Setup are now the first two items, above Flyer Templates.
 
 ---
 
 ### Session Resources — "Find a Session Near You" Moved and Restyled
 **File:** `index.html`
-**Change:** Moved the "Find a session near you" block from the bottom of the Session Resources section to directly below the "Revisit Training" card. Restyled the link as a solid amber button (matching the visual pattern of the Revisit Training button) for greater prominence.
+**Change:** Moved the "Find a session near you" block from the bottom of the Session Resources section to directly below the "Revisit Training" card. Restyled the link as a solid amber button for greater prominence.
 
 ---
-
-## 2026-05-15
 
 ### Booth Setup — New Card Added to Outreach Resources
 **File:** `index.html`
 **Source:** MoM-Artifacts Master Sheet (Section: Promotion > Sub-Section: Booth Setup)
-**Change:** Added a new expandable "Booth Setup" card positioned above Printables in the Outreach Resources accordion. Contains:
-- **"↗ Open Guide"** link (top-right) — published Google Doc (WebURL from master sheet)
-- **Embedded video player** — direct Dropbox CDN `<video>` tag (`dl.dropboxusercontent.com`, file hash `ALPmFro7gTjMBzSWliFVX2Q`, rlkey `ozpzdll9z9ymv07vvv17k3ovk`)
+**Change:** Added a new expandable "Booth Setup" card positioned above Flyer Templates in the Outreach Resources accordion. Contains:
+- **"↗ Open Guide"** link — published Google Doc (WebURL from master sheet)
+- **Embedded video player** — direct Dropbox CDN `<video>` tag
 
 ---
 
@@ -155,104 +137,44 @@ Each entry includes the file, the specific change, and any notes relevant for me
 
 ---
 
-### Template Labels — Amber Color Applied Across All Three Cards
+### Email & WhatsApp Templates — Mobile Copy Button Added
 **File:** `index.html`
-**Change:** Template label color (e.g. "Caption 1 — Quote post", "Friends & Family", etc.) updated from `--mom-muted` (#6e665b) to `--vol-amber` (#d4914a) across Email Templates, WhatsApp Templates, and Social Media Captions for better visibility and visual distinction.
+**Change:** On mobile (≤768px), a "Copy" button now appears at the top of every template panel across Email Templates and WhatsApp Templates so users don't need to scroll past long text to find it. Desktop experience is unchanged.
 
 ---
 
-### Email / WhatsApp / Social Media — Mobile Copy Button Added
-**File:** `index.html`
-**Change:** On mobile (≤768px), a "Copy" button now appears at the top of every template panel across Email Templates (5), WhatsApp Templates (5), and Social Media Captions (IG×4, FB×2, LinkedIn×2, X×2) so users don't need to scroll past long text to find it. The bottom copy button is hidden on mobile to avoid duplication. Desktop experience is unchanged.
-
----
-
-### Talking Points — Web URL Updated from Master Sheet
+### Session Flow & Session Script — Links Updated from Master Sheet
 **File:** `index.html`
 **Source:** MoM-Artifacts Master Sheet
-**Change:** Updated the published Google Doc URL for the Talking Points "Open file" link in the Session Kit.
-```
-Before: ...2PACX-1vS2vLzhk3sGpuUEOOJ5rFdaG0-nVyT_itKQVMSq0wcTMjOQQxyx8ihWUWXv5D4PaIhjFBaJjq06OVlK/pub
-After:  ...2PACX-1vTRKzbV3BDQ4pi9cz7wZpf_O8wZo2hIiVa9LuRdLoaSkpRsCcTNySpNoYmCWfMISUjHHyYwSLptvW3_/pub
-```
+**Change:** Updated document links for Session Flow PDF, Quick Reference Card, and Session Script to the latest versions from the master sheet.
 
 ---
 
-### Session Flow — Links Updated from Master Sheet
+### Disclaimer Bar — Removed; Hero Logo — Now a Link
 **File:** `index.html`
-**Source:** MoM-Artifacts Master Sheet
-**Change:** Updated both document links in the Session Flow card to the latest versions.
-```
-Session Flow PDF:
-  Before: drive.google.com/file/d/1jTYElEkUqcRFfxiJI2aqCTDFiQ14GGqo
-  After:  drive.google.com/file/d/1Q04cA42TFbLMe6iqjU5tDUlYIkVGILbT
-
-Quick Reference Card:
-  Before: drive.google.com/file/d/1Q1Ele1flvU78CG2fdBIExb-bx5RTnRUs
-  After:  drive.google.com/file/d/14SXhep0eZa1LyEh4NUnZR6ITdV4p37lF
-```
-
----
-
-### Disclaimer Bar — Removed
-**File:** `index.html`
-**Change:** Removed the top disclaimer bar ("This is not the official Miracle of Mind website"). The MoM logo in the hero section is now a clickable link to `isha.sadhguru.org/us/en/miracle-of-mind` instead.
-
----
-
-### Hero Logo — Now a Link
-**File:** `index.html`
-**Change:** Wrapped the MoM logo `<img>` in an `<a>` tag linking to the official Miracle of Mind page (`https://isha.sadhguru.org/us/en/miracle-of-mind`), opens in a new tab.
+**Change:** Removed the top disclaimer bar ("This is not the official Miracle of Mind website"). Wrapped the MoM logo in an `<a>` tag linking to the official Miracle of Mind page (`https://isha.sadhguru.org/us/en/miracle-of-mind`), opens in a new tab.
 
 ---
 
 ### Section Headers — Icons Added
 **File:** `index.html`
 **Change:** Replaced emoji icons with flat inline SVG icons that inherit the section's theme color via `currentColor`.
-- Outreach Resources → Phosphor Icons `megaphone-fill` in amber (`--c-tool`)
-- Session Resources → Phosphor Icons `flower-lotus-fill` in teal (`--c-session`)
+- Outreach Resources → Phosphor Icons `megaphone-fill` in amber
+- Session Resources → Phosphor Icons `flower-lotus-fill` in teal
 
 ---
 
 ### Hero Stat — Downloads Label Updated
 **File:** `index.html`
-**Change:** Updated the hero stat label for clarity.
-```
-Before: "Downloads in 15 hrs"
-After:  "Downloads in first 15 hrs"
-```
+**Change:** Updated the hero stat label from "Downloads in 15 hrs" to "Downloads in first 15 hrs".
 
 ---
 
 ## 2026-05-08
 
-### Talking Points & Session Flow Content Update
-**File:** `index.html`
-**Source:** Updated Google Drive documents — `MoM-TalkingPoints` and `MOM-SessionFlow-QuickReferenceGuide-1Page.pdf`
-
-**Talking Points — Full Session:**
-- Renamed phase "Hand Demonstration" → "Introduce Miracle of Mind"
-- Updated dialogue: added "which can assist you in this direction?" and new line "Sadhguru will first explain the science behind the Miracle of Mind meditation, and then guide us through it."
-
-**Talking Points — Short Session (Punya Pooja):**
-- Expanded the Closing section to include Inner Engineering content (program description, personal testimony placeholder, and in-person program invite)
-
-**Session Flow:**
-- Split old step 5 "Engaging Participants" into two steps: "5 · Interaction" and "6 · Introduce Miracle of Mind"
-- Renamed step 6 "Introduce MoM App..." → "7 · Introduction to Practice" (same content, cleaner title)
-- Updated step 7 → "8 · Guided Meditation" — duration corrected to ~9 min (was 7 min)
-- Updated step 8 → "9 · Sharing" — now specifies taking 2–3 sharings
-- Removed old step 13 "Customizing for Audience"
-- Renamed old step 12 → "13 · App Download CTA" (concise)
-- Updated step 14 "Closing" — added "Do Namaskar"
-- Added duration indicators to all step labels (e.g., ~1 min, ~2 min)
-- Added "On screen" cues to steps 1, 2, 8, 13
-
----
-
 ### Session Media URLs — Migrated to Isha Dropbox
 **File:** `index.html` → `const SM_URLS`
-**Change:** All 7 session media entries moved from personal Dropbox folder (`hp1orcoku47w1517cf6ql`) to Isha Dropbox folder (`1sycc2gff066vuwgx0tci`). Videos are the optimized/faststart versions. `rlkey` updated from folder-level key to the correct file-level key (`ikz1rzvmog4ntns2xhv94tt4k`) for all entries including the QR code image.
+**Change:** All 7 session media entries moved from personal Dropbox folder to Isha Dropbox folder (`1sycc2gff066vuwgx0tci`). Videos are the optimized/faststart versions. `rlkey` updated to the correct file-level key (`ikz1rzvmog4ntns2xhv94tt4k`) for all entries including the QR code image.
 
 ---
 
@@ -260,14 +182,14 @@ After:  "Downloads in first 15 hrs"
 **File:** `index.html`
 - Renamed "Offer a Group Session" → "Host a Group Session"
 - Replaced Group Session button with email link (`freeofferings@ishausa.org`) preceded by "Email us at" label
-- CME card: replaced button with "Coming soon" badge
+- CME card: replaced button with italic "Coming Soon" label in amber
 - Campus Club card: removed button, added email + subject line hint with "Email us at" label
 
 ---
 
 ### Site Walkthrough Video — Added to Nav
-**Files:** `index.html`
-**Change:** Added a "Watch Walkthrough" button to the top nav bar (right side). Opens a full-screen video modal playing `MoM-BBResourceKit-WalkThrough.mp4` from Isha Dropbox. Closes on X button, click-outside, or Escape key. Removed the redundant "Miracle of Mind App ↗" nav button (same URL already present in the page footer disclaimer).
+**File:** `index.html`
+**Change:** Added a "Watch Walkthrough" button to the top nav bar (right side). Opens a full-screen video modal playing `MoM-BBResourceKit-WalkThrough.mp4` from Isha Dropbox. Closes on X button, click-outside, or Escape key.
 
 ---
 
@@ -280,47 +202,21 @@ After:  "Downloads in first 15 hrs"
 
 ### Firefox Freeze Fix — Video Preload Removed
 **File:** `index.html`
-**Bug:** The `<video id="smLocalPlayer">` element had a hardcoded `src` pointing to the Yoga Padhi MP4 (15 min) with no `preload` attribute. Firefox started downloading the video immediately on page load, causing the browser to freeze.
-**Fix:** Removed the hardcoded `src` and added `preload="none"`. Video `src` is now set dynamically by `smPlay()` only when a user clicks a video item.
+**Bug:** The `<video id="smLocalPlayer">` element had a hardcoded `src` pointing to the Yoga Padhi MP4 with no `preload` attribute. Firefox started downloading the video immediately on page load, causing the browser to freeze.
+**Fix:** Removed the hardcoded `src` and added `preload="none"`. Video `src` is now set dynamically only when a user clicks a video item.
 
 ---
 
-### BoomBuddy Passcode Update
+### BoomBuddy Passcode Updated
 **File:** `index.html`
-**Change:** Updated the BoomBuddy access passcode.
-```javascript
-// Before
-const BB_PASS = 'BoomBuddy123';
-
-// After (updated again later in this session — see below)
-const BB_PASS = 'LetsB000M!';
-```
+**Change:** Updated the BoomBuddy access passcode to `LetsB00M!`.
 **Note:** This passcode is shared with volunteers via email upon completion of BoomBuddy training. Update the email template accordingly.
-
----
-
-### BoomBuddy Passcode — Updated Again
-**File:** `index.html`
-**Change:** Passcode updated a second time.
-```javascript
-// Before
-const BB_PASS = 'LetsB000M!';
-
-// After
-const BB_PASS = 'LetsB00M!';
-```
 
 ---
 
 ### Rebrand — "Booom Buddy" → "Boom Buddy"
 **Files:** `index.html`, `session-finder.html`, `flyer.html`, `DEPLOYMENT.md`
-**Change:** All 12 instances of "Booom" (3 O's) replaced with "Boom" (2 O's) across all site files to match updated branding.
-
----
-
-### CME Card — Coming Soon Text Styling
-**File:** `index.html`
-**Change:** Replaced the "Coming soon" pill badge on the CME card with a plain italic text label in amber color, matching the card's accent color.
+**Change:** All instances of "Booom" (3 O's) replaced with "Boom" (2 O's) across all site files to match updated branding.
 
 ---
 
