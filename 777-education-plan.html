@@ -1,0 +1,1061 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>7·7·7 Education Campaign — Miracle of Mind</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --g-dark:   #0b3326;
+      --g-mid:    #18573e;
+      --g-light:  #2a8a5c;
+      --g-pale:   #e8f5ee;
+      --amber:    #d4914a;
+      --amber-lt: #f0b96e;
+      --blue:     #3a6ea8;
+      --cream:    #f8f6f2;
+      --card:     #ffffff;
+      --border:   #e4e0da;
+      --t-dark:   #1a1a1a;
+      --t-mid:    #484440;
+      --t-muted:  #8a8480;
+      --shadow-sm: 0 1px 4px rgba(0,0,0,0.07);
+      --shadow:    0 4px 20px rgba(0,0,0,0.09);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: var(--cream);
+      color: var(--t-dark);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── Hero ─────────────────────────────────────────── */
+    .hero {
+      background: linear-gradient(150deg, #081f16 0%, var(--g-dark) 45%, #1a6b45 100%);
+      padding: 80px 40px 72px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 70% 60% at 50% 80%, rgba(42,138,92,0.18) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-eyebrow {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.45);
+      margin-bottom: 28px;
+    }
+
+    .hero-777 {
+      display: flex;
+      justify-content: center;
+      align-items: baseline;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+
+    .hero-num {
+      font-size: clamp(80px, 14vw, 130px);
+      font-weight: 900;
+      line-height: 1;
+      color: var(--amber-lt);
+      letter-spacing: -0.02em;
+    }
+
+    .hero-dot {
+      font-size: clamp(36px, 6vw, 56px);
+      color: rgba(255,255,255,0.2);
+      line-height: 1;
+      align-self: center;
+    }
+
+    .hero-pills {
+      display: flex;
+      justify-content: center;
+      gap: 24px;
+      margin-bottom: 36px;
+      flex-wrap: wrap;
+    }
+
+    .hero-pill-item {
+      text-align: center;
+    }
+
+    .hero-pill-num {
+      display: block;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--amber-lt);
+    }
+
+    .hero-pill-label {
+      display: block;
+      font-size: 0.75rem;
+      color: rgba(255,255,255,0.5);
+      margin-top: 2px;
+    }
+
+    .hero-sep {
+      color: rgba(255,255,255,0.15);
+      font-size: 1.2rem;
+      align-self: center;
+      margin-top: 8px;
+    }
+
+    .hero-mission {
+      font-size: clamp(0.95rem, 1.8vw, 1.15rem);
+      font-weight: 400;
+      color: rgba(255,255,255,0.78);
+      max-width: 580px;
+      margin: 0 auto 32px;
+      line-height: 1.75;
+    }
+
+    .hero-tags {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .hero-tag {
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.16);
+      color: rgba(255,255,255,0.75);
+      padding: 5px 15px;
+      border-radius: 100px;
+      font-size: 0.76rem;
+      font-weight: 500;
+    }
+
+    /* ── Layout ───────────────────────────────────────── */
+    .wrap {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 0 32px;
+    }
+
+    section { padding: 64px 0; }
+
+    .sec-eyebrow {
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--g-light);
+      margin-bottom: 8px;
+    }
+
+    .sec-title {
+      font-size: clamp(1.4rem, 2.6vw, 1.9rem);
+      font-weight: 800;
+      color: var(--t-dark);
+      margin-bottom: 12px;
+      line-height: 1.25;
+    }
+
+    .sec-desc {
+      font-size: 0.97rem;
+      color: var(--t-mid);
+      max-width: 580px;
+      line-height: 1.75;
+    }
+
+    .sec-head { margin-bottom: 44px; }
+
+    /* ── Architecture Diagram ─────────────────────────── */
+    .arch-section {
+      background: #fff;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .arch-primary-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      margin-bottom: 14px;
+    }
+
+    .arch-pnode {
+      background: var(--g-dark);
+      border-radius: 12px;
+      padding: 22px 18px 20px;
+      text-align: center;
+      position: relative;
+    }
+
+    .arch-pnode-role {
+      font-size: 0.62rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--amber-lt);
+      margin-bottom: 8px;
+    }
+
+    .arch-pnode-title {
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: #fff;
+      line-height: 1.35;
+    }
+
+    .arch-pnode-sub {
+      font-size: 0.7rem;
+      color: rgba(255,255,255,0.5);
+      margin-top: 6px;
+    }
+
+    /* Arrow down from primary to supporting */
+    .arch-bridge {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      margin-bottom: 6px;
+      height: 28px;
+      position: relative;
+    }
+
+    .arch-bridge-col {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0;
+    }
+
+    .arch-bridge-line {
+      width: 1.5px;
+      flex: 1;
+      background: #cde8d8;
+    }
+
+    .arch-bridge-arrow {
+      width: 0;
+      height: 0;
+      border-left: 5px solid transparent;
+      border-right: 5px solid transparent;
+      border-top: 6px solid #cde8d8;
+    }
+
+    .arch-bridge-label {
+      grid-column: 1 / -1;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--t-muted);
+    }
+
+    .arch-bridge-label::before,
+    .arch-bridge-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+
+    .arch-supporting-row {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+    }
+
+    .arch-snode {
+      background: var(--g-pale);
+      border: 1.5px solid #c0dece;
+      border-radius: 10px;
+      padding: 14px 14px 12px;
+      text-align: center;
+    }
+
+    .arch-snode-title {
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--t-dark);
+      line-height: 1.35;
+      margin-bottom: 8px;
+    }
+
+    .arch-feeds {
+      display: inline-block;
+      background: #d0eddf;
+      color: var(--g-mid);
+      font-size: 0.6rem;
+      font-weight: 700;
+      padding: 2px 9px;
+      border-radius: 100px;
+      letter-spacing: 0.04em;
+    }
+
+    /* ── Primary Strategy Cards ───────────────────────── */
+    .primary-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .p-card {
+      background: var(--card);
+      border-radius: 16px;
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .p-card-head {
+      background: var(--g-dark);
+      padding: 24px 22px 20px;
+    }
+
+    .p-card-role {
+      font-size: 0.62rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--amber-lt);
+      margin-bottom: 8px;
+    }
+
+    .p-card-title {
+      font-size: 1.05rem;
+      font-weight: 800;
+      color: #fff;
+      line-height: 1.3;
+      margin-bottom: 12px;
+    }
+
+    .p-card-stat {
+      background: rgba(255,255,255,0.1);
+      border-radius: 8px;
+      padding: 8px 14px;
+      display: inline-block;
+      font-size: 0.75rem;
+      color: rgba(255,255,255,0.75);
+      line-height: 1.4;
+    }
+
+    .p-card-stat strong {
+      display: block;
+      font-size: 1.05rem;
+      font-weight: 800;
+      color: var(--amber-lt);
+    }
+
+    .p-card-body {
+      padding: 22px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .p-card-desc {
+      font-size: 0.88rem;
+      color: var(--t-mid);
+      line-height: 1.75;
+    }
+
+    .p-card-actions-label {
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--t-muted);
+      margin-bottom: 8px;
+    }
+
+    .p-card-actions {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+    }
+
+    .p-card-actions li {
+      font-size: 0.84rem;
+      color: var(--t-mid);
+      padding-left: 18px;
+      position: relative;
+      line-height: 1.5;
+    }
+
+    .p-card-actions li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 8px;
+      width: 8px;
+      height: 1.5px;
+      background: var(--g-light);
+    }
+
+    /* ── Supporting Strategy Cards ────────────────────── */
+    .supporting-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+    }
+
+    .s-card {
+      background: var(--card);
+      border-radius: 14px;
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow-sm);
+      overflow: hidden;
+    }
+
+    .s-card-head {
+      background: var(--g-pale);
+      border-bottom: 1px solid #d0eadb;
+      padding: 18px 20px 16px;
+    }
+
+    .s-card-title {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--t-dark);
+      margin-bottom: 8px;
+    }
+
+    .s-card-feeds {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      background: #fff;
+      border: 1px solid #b8dcc8;
+      border-radius: 100px;
+      padding: 3px 12px 3px 9px;
+      font-size: 0.67rem;
+      font-weight: 600;
+      color: var(--g-mid);
+    }
+
+    .s-card-feeds-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--g-light);
+      flex-shrink: 0;
+    }
+
+    .s-card-body {
+      padding: 20px;
+    }
+
+    .s-card-desc {
+      font-size: 0.86rem;
+      color: var(--t-mid);
+      line-height: 1.75;
+      margin-bottom: 14px;
+    }
+
+    .s-card-actions {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .s-card-actions li {
+      font-size: 0.82rem;
+      color: var(--t-mid);
+      padding-left: 16px;
+      position: relative;
+      line-height: 1.5;
+    }
+
+    .s-card-actions li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 8px;
+      width: 7px;
+      height: 1.5px;
+      background: #90c8a8;
+    }
+
+    /* ── How it Connects ──────────────────────────────── */
+    .connect-section {
+      background: var(--g-dark);
+      padding: 64px 0;
+    }
+
+    .connect-section .sec-eyebrow { color: var(--amber-lt); }
+    .connect-section .sec-title   { color: #fff; }
+    .connect-section .sec-desc    { color: rgba(255,255,255,0.6); max-width: 560px; }
+
+    .connect-flow {
+      display: grid;
+      grid-template-columns: 1fr 32px 1fr 32px 1fr 32px 1fr;
+      align-items: center;
+      gap: 0;
+      margin-top: 44px;
+    }
+
+    .connect-step {
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 12px;
+      padding: 22px 18px;
+      text-align: center;
+    }
+
+    .connect-step-n {
+      font-size: 0.62rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--amber-lt);
+      margin-bottom: 10px;
+    }
+
+    .connect-step-title {
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: #fff;
+      line-height: 1.3;
+      margin-bottom: 8px;
+    }
+
+    .connect-step-desc {
+      font-size: 0.75rem;
+      color: rgba(255,255,255,0.55);
+      line-height: 1.55;
+    }
+
+    .connect-arrow {
+      text-align: center;
+      color: rgba(255,255,255,0.2);
+      font-size: 1.3rem;
+    }
+
+    /* ── Timeline Banner ──────────────────────────────── */
+    .timeline-banner {
+      background: linear-gradient(90deg, var(--amber) 0%, #e8a854 100%);
+      padding: 22px 40px;
+      text-align: center;
+    }
+
+    .timeline-banner-text {
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: #3a1e00;
+      letter-spacing: 0.02em;
+    }
+
+    .timeline-banner-text strong {
+      font-weight: 800;
+      font-size: 1rem;
+    }
+
+    /* ── Footer ───────────────────────────────────────── */
+    footer {
+      background: #081f15;
+      color: rgba(255,255,255,0.4);
+      text-align: center;
+      padding: 28px 32px;
+      font-size: 0.78rem;
+    }
+
+    footer strong { color: rgba(255,255,255,0.7); }
+
+    /* ── Misc ─────────────────────────────────────────── */
+    .divider {
+      height: 1px;
+      background: var(--border);
+    }
+
+    .badge-primary {
+      display: inline-block;
+      background: var(--g-light);
+      color: #fff;
+      font-size: 0.62rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 3px 10px;
+      border-radius: 100px;
+      margin-bottom: 10px;
+    }
+
+    .badge-supporting {
+      display: inline-block;
+      background: #d0eddf;
+      color: var(--g-mid);
+      font-size: 0.62rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 3px 10px;
+      border-radius: 100px;
+      margin-bottom: 10px;
+    }
+
+    /* Responsive */
+    @media (max-width: 920px) {
+      .arch-primary-row,
+      .primary-grid    { grid-template-columns: 1fr; }
+      .arch-supporting-row { grid-template-columns: repeat(2, 1fr); }
+      .supporting-grid { grid-template-columns: 1fr; }
+      .connect-flow {
+        grid-template-columns: 1fr;
+        gap: 8px;
+      }
+      .connect-arrow { transform: rotate(90deg); }
+      .hero-pills { gap: 16px; }
+    }
+
+    @media (max-width: 600px) {
+      .hero { padding: 60px 24px 56px; }
+      .wrap { padding: 0 20px; }
+      section { padding: 48px 0; }
+      .arch-supporting-row { grid-template-columns: 1fr; }
+      .arch-bridge { display: none; }
+      .timeline-banner { padding: 18px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════════ HERO -->
+<div class="hero">
+  <p class="hero-eyebrow">Miracle of Mind · Education Initiative</p>
+
+  <div class="hero-777">
+    <span class="hero-num">7</span>
+    <span class="hero-dot">·</span>
+    <span class="hero-num">7</span>
+    <span class="hero-dot">·</span>
+    <span class="hero-num">7</span>
+  </div>
+
+  <div class="hero-pills">
+    <div class="hero-pill-item">
+      <span class="hero-pill-num">7 Million</span>
+      <span class="hero-pill-label">People Reached</span>
+    </div>
+    <span class="hero-sep">·</span>
+    <div class="hero-pill-item">
+      <span class="hero-pill-num">7 Days</span>
+      <span class="hero-pill-label">Consistent Practice</span>
+    </div>
+    <span class="hero-sep">·</span>
+    <div class="hero-pill-item">
+      <span class="hero-pill-num">7 Minutes</span>
+      <span class="hero-pill-label">Per Day</span>
+    </div>
+  </div>
+
+  <p class="hero-mission">
+    A grassroots strategy to bring the Miracle of Mind meditation
+    into schools, universities, and homes — and have 7 million
+    people meditating consistently for a week before World Mental Health Day.
+  </p>
+
+  <div class="hero-tags">
+    <span class="hero-tag">Education &amp; Schools Focus</span>
+    <span class="hero-tag">Target: October 10, 2026</span>
+    <span class="hero-tag">World Mental Health Day</span>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════ TIMELINE BANNER -->
+<div class="timeline-banner">
+  <p class="timeline-banner-text">
+    Target deadline &nbsp;·&nbsp; <strong>October 10, 2026 — World Mental Health Day</strong>
+    &nbsp;·&nbsp; All outreach and onboarding must be complete before this date.
+  </p>
+</div>
+
+<!-- ═══════════════════════════════════════════════ ARCHITECTURE -->
+<section class="arch-section">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="sec-eyebrow">Strategy Overview</p>
+      <h2 class="sec-title">The Plan at a Glance</h2>
+      <p class="sec-desc">
+        Three primary strategies form the foundation, scale, and multiplier for the campaign.
+        Four supporting strategies feed into and amplify them.
+      </p>
+    </div>
+
+    <!-- Primary row -->
+    <div class="arch-primary-row">
+      <div class="arch-pnode">
+        <p class="arch-pnode-role">Foundation</p>
+        <p class="arch-pnode-title">Train the Teacher,<br>Reach the Class</p>
+        <p class="arch-pnode-sub">1 teacher → 25–30 students/day</p>
+      </div>
+      <div class="arch-pnode">
+        <p class="arch-pnode-role">Scale</p>
+        <p class="arch-pnode-title">School District<br>Partnerships</p>
+        <p class="arch-pnode-sub">1 district = dozens of schools</p>
+      </div>
+      <div class="arch-pnode">
+        <p class="arch-pnode-role">Multiplier</p>
+        <p class="arch-pnode-title">Family Challenge</p>
+        <p class="arch-pnode-sub">1 student → entire household</p>
+      </div>
+    </div>
+
+    <!-- Connector bridge -->
+    <div class="arch-bridge">
+      <div style="grid-column:1/-1; display:flex; align-items:center; gap:10px; font-size:0.65rem; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:var(--t-muted); padding: 4px 0;">
+        <div style="flex:1;height:1px;background:var(--border);"></div>
+        <span>Powered by supporting strategies</span>
+        <div style="flex:1;height:1px;background:var(--border);"></div>
+      </div>
+    </div>
+
+    <!-- Supporting row -->
+    <div class="arch-supporting-row">
+      <div class="arch-snode">
+        <p class="arch-snode-title">7-7-7 School Challenge</p>
+        <span class="arch-feeds">Feeds: Foundation + Scale</span>
+      </div>
+      <div class="arch-snode">
+        <p class="arch-snode-title">Student Ambassador Network</p>
+        <span class="arch-feeds">Feeds: Foundation</span>
+      </div>
+      <div class="arch-snode">
+        <p class="arch-snode-title">After-School Programs</p>
+        <span class="arch-feeds">Feeds: Scale</span>
+      </div>
+      <div class="arch-snode">
+        <p class="arch-snode-title">University Mental Health Week</p>
+        <span class="arch-feeds">Parallel Track</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════ PRIMARY STRATEGIES -->
+<section>
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="sec-eyebrow">Primary Strategies</p>
+      <h2 class="sec-title">The Three Pillars</h2>
+      <p class="sec-desc">
+        These three strategies are the core of the campaign. Together they create the
+        mechanism, the scale, and the multiplication needed to reach 7 million people.
+      </p>
+    </div>
+
+    <div class="primary-grid">
+
+      <!-- Card 1 -->
+      <div class="p-card">
+        <div class="p-card-head">
+          <p class="p-card-role">Foundation &nbsp;·&nbsp; Pillar 1</p>
+          <h3 class="p-card-title">Train the Teacher,<br>Reach the Class</h3>
+          <div class="p-card-stat">
+            <strong>300K teachers × 25 = 7.5M</strong>
+            students reached through educator training
+          </div>
+        </div>
+        <div class="p-card-body">
+          <p class="p-card-desc">
+            The most scalable entry point into schools is through the teachers who
+            already have a captive audience every day. Run free one-hour
+            "Boom Buddy for Educators" trainings — in-person or virtual — that
+            certify teachers and school counselors to lead a MoM session with their
+            class. Target wellness teachers, homeroom teachers, and school counselors
+            first, as they already own the mental health curriculum time.
+            One trained educator can guide 25–30 students through the practice
+            every single day. The math does the rest.
+          </p>
+          <div>
+            <p class="p-card-actions-label">Key Actions</p>
+            <ul class="p-card-actions">
+              <li>Develop a concise "Boom Buddy for Educators" training program (1 hour, self-paced online option)</li>
+              <li>Create a dedicated teacher kit: session guide, classroom deck, printable take-home sheet</li>
+              <li>Partner with teacher professional development networks and SEL organizations</li>
+              <li>Prioritize middle and high school wellness / advisory period teachers as first cohort</li>
+              <li>Track completions and student reach through a simple sign-up form</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="p-card">
+        <div class="p-card-head">
+          <p class="p-card-role">Scale &nbsp;·&nbsp; Pillar 2</p>
+          <h3 class="p-card-title">School District<br>Partnerships</h3>
+          <div class="p-card-stat">
+            <strong>1 district sign-on</strong>
+            unlocks dozens of schools simultaneously
+          </div>
+        </div>
+        <div class="p-card-body">
+          <p class="p-card-desc">
+            Rather than approaching individual schools one at a time, go to the
+            decision-maker above them: the district wellness director or superintendent.
+            A single district partnership can activate 20, 50, or 100 schools at once
+            through existing communication channels and staff training days.
+            The pitch should not be about meditation in the abstract — frame it
+            squarely around measurable student outcomes that districts are already
+            mandated to address: focus, anxiety reduction, and Social-Emotional
+            Learning (SEL) benchmarks. Come with data, a simple pilot proposal,
+            and a clear ask.
+          </p>
+          <div>
+            <p class="p-card-actions-label">Key Actions</p>
+            <ul class="p-card-actions">
+              <li>Develop a School District Proposal Deck (adapted from the existing Corporate Presentation Deck)</li>
+              <li>Identify and prioritize the top 50 districts by student population and SEL program presence</li>
+              <li>Frame the proposal around SEL mandate alignment and student wellbeing metrics</li>
+              <li>Offer a structured 7-day pilot with pre/post student feedback</li>
+              <li>Identify Isha volunteers or MoM practitioners already within those districts as internal advocates</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="p-card">
+        <div class="p-card-head">
+          <p class="p-card-role">Multiplier &nbsp;·&nbsp; Pillar 3</p>
+          <h3 class="p-card-title">Family Challenge</h3>
+          <div class="p-card-stat">
+            <strong>1 student = family of 4</strong>
+            schools as the gateway to households
+          </div>
+        </div>
+        <div class="p-card-body">
+          <p class="p-card-desc">
+            Every school is a direct gateway to thousands of families.
+            When a student learns the MoM practice at school and takes it home,
+            the campaign's reach multiplies well beyond the classroom.
+            A simple "7-Day Family Meditation Challenge" take-home — a one-pager
+            or QR code linking to the app — invites the whole household to participate.
+            A family of four that meditates together for 7 days counts as four
+            practitioners, not one. This is the mechanism that bridges school
+            reach to the 7 million target.
+          </p>
+          <div>
+            <p class="p-card-actions-label">Key Actions</p>
+            <ul class="p-card-actions">
+              <li>Design a print-ready "7-Day Family Meditation Challenge" take-home sheet with QR code to the app</li>
+              <li>Create a family-friendly onboarding flow on the app for first-time adult users</li>
+              <li>Offer a class-level or school-level "family participation" tracking option (optional, privacy-safe)</li>
+              <li>Develop a short follow-up at the end of 7 days — a reflection prompt or digital badge</li>
+              <li>Deploy through teacher-trained schools as part of their standard student kit</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ═══════════════════════════════════════════════ SUPPORTING STRATEGIES -->
+<section>
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="sec-eyebrow">Supporting Strategies</p>
+      <h2 class="sec-title">The Amplifiers</h2>
+      <p class="sec-desc">
+        These four strategies work alongside the primary pillars — each one feeding
+        directly into at least one of them, expanding reach through additional
+        channels and audiences.
+      </p>
+    </div>
+
+    <div class="supporting-grid">
+
+      <!-- S1 -->
+      <div class="s-card">
+        <div class="s-card-head">
+          <p class="s-card-title">7-7-7 School Challenge</p>
+          <div>
+            <span class="s-card-feeds"><span class="s-card-feeds-dot"></span>Feeds: Train the Teacher</span>&nbsp;
+            <span class="s-card-feeds"><span class="s-card-feeds-dot"></span>Feeds: District Partnerships</span>
+          </div>
+        </div>
+        <div class="s-card-body">
+          <p class="s-card-desc">
+            A branded, time-bound campaign mechanism that gives schools a concrete,
+            shareable event to rally around. The "7-7-7 School Challenge" — 7 minutes
+            of MoM, every day for 7 days, as a class — is tied directly to World Mental
+            Health Day on October 10. It works because it gives teachers a low-commitment,
+            fully packaged program to run, and gives district wellness directors a campaign
+            they can endorse and promote across schools. The challenge creates urgency,
+            a clear start and end date, and a completion milestone (a shareable certificate
+            for participating classrooms).
+          </p>
+          <ul class="s-card-actions">
+            <li>Build a simple sign-up landing page for schools and teachers</li>
+            <li>Send daily reminder emails or texts to participating teachers</li>
+            <li>Create a shareable classroom completion certificate for social amplification</li>
+            <li>Time the launch 3–4 weeks before October 10 to allow sign-ups to build</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- S2 -->
+      <div class="s-card">
+        <div class="s-card-head">
+          <p class="s-card-title">Student Ambassador Network</p>
+          <div>
+            <span class="s-card-feeds"><span class="s-card-feeds-dot"></span>Feeds: Train the Teacher</span>
+          </div>
+        </div>
+        <div class="s-card-body">
+          <p class="s-card-desc">
+            Peer-led programs consistently outperform adult-led ones in school adoption —
+            students trust and follow other students. Train one student leader per school
+            as a MoM Student Ambassador. They run a short session for their peers,
+            during lunch, advisory period, or an after-school slot.
+            The ambassador model extends the trained-teacher foundation into spaces
+            where a teacher cannot go — student clubs, dorm common rooms, peer
+            support groups — and does it with more cultural credibility.
+            Build a simple ambassador kit so any motivated student can run a session
+            independently.
+          </p>
+          <ul class="s-card-actions">
+            <li>Create a lightweight "Student Ambassador Kit" — session guide, intro deck, FAQ</li>
+            <li>Run a short virtual onboarding session for new ambassadors monthly</li>
+            <li>Recognize ambassadors publicly (certificates, social features) to incentivize participation</li>
+            <li>Target campus MoM clubs and student government wellness committees as first recruits</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- S3 -->
+      <div class="s-card">
+        <div class="s-card-head">
+          <p class="s-card-title">After-School Program Partnerships</p>
+          <div>
+            <span class="s-card-feeds"><span class="s-card-feeds-dot"></span>Feeds: District Partnerships</span>
+          </div>
+        </div>
+        <div class="s-card-body">
+          <p class="s-card-desc">
+            National after-school networks — Boys &amp; Girls Clubs, YMCA youth programs,
+            Title I extended learning programs — serve millions of students daily and
+            are actively seeking wellness content. They have structured daily time slots
+            where a 7-minute practice fits naturally. Unlike working through individual
+            schools, a single national network partnership can unlock thousands of
+            locations simultaneously — making it one of the highest-leverage scale
+            levers available outside of formal district agreements.
+            These programs also serve populations underrepresented in traditional
+            school wellness initiatives.
+          </p>
+          <ul class="s-card-actions">
+            <li>Identify 3–5 national after-school network leads for an initial partnership conversation</li>
+            <li>Adapt the Educator training kit for after-school program staff (not teachers)</li>
+            <li>Propose a 7-day pilot for one network location cluster before broader rollout</li>
+            <li>Frame the pitch around youth mental health programming requirements many networks already have</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- S4 -->
+      <div class="s-card">
+        <div class="s-card-head">
+          <p class="s-card-title">University Mental Health Week</p>
+          <div>
+            <span class="s-card-feeds"><span class="s-card-feeds-dot"></span>Parallel Track (University / Young Adults)</span>
+          </div>
+        </div>
+        <div class="s-card-body">
+          <p class="s-card-desc">
+            Most universities already run a Mental Health Awareness Week in early October,
+            aligned naturally with World Mental Health Day on October 10. This is a
+            ready-made, opt-in audience that requires no calendar creation — the
+            infrastructure is already in place. Partner with campus counseling centers,
+            student government wellness committees, and psychology departments to host
+            a MoM session as part of their official programming.
+            Existing MoM campus clubs and trained student ambassadors serve as
+            on-ground facilitators. This track runs in parallel to the K-12 school
+            strategy and brings in a distinct demographic: college students and
+            young adults.
+          </p>
+          <ul class="s-card-actions">
+            <li>Identify universities with active campus MoM clubs or nearby Isha centers</li>
+            <li>Reach out to campus counseling centers with a co-hosting proposal by late August</li>
+            <li>Provide a turnkey "MoM at Your Campus Mental Health Week" event package</li>
+            <li>Encourage sessions to conclude with the 7-day Family Challenge to extend reach to families</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════ HOW IT CONNECTS -->
+<section class="connect-section">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="sec-eyebrow">The Full Picture</p>
+      <h2 class="sec-title">How the Pieces Connect</h2>
+      <p class="sec-desc">
+        From the first session in a classroom to 7 million people meditating at home —
+        each step leads into the next.
+      </p>
+    </div>
+
+    <div class="connect-flow">
+      <div class="connect-step">
+        <p class="connect-step-n">Step 1</p>
+        <p class="connect-step-title">Launch the Challenge &amp; Train Educators</p>
+        <p class="connect-step-desc">7-7-7 School Challenge creates urgency. Teacher training &amp; ambassador program put practitioners in every classroom.</p>
+      </div>
+      <div class="connect-arrow">→</div>
+      <div class="connect-step">
+        <p class="connect-step-n">Step 2</p>
+        <p class="connect-step-title">Scale Through Districts &amp; Networks</p>
+        <p class="connect-step-desc">District partnerships and after-school programs multiply one conversation into hundreds of schools simultaneously.</p>
+      </div>
+      <div class="connect-arrow">→</div>
+      <div class="connect-step">
+        <p class="connect-step-n">Step 3</p>
+        <p class="connect-step-title">Students Bring It Home</p>
+        <p class="connect-step-desc">Family Challenge take-home turns each student into a household entry point. One child = four practitioners.</p>
+      </div>
+      <div class="connect-arrow">→</div>
+      <div class="connect-step">
+        <p class="connect-step-n">October 10</p>
+        <p class="connect-step-title">World Mental Health Day</p>
+        <p class="connect-step-desc">Classrooms, campuses, and families have completed 7 days of MoM together. 7 million people. 7 minutes. Every day.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════ FOOTER -->
+<footer>
+  <strong>Miracle of Mind</strong> &nbsp;·&nbsp; 7·7·7 Education Campaign &nbsp;·&nbsp; Target: October 10, 2026
+</footer>
+
+</body>
+</html>
