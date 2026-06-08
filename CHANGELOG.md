@@ -5,6 +5,14 @@ Each entry includes the file, the specific change, and any notes relevant for me
 
 ---
 
+## 2026-06-07
+
+### Email Templates — "To Your Organization Leader" Tab Added
+**File:** `index.html`
+**Change:** Added a fourth tab to the Email Templates accordion: "To Your Organization Leader". Contains a personalized internal proposal email for volunteers to send to their own manager or team leader requesting an employee wellbeing session. Placeholders: [Leader's Name], [Team Name], [Company Name], [Your Name].
+
+---
+
 ## 2026-05-25
 
 ### Post-Session Report — Button Link Updated
