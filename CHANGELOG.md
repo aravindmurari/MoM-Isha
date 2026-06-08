@@ -7,9 +7,21 @@ Each entry includes the file, the specific change, and any notes relevant for me
 
 ## 2026-06-07
 
+### Email Templates — Tab Order Updated
+**File:** `index.html`
+**Change:** Moved the "To Your Organization Leader" tab to second position (after Corporations & Organizations). New order: Corporations & Organizations, To Your Organization Leader, Small Group / Friends & Family, Post-Session.
+
+---
+
 ### Email Templates — "To Your Organization Leader" Tab Added
 **File:** `index.html`
-**Change:** Added a fourth tab to the Email Templates accordion: "To Your Organization Leader". Contains a personalized internal proposal email for volunteers to send to their own manager or team leader requesting an employee wellbeing session. Placeholders: [Leader's Name], [Team Name], [Company Name], [Your Name].
+**Change:** Added a new tab to the Email Templates accordion: "To Your Organization Leader". Contains a personalized internal proposal email for volunteers to send to their own manager or team leader requesting an employee wellbeing session. Placeholders: [Leader's Name], [Team Name], [Company Name], [Your Name].
+
+---
+
+### Host a Group Session — Offerings Updated
+**File:** `index.html`
+**Change:** Removed "Yoga for Workplace · 45 min" from the session offerings list. Updated "Yoga for Health" duration from 1 hr to 75 min. New list: Miracle of Mind Experience Session · 30 min, Yoga for Health · 75 min, Yoga for Mental Well-being · 45 min.
 
 ---
 
